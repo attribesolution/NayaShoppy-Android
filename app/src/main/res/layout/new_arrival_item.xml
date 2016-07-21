@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/card_new_arrivals"
+        android:layout_width="150dp"
+        android:layout_height="180dp"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardCornerRadius="0dp"
+
+
+    >
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="10dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+
+            >
+
+        <ImageView
+                android:id="@+id/arrival_image"
+                android:layout_width="50dp"
+                android:layout_height="80dp"
+                android:contentDescription="@string/arrival_image_desc"
+                android:scaleType="centerInside"
+                android:layout_centerHorizontal="true"
+        />
+
+        <TextView
+                android:id="@+id/arrival_product_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/home_category_size"
+                android:gravity="center"
+                android:layout_below="@+id/arrival_image"
+                android:text="Sony Experia T2 Ultra"
+
+        />
+
+        <TextView
+                android:id="@+id/arrival_product_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/arrival_price"
+                android:gravity="center"
+                android:layout_below="@+id/arrival_product_name"
+                android:text="Rs 1300 (20% OFF)"
+        />
+        <TextView
+                android:id="@+id/arrival_product_vendor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/arrival_price"
+                android:gravity="center"
+                android:layout_below="@+id/arrival_product_price"
+                android:text="Amazon"
+        />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

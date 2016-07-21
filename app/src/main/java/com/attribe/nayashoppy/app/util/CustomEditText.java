@@ -9,7 +9,7 @@ import android.view.MotionEvent;
 import android.widget.EditText;
 
 /**
- * Created by Sabih Ahmed on 30-Jun-16.
+ * Created by Sabih Ahmed on 18-Jul-16.
  */
 public class CustomEditText extends EditText{
     private DrawableClickListener clickListener;

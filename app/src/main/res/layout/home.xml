@@ -1,26 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+
         >
+        <LinearLayout
+                      android:orientation="vertical"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:padding="10dp"
+                >
+
+            <include
+                    layout="@layout/home_slider"/>
 
 
-    <android.support.v4.view.ViewPager
-            android:id="@+id/viewpager"
-            android:layout_width="match_parent"
-            android:layout_height="125dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
+            <include layout="@layout/category" />
 
-    <GridView android:layout_width="match_parent"
-              android:layout_height="118dp"
-              android:numColumns="4"
 
-            >
+            <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="20dp"
+                      android:drawableLeft="@drawable/ic_coupon"
+                      android:text="Coupons and Cashback"/>
+            />
 
-    </GridView>
-    
+            <include layout="@layout/coupons_layout"/>
 
-</LinearLayout>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="20dp"
+                      android:text="New Arrivals"/>
+
+            <include layout="@layout/new_arrivals"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="20dp"
+                      android:text="Recently viewed"/>
+
+            <include layout="@layout/recently_viewed"/>
+        </LinearLayout>
+</ScrollView>

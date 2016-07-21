@@ -16,7 +16,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.attribe.nayashoppy.app.R;
-import com.attribe.nayashoppy.app.adapters.ViewPagerAdapter;
+import com.attribe.nayashoppy.app.adapters.MainScreenPagerAdapter;
 
 
 public class Main extends BaseActivity {
@@ -116,7 +116,7 @@ public class Main extends BaseActivity {
 
     //===================================private Methods=======================================================
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        MainScreenPagerAdapter adapter = new MainScreenPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new Home(),"Home");
         adapter.addFrag(new Home(),"Deals of the day");
         viewPager.setAdapter(adapter);
