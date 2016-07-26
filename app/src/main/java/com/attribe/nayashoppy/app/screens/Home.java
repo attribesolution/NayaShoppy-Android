@@ -17,9 +17,9 @@ import com.attribe.nayashoppy.app.adapters.ArrivalAdapter;
 import com.attribe.nayashoppy.app.adapters.CouponGridAdapter;
 import com.attribe.nayashoppy.app.adapters.CategoryGridAdapter;
 import com.attribe.nayashoppy.app.adapters.HomeSliderAdapter;
-import com.attribe.nayashoppy.app.model.Category;
 import com.attribe.nayashoppy.app.model.Coupon;
-import com.attribe.nayashoppy.app.model.Product;
+import com.attribe.nayashoppy.app.model.Datum;
+import com.attribe.nayashoppy.app.util.DevicePreferences;
 import com.attribe.nayashoppy.app.util.DummyData;
 
 import java.util.ArrayList;
@@ -112,35 +112,14 @@ public class Home extends Fragment {
 
 
     private void initCategoryGrid() {
-
-        Category category1 = new Category("Mobile & Tablets", "");
-        Category category2 = new Category("Laptops & Peripherals", "");
-        Category category3 = new Category("Tvs & Cameras", "");
-        Category category4 = new Category("Fashion Store", "");
-        Category category5 = new Category("Kids corener", "");
-        Category category6 = new Category("Beauty & Personal care", "");
-        Category category7 = new Category("Home & Kitchen", "");
-        Category category8 = new Category("Sports & HealthCare", "");
-
-
-        ArrayList<Category> rowListItem = new ArrayList<Category>();
-
-        rowListItem.add(category1);
-        rowListItem.add(category2);
-        rowListItem.add(category3);
-        rowListItem.add(category4);
-        rowListItem.add(category5);
-        rowListItem.add(category6);
-        rowListItem.add(category7);
-        rowListItem.add(category8);
-
-        categoryGrid = new GridLayoutManager(getActivity(), 4);
+        ArrayList<Datum> menuList = DevicePreferences.getInstance().getMenu();
+        categoryGrid = new GridLayoutManager(getActivity(), menuList.size());
 
         RecyclerView rView = (RecyclerView) view.findViewById(R.id.recycler_category);
         rView.setHasFixedSize(true);
         rView.setLayoutManager(categoryGrid);
 
-        CategoryGridAdapter gridAdapter = new CategoryGridAdapter(getActivity(), rowListItem);
+        CategoryGridAdapter gridAdapter = new CategoryGridAdapter(getActivity(),menuList );
         rView.setAdapter(gridAdapter);
 
     }

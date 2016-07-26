@@ -1,8 +1,11 @@
 package com.attribe.nayashoppy.app.adapters;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import com.attribe.nayashoppy.app.model.Children;
+import com.attribe.nayashoppy.app.util.NavigationUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +37,10 @@ public class MainScreenPagerAdapter extends FragmentPagerAdapter{
         return mFragmentTitleList.get(position);
     }
 
-    public void addFrag(Fragment fragment,String fragmentTitle) {
+    public void addFrag(Fragment fragment, String fragmentTitle, ArrayList<Children> children) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(NavigationUtils.CHILD_MENU,children);
+        fragment.setArguments(bundle);
         mFragmentList.add(fragment);
         mFragmentTitleList.add(fragmentTitle);
 

@@ -3,12 +3,12 @@ package com.attribe.nayashoppy.app.model;
 /**
  * Created by Sabih Ahmed on 19-Jul-16.
  */
-public class Category {
+public class ParentCategory {
 
     private String categoryName;
     private String categoryImageURL;
 
-    public Category(String categoryName, String categoryImageURL) {
+    public ParentCategory(String categoryName, String categoryImageURL) {
         this.categoryName = categoryName;
         this.categoryImageURL = categoryImageURL;
     }

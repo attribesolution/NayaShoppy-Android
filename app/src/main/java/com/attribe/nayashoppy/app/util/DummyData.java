@@ -1,5 +1,6 @@
 package com.attribe.nayashoppy.app.util;
 
+import com.attribe.nayashoppy.app.model.ParentCategory;
 import com.attribe.nayashoppy.app.model.Product;
 
 import java.util.ArrayList;
@@ -38,5 +39,32 @@ public class DummyData {
         productList.add(product5);
 
         return productList;
+    }
+
+    public static ArrayList<ParentCategory> getParentCategories() {
+        ParentCategory category1 = new ParentCategory("Mobile & Tablets", "");
+        ParentCategory category2 = new ParentCategory("Laptops & Peripherals", "");
+        ParentCategory category3 = new ParentCategory("Tvs & Cameras", "");
+        ParentCategory category4 = new ParentCategory("Fashion Store", "");
+        ParentCategory category5 = new ParentCategory("Kids Corner", "");
+        ParentCategory category6 = new ParentCategory("Beauty & Personal care", "");
+        ParentCategory category7 = new ParentCategory("Home & Kitchen needs", "");
+        ParentCategory category8 = new ParentCategory("Sports & HealthCare", "");
+        ParentCategory category9 = new ParentCategory("Books","");
+
+
+        ArrayList<ParentCategory> rowListItem = new ArrayList<ParentCategory>();
+
+        rowListItem.add(category1);
+        rowListItem.add(category2);
+        rowListItem.add(category3);
+        rowListItem.add(category4);
+        rowListItem.add(category5);
+        rowListItem.add(category6);
+        rowListItem.add(category7);
+        rowListItem.add(category8);
+        rowListItem.add(category9);
+
+        return rowListItem;
     }
 }

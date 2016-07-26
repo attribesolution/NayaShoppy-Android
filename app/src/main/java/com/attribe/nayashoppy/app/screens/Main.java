@@ -14,9 +14,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import com.attribe.nayashoppy.app.R;
+import com.attribe.nayashoppy.app.adapters.DrawerAdapter;
 import com.attribe.nayashoppy.app.adapters.MainScreenPagerAdapter;
+import com.attribe.nayashoppy.app.util.NavigationUtils;
 
 
 public class Main extends BaseActivity {
@@ -51,38 +54,48 @@ public class Main extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
+        setupDrawer();
+
+
+    }
+
+    private void setupDrawer() {
+        setupRightDrawerList();
+
         ActionBarDrawerToggle mDrawerToggle;
         final ActionBar actionBar = getSupportActionBar();
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-        if (actionBar != null)
-        {
+        if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
 
-            mDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.hello_world, R.string.hello_world)
+            mDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout,
+                    R.string.drawer_open, R.string.drawer_close)
             {
 
                 public void onDrawerClosed(View view)
                 {
                     supportInvalidateOptionsMenu();
-                    //drawerOpened = false;
+
                 }
 
                 public void onDrawerOpened(View drawerView)
                 {
                     supportInvalidateOptionsMenu();
-                    //drawerOpened = true;
+
                 }
             };
             mDrawerToggle.setDrawerIndicatorEnabled(true);
             drawerLayout.setDrawerListener(mDrawerToggle);
             mDrawerToggle.syncState();
         }
-
-
-
-
     }
 
+    private void setupRightDrawerList() {
+
+        ListView rightDrawer= (ListView) findViewById(R.id.right_drawer);
+        rightDrawer.setAdapter(new DrawerAdapter(this, NavigationUtils.getRightDrawer()));
+
+    }
 
 
     @Override
@@ -117,9 +130,8 @@ public class Main extends BaseActivity {
     //===================================private Methods=======================================================
     private void setupViewPager(ViewPager viewPager) {
         MainScreenPagerAdapter adapter = new MainScreenPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new Home(),"Home");
-        adapter.addFrag(new Home(),"Deals of the day");
-        viewPager.setAdapter(adapter);
+
+        viewPager.setAdapter(NavigationUtils.getPagerAdapter(this,getSupportFragmentManager()));
     }
 
 

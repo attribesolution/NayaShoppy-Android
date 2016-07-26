@@ -10,4 +10,6 @@
     <string name="splash_content">Splash...</string>
     <string name="search_home_hint">Search your item</string>
     <string name="arrival_image_desc">Product image</string>
+    <string name="drawer_open">Drawer opened</string>
+    <string name="drawer_close">Drawer closed</string>
 </resources>
