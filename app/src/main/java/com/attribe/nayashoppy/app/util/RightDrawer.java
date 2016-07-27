@@ -5,20 +5,20 @@ package com.attribe.nayashoppy.app.util;
  */
 public class RightDrawer {
 
-    private String optionIconURL;
+    private int optionIcon;
     private String optionName;
 
-    public RightDrawer(String optionName,String optionIconURL) {
-        this.optionIconURL = optionIconURL;
+    public RightDrawer(String optionName, int optionIcon) {
+        this.optionIcon = optionIcon;
         this.optionName = optionName;
     }
 
-    public String getOptionIconURL() {
-        return optionIconURL;
+    public int getIconResource() {
+        return optionIcon;
     }
 
-    public void setOptionIconURL(String optionIconURL) {
-        this.optionIconURL = optionIconURL;
+    public void setOptionIconURL(int optionIcon) {
+        this.optionIcon = optionIcon;
     }
 
     public String getOptionName() {

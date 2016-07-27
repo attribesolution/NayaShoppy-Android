@@ -8,10 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -50,9 +47,10 @@ public class Main extends BaseActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        ActionBar actionBar = getSupportActionBar();
+        //actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setLogo(R.drawable.logo);
+        actionBar.setDisplayUseLogoEnabled(true);
 
         setupDrawer();
 
@@ -115,12 +113,12 @@ public class Main extends BaseActivity {
                 drawerLayout.openDrawer(GravityCompat.START);
                 break;
 
-
-
             case R.id.action_settings:
                 break;
 
-
+            case R.id.my_account:
+                drawerLayout.openDrawer(GravityCompat.END);
+                break;
 
         }
         return super.onOptionsItemSelected(item);

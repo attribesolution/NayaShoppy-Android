@@ -7,10 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 import com.attribe.nayashoppy.app.R;
-import com.attribe.nayashoppy.app.screens.Main;
+import com.attribe.nayashoppy.app.util.NavigationUtils;
 import com.attribe.nayashoppy.app.util.RightDrawer;
 
 import java.util.ArrayList;
@@ -55,9 +54,52 @@ public class DrawerAdapter extends BaseAdapter {
 
         TextView name = (TextView) listItem.findViewById(R.id.optionName);
         ImageView icon = (ImageView)listItem.findViewById(R.id.optionIcon);
-
+        icon.setImageResource(mDrawerList.get(position).getIconResource());
         name.setText(mDrawerList.get(position).getOptionName());
 
+        listItem.setOnClickListener(new DrawerItemListener(position));
+
         return listItem;
+    }
+
+    private class DrawerItemListener implements View.OnClickListener {
+
+        private final int position;
+
+        public DrawerItemListener(int position) {
+                this.position = position;
+        }
+
+        @Override
+        public void onClick(View view) {
+
+            switch (position){
+
+                case 0:
+                    NavigationUtils.showLoginScreen(mContext);
+                    break;
+
+                case 1:
+                    NavigationUtils.showMyOrderScreen(mContext);
+                    break;
+
+                case 2:
+                    NavigationUtils.showWalletScreen(mContext);
+                    break;
+
+                case 3:
+                    NavigationUtils.showWhishListScreen(mContext);
+                    break;
+
+
+                case 4:
+                    NavigationUtils.showRateAppScreen(mContext);
+                    break;
+
+                case 5:
+                    NavigationUtils.showAbouUsScreen(mContext);
+                    break;
+            }
+        }
     }
 }

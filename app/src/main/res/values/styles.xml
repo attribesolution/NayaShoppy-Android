@@ -4,13 +4,10 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar"/>
 
 
-
-
     <style name="TabLayout_Home" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">@color/primary</item>
         <item name="tabSelectedTextColor">@color/primary</item>
         <item name="tabTextAppearance">@style/MyCustomTabText</item>
-
 
 
     </style>
@@ -20,4 +17,14 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
+
+    <style name="Button_maroon" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">#CD3132</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 </resources>

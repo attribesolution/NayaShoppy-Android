@@ -1,77 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-             xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
+<android.support.design.widget.AppBarLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:touchscreenBlocksFocus="true" >
 
-        >
-
-    <android.support.design.widget.AppBarLayout
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_home"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?attr/actionBarSize"
             android:background="@color/primary"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            android:touchscreenBlocksFocus="true"
-            >
-
-        <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar_home"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:elevation="4dp"
-                    android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                    android:titleTextColor="@color/white"
-                    android:title="@string/app_name">
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:titleTextColor="@color/white"
+            android:title="@string/app_name"
+            app:layout_scrollFlags="enterAlways|scroll">
 
 
 
-        </android.support.v7.widget.Toolbar>
+    </android.support.v7.widget.Toolbar>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        android:background="@color/primary"
+        android:paddingBottom="10dp"
+    >
+
+        <com.attribe.nayashoppy.app.util.CustomEditText
+                android:id="@+id/search_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="center_horizontal"
+                android:drawableLeft="@drawable/places_ic_search"
+                android:background="@drawable/border_search"
+                android:imeOptions="actionDone"
+                android:textColor="@color/black"
+                android:hint="Search your item"
+                android:maxLines="1"
+                android:cursorVisible="true"
+                android:nextFocusUp="@id/search_field"
+                android:nextFocusLeft="@id/search_field"/>
+
+    </FrameLayout>
 
 
-                <LinearLayout
-                        android:focusable="true"
-                        android:focusableInTouchMode="true"
-                        android:layout_width="0px"
-                        android:layout_height="0px"/>
-
-                <com.attribe.nayashoppy.app.util.CustomEditText
-                      android:id="@+id/search_field"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:layout_marginLeft="10dp"
-                      android:layout_marginRight="10dp"
-                      android:layout_gravity="center_horizontal"
-                      android:drawableLeft="@drawable/places_ic_search"
-                      android:background="@drawable/border_search"
-                      android:imeOptions="actionDone"
-                      android:textColor="@color/black"
-                      android:hint="Search your item"
-                      android:maxLines="1"
-                      android:cursorVisible="true"
-                      android:nextFocusUp="@id/search_field"
-                      android:nextFocusLeft="@id/search_field"/>
-
-
-                    <android.support.design.widget.TabLayout
-                            android:id="@+id/tabs"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            style="@style/TabLayout_Home"
-                            android:background="@color/white"
-                            app:tabMode="fixed"
-                            app:tabGravity="fill">
-                    </android.support.design.widget.TabLayout>
-
-    </android.support.design.widget.AppBarLayout>
-
+    <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:elevation="4dp"
+            style="@style/TabLayout_Home"
+            android:background="@color/white"
+            app:tabMode="fixed"
+            app:tabGravity="fill">
+    </android.support.design.widget.TabLayout>
     <android.support.v4.view.ViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
+</android.support.design.widget.AppBarLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+
+
+

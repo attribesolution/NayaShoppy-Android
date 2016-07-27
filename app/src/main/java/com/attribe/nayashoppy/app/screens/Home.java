@@ -113,7 +113,7 @@ public class Home extends Fragment {
 
     private void initCategoryGrid() {
         ArrayList<Datum> menuList = DevicePreferences.getInstance().getMenu();
-        categoryGrid = new GridLayoutManager(getActivity(), menuList.size());
+        categoryGrid = new GridLayoutManager(getActivity(), 4);
 
         RecyclerView rView = (RecyclerView) view.findViewById(R.id.recycler_category);
         rView.setHasFixedSize(true);

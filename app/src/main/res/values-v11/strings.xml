@@ -2,4 +2,21 @@
 <resources>
     <string name="splash_content">Splash...</string>
     <string name="search_home_hint">Search your item</string>
+
+
+
+
+
+
+    !-- Screen labels --!
+    <string name="label_shop_categorical">Shop by Categories</string>
+    <string name="label_deals">Deals of the day</string>
+
+    <string name="label_login">Sign in</string>
+    <string name="label_register">Sign Up</string>
+    <string name="label_my_order">My order</string>
+    <string name="label_my_wallet">My Wallet</string>
+    <string name="label_whish_list">Whish list</string>
+    <string name="label_rate_app">Rate the app</string>
+    <string name="label_about_us">About us</string>
 </resources>

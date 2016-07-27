@@ -1,4 +1,7 @@
 <resources>
+
+
+
     <string name="app_name">NayaShoppy</string>
 
     <string name="hello_world">Hello world!</string>
@@ -12,4 +15,6 @@
     <string name="arrival_image_desc">Product image</string>
     <string name="drawer_open">Drawer opened</string>
     <string name="drawer_close">Drawer closed</string>
+    <string name="title_activity_rate_app">RateApp</string>
+    <string name="logo">NayaShoppy logo</string>
 </resources>

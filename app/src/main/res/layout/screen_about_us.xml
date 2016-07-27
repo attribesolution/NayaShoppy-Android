@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        tools:context="com.attribe.nayashoppy.app.screens.useraccount.ScreenAboutUs">
+
+    <include layout="@layout/toolbar"/>
+    
+    <LinearLayout 
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_for_toolbar"
+            android:layout_marginLeft="10dp"
+            android:padding="10dp"
+            android:orientation="vertical"
+        >
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="40dp"
+                  android:text="Company Name"
+                  android:textStyle="bold"
+
+        />
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="20dp"
+                  android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Ut urna neque, mattis ac ipsum sed, porttitor feugiat massa. "
+
+        />
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="20dp"
+                  android:text="2002-2016 naya shoppy"
+        />
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="20dp"
+                  android:textColor="@color/app_version_name"
+                  android:text="App Version 1.00"
+        />
+        
+    </LinearLayout>
+</RelativeLayout>

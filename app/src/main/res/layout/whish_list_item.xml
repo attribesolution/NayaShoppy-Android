@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="130dp">
+
+
+    <ImageView
+               android:id="@+id/whish_image"
+               android:layout_marginLeft="10dp"
+               android:layout_marginTop="10dp"
+               android:layout_marginBottom="10dp"
+               android:layout_width="120dp"
+               android:layout_height="120dp"
+               android:src="@drawable/clean_shoe"
+               android:layout_alignParentTop="true"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toEndOf="@+id/whish_image"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="40dp"
+            >
+
+                    <TextView
+                            android:id="@+id/whish_product_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/whish_image"
+                            android:text="Cow leather hand weaven shoes"
+                            android:layout_centerVertical="true"
+
+                    />
+                    <TextView
+                            android:id="@+id/whish_product_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/whish_image"
+                            android:layout_below="@+id/whish_product_name"
+                            android:text="Rs 2500 20% OFF"
+                            android:layout_centerVertical="true"
+                    />
+
+    </LinearLayout>
+    
+    <TextView
+              android:id="@+id/whish_vendor"
+              android:layout_width="150dp"
+              android:layout_height="wrap_content"
+              android:layout_alignParentEnd="true"
+              android:layout_alignParentBottom="true"
+              android:textColor="@color/white"
+              android:background="@drawable/border_vendor_whishlist"
+              android:text="Amazon"
+    />
+</RelativeLayout>
