@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/parent"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_marginTop="@dimen/margin_top_for_toolbar"
-                tools:showIn="@layout/screen_whish_list">
+                tools:showIn="@layout/screen_my_order" >
 
 
     <android.support.v7.widget.RecyclerView
-
-            android:id="@+id/recycler_wish_List"
+            android:id="@+id/recycler_myorder"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-
+            android:layout_height="match_parent">
 
     </android.support.v7.widget.RecyclerView>
 </RelativeLayout>

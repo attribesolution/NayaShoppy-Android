@@ -10,6 +10,6 @@
 
     <include layout="@layout/toolbar"/>
 
-    <include layout="@layout/content_whish_list"/>
+    <include layout="@layout/content_wish_list"/>
 
 </android.support.design.widget.CoordinatorLayout>

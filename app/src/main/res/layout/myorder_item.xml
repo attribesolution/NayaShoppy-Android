@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                >
+
+    <TextView
+            android:id="@+id/myorder_orderID"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="FRI, MAY 15-2016 (POD 405000000723000)"/>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:background="@color/white"
+            >
+
+            <ImageView
+                    android:id="@+id/myorder_image"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/clean_shoe"
+            />
+        
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@+id/myorder_image"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+            >
+
+                <TextView
+                        android:id="@+id/myorder_product_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Macromax 2000 mAH Power Bank"/>
+
+                <TextView
+                        android:id="@+id/myorder_status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Return requested"
+                        android:textColor="@color/order_status"
+                        />
+
+                <TextView
+                        android:id="@+id/myorder_order_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Return Requested On Fri, May 26th"/>
+            </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

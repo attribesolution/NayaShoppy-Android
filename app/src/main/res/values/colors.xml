@@ -6,4 +6,5 @@
     <color name="black">#000000</color>
     <color name="red_button_text">#ffffff</color>
     <color name="app_version_name">#DB8C1C</color>
+    <color name="order_status">#39B12C</color>
 </resources>

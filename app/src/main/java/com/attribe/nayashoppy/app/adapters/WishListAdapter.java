@@ -9,19 +9,20 @@ import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.viewholders.WhishListHolder;
 import com.attribe.nayashoppy.app.model.Product;
 import com.attribe.nayashoppy.app.util.DummyData;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 /**
  * Created by Sabih Ahmed on 27-Jul-16.
  */
-public class WhishListAdapter extends RecyclerView.Adapter<WhishListHolder> {
+public class WishListAdapter extends RecyclerView.Adapter<WhishListHolder> {
 
     private Context mContext;
-    private ArrayList<Product> whishList;
+    private ArrayList<Product> wishList;
 
-    public WhishListAdapter(Context mContext) {
-        whishList = DummyData.getDummyProducts();
+    public WishListAdapter(Context mContext) {
+        wishList = DummyData.getDummyProducts();
         this.mContext = mContext;
     }
 
@@ -38,15 +39,15 @@ public class WhishListAdapter extends RecyclerView.Adapter<WhishListHolder> {
     @Override
     public void onBindViewHolder(WhishListHolder holder, int position) {
 
-        holder.productName.setText(whishList.get(position).getProductName());
-        holder.productPrice.setText(whishList.get(position).getProductPrice());
-
-        holder.productVendor.setText(whishList.get(position).getProductVendor());
+        holder.productName.setText(wishList.get(position).getProductName());
+        holder.productPrice.setText(wishList.get(position).getProductPrice());
+        Picasso.with(mContext).load(wishList.get(position).getProductImageURL()).into(holder.image);
+        holder.productVendor.setText(wishList.get(position).getProductVendor());
     }
 
 
     @Override
     public int getItemCount() {
-        return whishList.size();
+        return wishList.size();
     }
 }
