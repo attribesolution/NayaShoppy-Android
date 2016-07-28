@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.model.Children;
@@ -68,7 +69,25 @@ public class SubCategoryAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int position, boolean isExpanded, View view, ViewGroup viewGroup) {
+
+
+
+
         View parentView = mInflater.inflate(R.layout.parent_category_item,viewGroup,false);
+        ImageView groupIndicator = (ImageView) parentView.findViewById(R.id.group_indicator);
+
+
+        if(!isExpanded){
+
+            groupIndicator.setImageResource(R.drawable.tab_arrow_down);
+
+
+        }
+        else{
+
+            groupIndicator.setImageResource(R.drawable.tab_arrow_up);
+
+        }
 
         TextView parentName = (TextView) parentView.findViewById(R.id.category_name);
 
