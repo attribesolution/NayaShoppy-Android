@@ -19,4 +19,7 @@
     <string name="logo">NayaShoppy logo</string>
     <string name="button_submit">Submit</string>
     <string name="button_cancel">Cancel</string>
+    <string name="hint_username">Enter your Mobile or Email</string>
+    <string name="hint_password">Password</string>
+    <string name="button_login">Sign in</string>
 </resources>

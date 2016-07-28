@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:tools="http://schemas.android.com/tools"
+                tools:showIn="@layout/screen_login"
+                android:background="@drawable/loginbg">
+
+
+    <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_centerHorizontal="true" android:layout_marginTop="80dp"
+            android:id="@+id/frameLayout">
+
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                    android:src="@drawable/login_logo"
+                />
+
+
+    </FrameLayout>
+
+        <android.support.design.widget.TextInputLayout
+                android:id="@+id/usernameInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/frameLayout"
+                android:layout_marginTop="55dp"
+                android:layout_alignStart="@+id/frameLayout">
+
+                <com.attribe.nayashoppy.app.util.CustomEditText
+                        android:id="@+id/username"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/icon_user"
+                        android:hint="@string/hint_username"
+                        android:textColorHint="@color/white"
+                        android:textColor="@color/white"
+                        />
+        </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+            android:id="@+id/passwordInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/usernameInput"
+            android:layout_marginTop="20dp"
+            android:layout_alignStart="@+id/frameLayout">
+
+        <com.attribe.nayashoppy.app.util.CustomEditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/icon_password"
+                android:textColorHint="@color/white"
+                android:hint="@string/hint_password"
+                android:textColor="@color/white"
+        />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+            android:id="@+id/signin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:layout_below="@+id/passwordInput"
+            android:background="@drawable/border_signin"
+            android:textColor="@color/black"
+            android:text="@string/button_login"
+            />
+</RelativeLayout>
