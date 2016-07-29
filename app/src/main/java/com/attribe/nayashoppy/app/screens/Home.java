@@ -13,12 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import com.attribe.nayashoppy.app.R;
-import com.attribe.nayashoppy.app.adapters.ArrivalAdapter;
-import com.attribe.nayashoppy.app.adapters.CouponGridAdapter;
-import com.attribe.nayashoppy.app.adapters.CategoryGridAdapter;
-import com.attribe.nayashoppy.app.adapters.HomeSliderAdapter;
+import com.attribe.nayashoppy.app.adapters.*;
 import com.attribe.nayashoppy.app.model.Coupon;
 import com.attribe.nayashoppy.app.model.Datum;
+import com.attribe.nayashoppy.app.network.bals.ArrivalBAL;
+import com.attribe.nayashoppy.app.network.interfaces.ArrivalListener;
 import com.attribe.nayashoppy.app.util.DevicePreferences;
 import com.attribe.nayashoppy.app.util.DummyData;
 
@@ -63,7 +62,7 @@ public class Home extends Fragment {
         initCategoryGrid();
         initCouponsGrid();
         initNewArrivals();
-        initSimilarProducts();
+        initRecentlyViewed();
 
     }
 
@@ -146,7 +145,6 @@ public class Home extends Fragment {
         CouponGridAdapter couponAdapter = new CouponGridAdapter(getActivity(), couponList);
         recyclerCoupon.setAdapter(couponAdapter);
 
-
         recyclerCoupon.setHasFixedSize(true);
         recyclerCoupon.setLayoutManager(couponsGrid);
 
@@ -155,58 +153,53 @@ public class Home extends Fragment {
 
 
     private void initNewArrivals() {
-
-//
-//        ArrayList<Product> productList = new ArrayList<Product>();
-//        Product product1 = new Product("Sony Experia T2 Ultra","Rs 1300","Amazon","http://52.66.82.224/images/product/samsung-gallaxy.jpg");
-//
-//        Product product2 = new Product("Leather Wallet","Rs 1300","Amazon","http://52.66.82.224/images/product/wallet.jpg");
-//
-//        Product product3 = new Product("Puma shoes","Rs 1300","Amazon","http://52.66.82.224/images/product/pumashoes.jpg");
-//        Product product4 = new Product("Belt","Rs 1300","Amazon","http://52.66.82.224/images/product/belt.jpg");
-//        Product product5 = new Product("Fat Analyzer","Rs 1300","Amazon","http://52.66.82.224/images/product/fat_analyzor.jpg");
-//
-//
-//        productList.add(product1);
-//        productList.add(product2);
-//        productList.add(product3);
-//        productList.add(product4);
-//        productList.add(product5);
-//        productList.add(product1);
-//        productList.add(product2);
-//        productList.add(product3);
-//        productList.add(product4);
-//        productList.add(product5);
-//        productList.add(product1);
-//        productList.add(product2);
-//        productList.add(product3);
-//        productList.add(product4);
-//        productList.add(product5);
-
-        LinearLayoutManager layoutManager
+        final LinearLayoutManager layoutManager
                 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
 
-        RecyclerView arrivalsRecycler = (RecyclerView)view.findViewById(R.id.recycler_new_arrivals);
+        final RecyclerView arrivalsRecycler = (RecyclerView)view.findViewById(R.id.recycler_new_arrivals);
         arrivalsRecycler.setHasFixedSize(true);
 
-        ArrivalAdapter adapter = new ArrivalAdapter(DummyData.getDummyProducts());
-        arrivalsRecycler.setLayoutManager(layoutManager);
-        arrivalsRecycler.setAdapter(adapter);
+        ArrivalBAL.getNewArrivals(new ArrivalListener() {
+            @Override
+            public void onDataFetched(ArrayList<com.attribe.nayashoppy.app.model.arrival.Datum> data) {
+                ArrivalAdapter adapter = new ArrivalAdapter(data);
+                arrivalsRecycler.setLayoutManager(layoutManager);
+                arrivalsRecycler.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onDataIssue() {
+
+                //TODO: handle issue
+            }
+
+            @Override
+            public void onFailure() {
+                //TODO: handle failure
+            }
+        });
+
+
+
+
+
+
 
 
 
     }
 
-    private void initSimilarProducts(){
+    private void initRecentlyViewed(){
 
-        ArrivalAdapter adapter = new ArrivalAdapter(DummyData.getDummyProducts());
+        RecentViewedAdapter recentsAdapter= new RecentViewedAdapter(DummyData.getDummyProducts());
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),
                 LinearLayoutManager.HORIZONTAL,false);
 
         RecyclerView similarRecycler = (RecyclerView)view.findViewById(R.id.recycler_recents);
         similarRecycler.setHasFixedSize(true);
         similarRecycler.setLayoutManager(layoutManager);
-        similarRecycler.setAdapter(adapter);
+        similarRecycler.setAdapter(recentsAdapter);
 
 
     }

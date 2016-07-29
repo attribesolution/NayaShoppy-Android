@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.viewholders.ArrivalHolder;
 import com.attribe.nayashoppy.app.model.Product;
+import com.attribe.nayashoppy.app.model.arrival.Datum;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -17,10 +18,10 @@ import java.util.ArrayList;
  */
 public class ArrivalAdapter extends RecyclerView.Adapter<ArrivalHolder>{
 
-    private ArrayList<Product> mProductList;
+    private ArrayList<Datum> mProductList;
     private Context mContext;
 
-    public ArrivalAdapter(ArrayList<Product> productList) {
+    public ArrivalAdapter(ArrayList<Datum> productList) {
 
         this.mProductList = productList;
     }
@@ -40,11 +41,20 @@ public class ArrivalAdapter extends RecyclerView.Adapter<ArrivalHolder>{
     @Override
     public void onBindViewHolder(ArrivalHolder holder, int position) {
 
-        Product product = mProductList.get(position);
-        Picasso.with(mContext).load(product.getProductImageURL()).into(holder.productImage);
-        holder.productName.setText(product.getProductName());
-        holder.productPrice.setText(product.getProductPrice());
-        holder.productVendor.setText(product.getProductVendor());
+        Datum product = mProductList.get(position);
+
+        try {
+            //Picasso.with(mContext).load(product.getImage()).into(holder.productImage);
+        }
+
+        catch (NullPointerException npe){
+
+
+        }
+
+        holder.productName.setText(product.product_name);
+        holder.productPrice.setText(product.getLowest_price()+" ("+product.getDiscount()+"% OFF )");
+
 
     }
 
