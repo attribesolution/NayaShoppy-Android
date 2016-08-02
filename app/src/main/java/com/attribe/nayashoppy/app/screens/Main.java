@@ -14,22 +14,34 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.attribe.nayashoppy.app.R;
-import com.attribe.nayashoppy.app.adapters.DrawerAdapter;
-import com.attribe.nayashoppy.app.adapters.MainScreenPagerAdapter;
+import com.attribe.nayashoppy.app.adapters.LeftDrawerAdapter;
+import com.attribe.nayashoppy.app.adapters.RightDrawerAdapter;
+import com.attribe.nayashoppy.app.model.Datum;
+import com.attribe.nayashoppy.app.util.DevicePreferences;
 import com.attribe.nayashoppy.app.util.NavigationUtils;
+
+import java.util.ArrayList;
 
 
 public class Main extends BaseActivity {
 
     private DrawerLayout drawerLayout;
+    private ArrayList<Datum> parentCategories;
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.screen_main);
         super.initToolbar(this.getWindow().getDecorView().findViewById(android.R.id.content));
+        init();
+        setupViewPager(viewPager);
+        setupDrawer();
 
 
     }
+
+
 
     @Override
     public void onToolbarInit(Toolbar toolbar) {
@@ -41,23 +53,27 @@ public class Main extends BaseActivity {
         editText.setHintTextColor(getResources().getColor(R.color.black));
         editText.setOnEditorActionListener(new SearchActionListener());
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+
 
         ActionBar actionBar = getSupportActionBar();
         //actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setLogo(R.drawable.logo);
         actionBar.setDisplayUseLogoEnabled(true);
 
-        setupDrawer();
+
 
 
     }
 
+    private void init() {
+        parentCategories = DevicePreferences.getInstance().getMenu();
+    }
+
     private void setupDrawer() {
+        setUpLeftDrawerList();
         setupRightDrawerList();
 
         ActionBarDrawerToggle mDrawerToggle;
@@ -88,10 +104,17 @@ public class Main extends BaseActivity {
         }
     }
 
+    private void setUpLeftDrawerList() {
+        ListView leftDrawer = (ListView)findViewById(R.id.left_drawer);
+        leftDrawer.setAdapter(new LeftDrawerAdapter(this,parentCategories));
+
+
+    }
+
     private void setupRightDrawerList() {
 
         ListView rightDrawer= (ListView) findViewById(R.id.right_drawer);
-        rightDrawer.setAdapter(new DrawerAdapter(this, NavigationUtils.getRightDrawer()));
+        rightDrawer.setAdapter(new RightDrawerAdapter(this, NavigationUtils.getRightDrawer()));
 
     }
 
@@ -127,9 +150,11 @@ public class Main extends BaseActivity {
 
     //===================================private Methods=======================================================
     private void setupViewPager(ViewPager viewPager) {
-        MainScreenPagerAdapter adapter = new MainScreenPagerAdapter(getSupportFragmentManager());
 
-        viewPager.setAdapter(NavigationUtils.getPagerAdapter(this,getSupportFragmentManager()));
+        this.viewPager.setAdapter(NavigationUtils.getPagerAdapter(this,getSupportFragmentManager()));
+        tabLayout.setupWithViewPager(this.viewPager);
+
+
     }
 
 

@@ -17,13 +17,13 @@ import java.util.ArrayList;
 /**
  * Created by Sabih Ahmed on 22-Jul-16.
  */
-public class DrawerAdapter extends BaseAdapter {
+public class RightDrawerAdapter extends BaseAdapter {
 
 
     private final Context mContext;
     private final ArrayList<RightDrawer> mDrawerList;
 
-    public DrawerAdapter(Context context, ArrayList<RightDrawer> rightDrawer) {
+    public RightDrawerAdapter(Context context, ArrayList<RightDrawer> rightDrawer) {
 
         this.mContext = context;
         this.mDrawerList = rightDrawer;

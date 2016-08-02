@@ -38,18 +38,23 @@
                 android:parentActivityName=".screens.Main"
                 android:theme="@style/AppTheme">
         </activity>
-        <activity android:name=".screens.useraccount.ScreenLogin"
-                  android:parentActivityName=".screens.Main">
+        <activity
+                android:name=".screens.useraccount.ScreenLogin"
+                android:parentActivityName=".screens.Main">
         </activity>
-        <activity android:name=".screens.useraccount.ScreenMyOrder"
-                  android:parentActivityName=".screens.Main">
+        <activity
+                android:name=".screens.useraccount.ScreenMyOrder"
+                android:parentActivityName=".screens.Main">
         </activity>
-        <activity android:name=".screens.useraccount.ScreenWhishList"
-                  android:parentActivityName=".screens.Main">
-
+        <activity
+                android:name=".screens.useraccount.ScreenWhishList"
+                android:parentActivityName=".screens.Main">
         </activity>
-        <activity android:name=".screens.useraccount.ScreenAboutUs"
-                  android:parentActivityName=".screens.Main">
+        <activity
+                android:name=".screens.useraccount.ScreenAboutUs"
+                android:parentActivityName=".screens.Main">
+        </activity>
+        <activity android:name=".screens.product.ScreenProducts">
         </activity>
     </application>
 
