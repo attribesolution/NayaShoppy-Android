@@ -158,12 +158,13 @@ public class Home extends Fragment {
 
         final RecyclerView arrivalsRecycler = (RecyclerView)view.findViewById(R.id.recycler_new_arrivals);
         arrivalsRecycler.setHasFixedSize(true);
+        arrivalsRecycler.setLayoutManager(layoutManager);
 
         ArrivalBAL.getNewArrivals(new ArrivalListener() {
             @Override
             public void onDataFetched(ArrayList<com.attribe.nayashoppy.app.model.arrival.Datum> data) {
                 ArrivalAdapter adapter = new ArrivalAdapter(data);
-                arrivalsRecycler.setLayoutManager(layoutManager);
+
                 arrivalsRecycler.setAdapter(adapter);
 
             }
