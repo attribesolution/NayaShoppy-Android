@@ -4,33 +4,35 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/card_category"
         android:layout_width="80dp"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         card_view:cardUseCompatPadding="true"
         card_view:cardCornerRadius="0dp"
         android:layout_marginBottom="16dp">
 
     <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="80dp"
+            android:layout_height="70dp"
+            android:padding="10dp"
+    >
 
         <ImageView
                 android:id="@+id/category_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:contentDescription="@string/action_settings"
-                android:scaleType="centerCrop" />
+                android:src="@drawable/mobiles_tablets"
+                android:scaleType="centerCrop"
+                android:layout_centerHorizontal="true"/>
 
         <TextView
                 android:id="@+id/category_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="13sp"
+                android:textSize="8sp"
+                android:text="Mobiles /amp Tablets"
                 android:gravity="center"
                 android:layout_below="@+id/category_image"
-                android:paddingBottom="8dp"
-                android:paddingTop="8dp"
-                android:layout_alignParentBottom="true"
-                />
+                android:layout_centerHorizontal="true"/>
 
     </RelativeLayout>
 

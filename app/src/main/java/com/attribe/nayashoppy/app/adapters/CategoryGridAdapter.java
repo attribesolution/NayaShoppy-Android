@@ -9,10 +9,13 @@ import android.view.ViewGroup;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.viewholders.CategoryGridHolder;
 import com.attribe.nayashoppy.app.model.Datum;
+import com.attribe.nayashoppy.app.util.Common;
 import com.attribe.nayashoppy.app.util.NavigationUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import static com.attribe.nayashoppy.app.util.Common.getImage;
 
 /**
  * Created by Sabih Ahmed on 19-Jul-16.
@@ -42,10 +45,31 @@ public class CategoryGridAdapter extends RecyclerView.Adapter<CategoryGridHolder
     @Override
     public void onBindViewHolder(CategoryGridHolder holder, int position) {
 
+        Datum data = mCategoryList.get(position);
 
         holder.categoryName.setText(mCategoryList.get(position).getTitle());
-        if(!mCategoryList.get(position).getImage().isEmpty())
-            Picasso.with(mContext).load(mCategoryList.get(position).getImage()).into(holder.categoryImage);
+        try {
+            Datum.ApiIcon.Android images = data.getImages().getAndroid();
+            if(images != null){
+
+                try {
+                    //Picasso.with(mContext).load(getImage(mContext,images)).into(holder.categoryImage);
+                    Common.setImage(mContext,getImage(mContext,images),holder.categoryImage);
+                }
+                catch (IllegalArgumentException iae){
+
+                    //TODO: handle exception
+                }
+
+            }
+        }
+        catch (NullPointerException npe){
+            //TODO: handle exception
+
+        }
+
+
+
 
 
         holder.parentView.setOnClickListener(new CategoryClickListener(position));

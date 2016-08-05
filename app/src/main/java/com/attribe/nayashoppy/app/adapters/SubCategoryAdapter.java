@@ -2,7 +2,7 @@ package com.attribe.nayashoppy.app.adapters;
 
 import android.app.Service;
 import android.content.Context;
-import android.support.annotation.NonNull;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.model.Children;
+import com.attribe.nayashoppy.app.util.NavigationUtils;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import static android.R.id.list;
 
 /**
  * Created by Sabih Ahmed on 25-Jul-16.
@@ -23,11 +21,13 @@ import static android.R.id.list;
 public class SubCategoryAdapter extends BaseExpandableListAdapter {
 
     private final ArrayList<Children> list;
+    private Context mContext;
     private LayoutInflater mInflater;
 
 
     public SubCategoryAdapter(Context context, ArrayList<Children> compoundList) {
         this.list = compoundList;
+        this.mContext = context;
         mInflater = (LayoutInflater) context.getSystemService(Service.LAYOUT_INFLATER_SERVICE);
 
     }
@@ -43,13 +43,13 @@ public class SubCategoryAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public Object getGroup(int position) {
-        return list.get(position).getTitle();
+    public Children getGroup(int position) {
+        return list.get(position);
     }
 
     @Override
-    public Object getChild(int groupPosition, int childPosition) {
-        return list.get(groupPosition).getChildren().get(childPosition).getTitle();
+    public Children getChild(int groupPosition, int childPosition) {
+        return list.get(groupPosition).getChildren().get(childPosition);
     }
 
     @Override
@@ -70,9 +70,6 @@ public class SubCategoryAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int position, boolean isExpanded, View view, ViewGroup viewGroup) {
 
-
-
-
         View parentView = mInflater.inflate(R.layout.parent_category_item,viewGroup,false);
         ImageView groupIndicator = (ImageView) parentView.findViewById(R.id.group_indicator);
 
@@ -91,24 +88,51 @@ public class SubCategoryAdapter extends BaseExpandableListAdapter {
 
         TextView parentName = (TextView) parentView.findViewById(R.id.category_name);
 
-        parentName.setText(list.get(position).getTitle());
+        parentName.setText(getGroup(position).getTitle());
 
         return parentView;
     }
 
     @Override
-    public View getChildView(int i, int i1, boolean isExpanded, View view, ViewGroup viewGroup) {
+    public View getChildView(int groupPosition, int childPosition, boolean isExpanded, View view, ViewGroup viewGroup) {
         View childView = mInflater.inflate(R.layout.child_category_item,viewGroup,false);
 
         TextView childName = (TextView)childView.findViewById(R.id.child_name);
 
-        childName.setText(getChild(i,i1).toString());
+        Children subCategory = getChild(groupPosition, childPosition);
+        childName.setText(subCategory.getTitle());
 
+        childView.setOnClickListener(new CategoryClickListener(subCategory));
         return childView;
+
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return false;
+    }
+
+    private class CategoryClickListener implements View.OnClickListener {
+        private final int categoryID;
+        private final int brandID;
+        private String subCategoryName;
+
+        public CategoryClickListener(Children subCategory) {
+
+
+            this.categoryID = subCategory.category_id;
+            this.brandID = subCategory.brand_id;
+            this.subCategoryName = subCategory.getTitle();
+        }
+
+        @Override
+        public void onClick(View view) {
+
+            Bundle bundle = new Bundle();
+            bundle.putInt(NavigationUtils.KEY_CATEGORY_ID,categoryID);
+            bundle.putInt(NavigationUtils.KEY_BRAND_ID,brandID);
+            bundle.putString(NavigationUtils.KEY_SUBCATEGORY_TITLE,subCategoryName);
+            NavigationUtils.showProductScreen(mContext,bundle);
+        }
     }
 }

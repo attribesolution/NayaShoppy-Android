@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">#B82E2E</item>
+    </style>
 
     <style name="TabLayout_Home" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">@color/primary</item>

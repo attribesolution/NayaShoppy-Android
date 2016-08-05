@@ -2,7 +2,6 @@ package com.attribe.nayashoppy.app.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Sabih Ahmed on 25-Jul-16.
@@ -16,7 +15,8 @@ public class Children implements Serializable {
     public Integer parent_id;
     public Integer type;
     public String image;
-    public String others;
+    public Datum.ApiIcon api_icon;
+    public ArrayList others;
     public String description;
     public String meta_title;
     public String meta_keyword;
@@ -25,6 +25,7 @@ public class Children implements Serializable {
     public Integer sort_order;
     public String status;
     public String created;
+    public Datum.Images images;
     public ArrayList<Children> children = new ArrayList<Children>();
 
     public Integer getId() {
@@ -91,13 +92,10 @@ public class Children implements Serializable {
         this.image = image;
     }
 
-    public String getOthers() {
+    public ArrayList getOthers() {
         return others;
     }
 
-    public void setOthers(String others) {
-        this.others = others;
-    }
 
     public String getDescription() {
         return description;
@@ -172,4 +170,11 @@ public class Children implements Serializable {
     }
 
 
+    public Datum.ApiIcon getApi_icon() {
+        return api_icon;
+    }
+
+    public Datum.Images getImages() {
+        return images;
+    }
 }

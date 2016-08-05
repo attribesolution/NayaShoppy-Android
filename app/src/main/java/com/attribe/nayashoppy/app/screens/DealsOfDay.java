@@ -42,8 +42,14 @@ public class DealsOfDay extends Fragment {
             @Override
             public void onDealsFetched(ArrayList<Datum> deals) {
 
-                dealsList = deals.get(1);
-                setList();
+                try {
+                    dealsList = deals.get(1);
+                    setList();
+                }catch (Exception iobe){
+                    //TODO: handle exception
+                }
+
+
             }
         });
 

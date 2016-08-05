@@ -12,7 +12,32 @@ import java.util.ArrayList;
 public class ProductCategory {
 
     public Meta meta;
-    public ArrayList<Datum> data = new ArrayList<Datum>();
-    public Pagination pagination;
 
+    public ArrayList<Datum> data = new ArrayList<Datum>();
+//    public Pagination pagination;
+//
+//
+//    public Meta getMeta() {
+//        return meta;
+//    }
+//
+//    public void setMeta(Meta meta) {
+//        this.meta = meta;
+//    }
+//
+    public ArrayList<Datum> getData() {
+        return data;
+    }
+
+    public void setData(ArrayList<Datum> data) {
+        this.data = data;
+    }
+//
+//    public Pagination getPagination() {
+//        return pagination;
+//    }
+//
+//    public void setPagination(Pagination pagination) {
+//        this.pagination = pagination;
+//    }
 }

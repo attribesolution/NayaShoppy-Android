@@ -22,21 +22,25 @@
 
             <TextView
                       android:layout_width="wrap_content"
-                      android:layout_height="20dp"
-                      android:drawableLeft="@drawable/ic_coupon"
-                      android:text="Coupons and Cashback"/>
+                      android:layout_height="30dp"
+                      android:layout_marginTop="10dp"
+                      android:padding="5dp"
+                      android:drawableLeft="@drawable/icon_coupon"
+                      android:text="Coupons &amp; Cashback"/>
             />
 
             <include layout="@layout/coupons_layout"/>
 
             <TextView android:layout_width="wrap_content"
                       android:layout_height="20dp"
+                      android:layout_marginTop="10dp"
                       android:text="New Arrivals"/>
 
             <include layout="@layout/new_arrivals"/>
 
             <TextView android:layout_width="wrap_content"
                       android:layout_height="20dp"
+                      android:layout_marginTop="10dp"
                       android:text="Recently viewed"/>
 
             <include layout="@layout/recently_viewed"/>

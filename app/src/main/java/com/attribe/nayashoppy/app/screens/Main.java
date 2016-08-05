@@ -1,6 +1,7 @@
 package com.attribe.nayashoppy.app.screens;
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -13,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.*;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.attribe.nayashoppy.app.R;
@@ -58,7 +60,9 @@ public class Main extends BaseActivity {
         viewPager = (ViewPager) findViewById(R.id.viewpager);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
-
+//        AppBarLayout.LayoutParams params = new AppBarLayout.LayoutParams(AppBarLayout.LayoutParams.MATCH_PARENT,60);
+//        tabLayout.setPadding(0,10,0,10);
+//        tabLayout.setLayoutParams(params);
 
         ActionBar actionBar = getSupportActionBar();
         //actionBar.setDisplayHomeAsUpEnabled(true);

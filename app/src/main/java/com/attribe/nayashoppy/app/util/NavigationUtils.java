@@ -9,6 +9,7 @@ import com.attribe.nayashoppy.app.adapters.MainScreenPagerAdapter;
 import com.attribe.nayashoppy.app.model.Datum;
 import com.attribe.nayashoppy.app.screens.*;
 import com.attribe.nayashoppy.app.screens.categories.*;
+import com.attribe.nayashoppy.app.screens.product.ScreenProducts;
 import com.attribe.nayashoppy.app.screens.useraccount.*;
 
 import java.util.ArrayList;
@@ -24,6 +25,12 @@ public class NavigationUtils {
     public static final String BUNDLE_FROM_MAIN = "bundle_category";
     public static final String KEY_CATEGORY_CHILD = "categoryChild";
     public static final String CHILD_MENU = "childMenu";
+    public static final String KEY_CATEGORY_ID = "category_id";
+    public static final String KEY_BRAND_ID = "brand_id";
+    public static final String BUNDLE_PRODUCTS = "bundle_products";
+    public static final String KEY_SUBCATEGORY_TITLE = "subcategoryTitle";
+    private static final String SUBCATEGORY_SCREEN_DEFAULT_TITLE = "";
+    private static ProgressLoader progress;
 
     public static void showHome(Context context) {
 
@@ -127,6 +134,16 @@ public class NavigationUtils {
             label = context.getResources().getString(R.string.label_about_us);
         }
 
+        if(context instanceof ScreenProducts){
+
+            if(((ScreenProducts) context).getIntent().getBundleExtra(BUNDLE_PRODUCTS)!=null){
+
+                label = ((ScreenProducts) context).getIntent().getBundleExtra(BUNDLE_PRODUCTS).getString(KEY_SUBCATEGORY_TITLE,
+                        SUBCATEGORY_SCREEN_DEFAULT_TITLE);
+            }
+
+        }
+
 
 
         return label;
@@ -159,5 +176,22 @@ public class NavigationUtils {
     public static void showAbouUsScreen(Context context) {
         Intent intent = new Intent(context,ScreenAboutUs.class);
         context.startActivity(intent);
+    }
+
+    public static void showProductScreen(Context mContext, Bundle bundle) {
+        Intent intent = new Intent(mContext, ScreenProducts.class);
+        intent.putExtra(BUNDLE_PRODUCTS,bundle);
+        mContext.startActivity(intent);
+
+    }
+
+    public static ProgressLoader getProgress(boolean attachText) {
+
+
+        progress = new ProgressLoader();
+
+
+
+        return progress;
     }
 }

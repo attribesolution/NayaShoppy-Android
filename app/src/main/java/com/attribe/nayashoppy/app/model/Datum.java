@@ -3,7 +3,6 @@ package com.attribe.nayashoppy.app.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Sabih Ahmed on 25-Jul-16.
@@ -17,7 +16,8 @@ public class Datum implements Serializable{
     public Integer parent_id;
     public Integer type;
     public String image;
-    public String others;
+    public ApiIcon api_icon;
+    public ArrayList others;
     public String description;
     public String meta_title;
     public String meta_keyword;
@@ -26,6 +26,7 @@ public class Datum implements Serializable{
     public Integer sort_order;
     public String status;
     public String created;
+    public Images images;
     public ArrayList<Children> children = new ArrayList<Children>();
 
     public Integer getId() {
@@ -93,12 +94,8 @@ public class Datum implements Serializable{
         this.image = image;
     }
 
-    public String getOthers() {
+    public ArrayList getOthers() {
         return others;
-    }
-
-    public void setOthers(String others) {
-        this.others = others;
     }
 
     public String getDescription() {
@@ -174,5 +171,60 @@ public class Datum implements Serializable{
 
     }
 
+    public ApiIcon getApi_icon() {
+        return api_icon;
+    }
 
+    public Images getImages() {
+        return images;
+    }
+
+    public class ApiIcon implements Serializable{
+
+        public IOS ios;
+        public Android android;
+
+        public IOS getIos() {
+            return ios;
+        }
+
+        public Android getAndroid() {
+            return android;
+        }
+
+        private class IOS implements Serializable{
+
+        }
+
+        public class Android implements Serializable{
+            public String hdpi;
+            public String mdpi;
+            public String xxdpi;
+
+            public String getHdpi() {
+                return hdpi;
+            }
+
+            public String getMdpi() {
+                return mdpi;
+            }
+
+            public String getXxdpi() {
+                return xxdpi;
+            }
+        }
+    }
+
+    public class Images implements Serializable{
+        public ApiIcon.IOS ios;
+        public ApiIcon.Android android;
+
+        public ApiIcon.IOS getIos() {
+            return ios;
+        }
+
+        public ApiIcon.Android getAndroid() {
+            return android;
+        }
+    }
 }

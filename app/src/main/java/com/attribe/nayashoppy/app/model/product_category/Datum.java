@@ -17,16 +17,16 @@ public class Datum {
     public String product_description;
     public String model_number;
     public String cod;
-    public String emi;
+    //public String emi;
     public String return_policy;
     public String delivery;
     public String shipping;
-    public String price;
+    //public String price;
     public String unique_id;
     public String discount;
     public Integer rating;
-    public Integer rating_user_count;
-    public String reviews;
+    //public Integer rating_user_count;
+    //public String reviews;
     public String url;
     public String product_status;
     public String date_add;
@@ -35,7 +35,7 @@ public class Datum {
     public Integer lowest_price;
     public Integer original_price;
     public Integer highest_price;
-    public String link_rewrite;
+    //public String link_rewrite;
     public Integer supplier_count;
     public Integer store_name;
     public Integer store_id;
@@ -84,9 +84,9 @@ public class Datum {
         return cod;
     }
 
-    public String getEmi() {
-        return emi;
-    }
+//    public String getEmi() {
+//        return emi;
+//    }
 
     public String getReturn_policy() {
         return return_policy;
@@ -100,9 +100,9 @@ public class Datum {
         return shipping;
     }
 
-    public Object getPrice() {
-        return price;
-    }
+//    public Object getPrice() {
+//        return price;
+//    }
 
     public String getUnique_id() {
         return unique_id;
@@ -116,13 +116,13 @@ public class Datum {
         return rating;
     }
 
-    public Integer getRating_user_count() {
-        return rating_user_count;
-    }
+//    public Integer getRating_user_count() {
+//        return rating_user_count;
+//    }
 
-    public String getReviews() {
-        return reviews;
-    }
+//    public String getReviews() {
+//        return reviews;
+//    }
 
     public String getUrl() {
         return url;
@@ -156,9 +156,9 @@ public class Datum {
         return highest_price;
     }
 
-    public String getLink_rewrite() {
-        return link_rewrite;
-    }
+//    public String getLink_rewrite() {
+//        return link_rewrite;
+//    }
 
     public Integer getSupplier_count() {
         return supplier_count;
@@ -176,11 +176,11 @@ public class Datum {
         return meta_title;
     }
 
-    public Object getMeta_keyword() {
+    public String getMeta_keyword() {
         return meta_keyword;
     }
 
-    public Object getMeta_desc() {
+    public String getMeta_desc() {
         return meta_desc;
     }
 

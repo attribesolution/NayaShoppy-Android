@@ -7,4 +7,5 @@
     <color name="red_button_text">#ffffff</color>
     <color name="app_version_name">#DB8C1C</color>
     <color name="order_status">#39B12C</color>
+    <color name="primary_dark">#B82E2E</color>
 </resources>

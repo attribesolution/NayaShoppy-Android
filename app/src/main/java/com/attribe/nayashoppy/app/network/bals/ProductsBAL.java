@@ -2,6 +2,7 @@ package com.attribe.nayashoppy.app.network.bals;
 
 import com.attribe.nayashoppy.app.model.product_category.ProductCategory;
 import com.attribe.nayashoppy.app.network.RestClient;
+import com.google.gson.JsonSyntaxException;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,6 +23,7 @@ public class ProductsBAL {
         options.put("brand_id",brandID);
 
         Call<ProductCategory> allProducts = RestClient.getAdapter().getAllProducts(options);
+
 
         allProducts.enqueue(new Callback<ProductCategory>() {
             @Override

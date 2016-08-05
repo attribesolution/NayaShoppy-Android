@@ -44,7 +44,7 @@ public class ArrivalAdapter extends RecyclerView.Adapter<ArrivalHolder>{
         Datum product = mProductList.get(position);
 
         try {
-            //Picasso.with(mContext).load(product.getImage()).into(holder.productImage);
+            Picasso.with(mContext).load(product.getImages().get(0).getImage_path()).into(holder.productImage);
         }
 
         catch (NullPointerException npe){

@@ -15,9 +15,12 @@ import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.viewholders.LeftDrawerHolder;
 import com.attribe.nayashoppy.app.model.Datum;
 import com.attribe.nayashoppy.app.screens.Main;
+import com.attribe.nayashoppy.app.util.Common;
 import com.attribe.nayashoppy.app.util.NavigationUtils;
 
 import java.util.ArrayList;
+
+import static com.attribe.nayashoppy.app.util.Common.getImage;
 
 /**
  * Created by Sabih Ahmed on 01-Aug-16.
@@ -75,6 +78,27 @@ public class LeftDrawerAdapter extends RecyclerView.Adapter<LeftDrawerHolder> {
 
             holder.optionName.setText(dataset.get(position).getTitle());
             holder.itemView.setOnClickListener(new CategoryClickListener(position));
+
+            try {
+                Datum.ApiIcon.Android images = dataset.get(position).getApi_icon().getAndroid();
+                if(images != null){
+
+                    try {
+                        //Picasso.with(mContext).load(getImage(mContext,images)).into(holder.categoryImage);
+                        Common.setImage(mContext,getImage(mContext,images),holder.optionIcon);
+                    }
+                    catch (IllegalArgumentException iae){
+
+                        //TODO: handle exception
+                    }
+
+                }
+            }
+            catch (NullPointerException npe){
+                //TODO: handle exception
+
+            }
+
         }
     }
 
