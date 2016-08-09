@@ -6,45 +6,43 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.attribe.nayashoppy.app.R;
-import com.attribe.nayashoppy.app.adapters.viewholders.NewProductArrivalHolder;
-import com.attribe.nayashoppy.app.model.Product;
-import com.attribe.nayashoppy.app.model.product_category.Datum;
-import com.attribe.nayashoppy.app.model.product_category.ProductCategory;
+import com.attribe.nayashoppy.app.adapters.viewholders.PopularProductHolder;
+import com.attribe.nayashoppy.app.model.popular_products.Data;
 import com.attribe.nayashoppy.app.util.Common;
 
 import java.util.ArrayList;
 
 /**
- * Created by Sabih Ahmed on 04-Aug-16.
+ * Created by Sabih Ahmed on 09-Aug-16.
  */
-public class ProductArrivalAdapter extends RecyclerView.Adapter<NewProductArrivalHolder> {
+public class PopularProductAdapter extends RecyclerView.Adapter<PopularProductHolder> {
 
-    private ArrayList<Datum> mDataset;
+    private ArrayList<Data> mDataset;
     private Context mContext;
-    public ProductArrivalAdapter(ArrayList<Datum> dataset) {
 
-        this.mDataset = dataset;
+    public PopularProductAdapter(ArrayList<Data> data) {
+
+        this.mDataset = data;
     }
 
     @Override
-    public NewProductArrivalHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PopularProductHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mContext = parent.getContext();
-        View layout = LayoutInflater.from(mContext).inflate(R.layout.product_new_arrival_item, parent, false);
 
-        NewProductArrivalHolder holder = new NewProductArrivalHolder(layout);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.popular_product_item, parent, false);
+        PopularProductHolder holder = new PopularProductHolder(view);
 
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(NewProductArrivalHolder holder, int position) {
+    public void onBindViewHolder(PopularProductHolder holder, int position) {
 
         holder.productName.setText(mDataset.get(position).getProduct_name());
         holder.productPrice.setText(mDataset.get(position).getLowest_price()+" "+
                 mDataset.get(position).getDiscount());
 
         Common.setImage(mContext,mDataset.get(position).getImages().get(0).getImage_path(),holder.productImage);
-
     }
 
     @Override

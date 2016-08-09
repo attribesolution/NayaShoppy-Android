@@ -13,9 +13,9 @@ public class Supplier {
     public String delivery;
     public String shipping;
     public String price;
-    public Integer original_price;
+    public String original_price;
     public String unique_id;
-    public Integer discount;
+    public String discount;
     public String rating;
     public String rating_user_count;
     public String reviews;
@@ -62,7 +62,7 @@ public class Supplier {
         return price;
     }
 
-    public Integer getOriginal_price() {
+    public String getOriginal_price() {
         return original_price;
     }
 
@@ -70,7 +70,7 @@ public class Supplier {
         return unique_id;
     }
 
-    public Integer getDiscount() {
+    public String getDiscount() {
         return discount;
     }
 

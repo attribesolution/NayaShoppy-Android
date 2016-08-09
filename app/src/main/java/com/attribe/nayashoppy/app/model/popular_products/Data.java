@@ -1,16 +1,17 @@
-package com.attribe.nayashoppy.app.model.product_category;
-
+package com.attribe.nayashoppy.app.model.popular_products;
 
 
 import java.util.ArrayList;
-
+import com.attribe.nayashoppy.app.model.product_category.Image;
+import com.attribe.nayashoppy.app.model.product_category.Supplier;
 /**
- * Created by Sabih Ahmed on 02-Aug-16.
+ * Created by Sabih Ahmed on 08-Aug-16.
  */
-public class Datum {
-    public Integer product_id;
-    public Integer categories_category_id;
-    public Integer brands_brand_id;
+public class Data {
+
+    public int product_id;
+    public int categories_category_id;
+    public int brands_brand_id;
     public String product_name;
     public String slug;
     public String image;
@@ -36,27 +37,28 @@ public class Datum {
     public String original_price;
     public String highest_price;
     public String link_rewrite;
-    public Integer supplier_count;
-    public Integer store_name;
-    public Integer store_id;
+    public int supplier_count;
+    public int store_name;
+    public int store_id;
     public String meta_title;
     public String meta_keyword;
     public String meta_desc;
-    public Integer show_home_page;
+    public int show_home_page;
     public String active;
     public String created;
-    public ArrayList<Image> images = new ArrayList<Image>();
-    public ArrayList<Supplier> suppliers = new ArrayList<Supplier>();
+    public ArrayList<Image> images;
+    public ArrayList<Supplier> suppliers;
+    public ArrayList<FeaturesList> featuresList;
 
-    public Integer getProduct_id() {
+    public int getProduct_id() {
         return product_id;
     }
 
-    public Integer getCategories_category_id() {
+    public int getCategories_category_id() {
         return categories_category_id;
     }
 
-    public Integer getBrands_brand_id() {
+    public int getBrands_brand_id() {
         return brands_brand_id;
     }
 
@@ -160,15 +162,15 @@ public class Datum {
         return link_rewrite;
     }
 
-    public Integer getSupplier_count() {
+    public int getSupplier_count() {
         return supplier_count;
     }
 
-    public Integer getStore_name() {
+    public int getStore_name() {
         return store_name;
     }
 
-    public Integer getStore_id() {
+    public int getStore_id() {
         return store_id;
     }
 
@@ -184,7 +186,7 @@ public class Datum {
         return meta_desc;
     }
 
-    public Integer getShow_home_page() {
+    public int getShow_home_page() {
         return show_home_page;
     }
 
@@ -203,4 +205,27 @@ public class Datum {
     public ArrayList<Supplier> getSuppliers() {
         return suppliers;
     }
+
+    public ArrayList<FeaturesList> getFeaturesList() {
+        return featuresList;
+    }
+
+
+
+    //=======================================================Inner classes============================================
+    public class FeaturesList {
+
+        public String featureGroupName;
+        public ArrayList<FeatureValue> featureValues;
+
+
+        public class FeatureValue {
+            public String featureName;
+            public String featureValue;
+        }
+
+    }
+
+
+
 }

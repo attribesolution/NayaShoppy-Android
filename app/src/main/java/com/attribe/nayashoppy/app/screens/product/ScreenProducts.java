@@ -1,29 +1,36 @@
 package com.attribe.nayashoppy.app.screens.product;
 
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.FrameLayout;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.MyOrderAdapter;
+import com.attribe.nayashoppy.app.adapters.PopularProductAdapter;
 import com.attribe.nayashoppy.app.adapters.ProductArrivalAdapter;
+import com.attribe.nayashoppy.app.model.popular_products.Data;
+import com.attribe.nayashoppy.app.model.product_category.Datum;
 import com.attribe.nayashoppy.app.network.bals.ProductsBAL;
+import com.attribe.nayashoppy.app.network.interfaces.LatestProductsListener;
+import com.attribe.nayashoppy.app.network.interfaces.PopularProductsListener;
 import com.attribe.nayashoppy.app.screens.BaseActivity;
-import com.attribe.nayashoppy.app.screens.useraccount.ScreenMyOrder;
 import com.attribe.nayashoppy.app.util.DummyData;
+import com.attribe.nayashoppy.app.util.HorizontalScroller;
 import com.attribe.nayashoppy.app.util.NavigationUtils;
+import com.wang.avi.AVLoadingIndicatorView;
+
+import java.util.ArrayList;
 
 public class ScreenProducts extends BaseActivity {
 
     private int categoryID = 1;
     private int brandID = 0;
+    private AVLoadingIndicatorView progress;
+    private ArrayList<Datum> mNewProducts;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +66,11 @@ public class ScreenProducts extends BaseActivity {
     }
 
     private void init() {
+        progress = (AVLoadingIndicatorView) findViewById(R.id.progress_wheel);
+        mNewProducts = new ArrayList<Datum>();
         fetchIntent();
         setNewArrivalsList();
+        setPopularList();
 
 
     }
@@ -77,17 +87,70 @@ public class ScreenProducts extends BaseActivity {
 
 
     private void setNewArrivalsList() {
-        RecyclerView recycler_newArrivals = (RecyclerView) findViewById(R.id.recycler_products_new_arrival);
-        LinearLayoutManager layoutHorizontal = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
+        progress.setVisibility(View.VISIBLE);
+        final RecyclerView recycler_newArrivals = (RecyclerView) findViewById(R.id.recycler_products_new_arrival);
+        final LinearLayoutManager layoutHorizontal = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
 
         recycler_newArrivals.setLayoutManager(layoutHorizontal);
-        recycler_newArrivals.setAdapter(new MyOrderAdapter(DummyData.getDummyProducts()));
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_products);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        ProductsBAL.getNewProducts(categoryID, brandID, new LatestProductsListener() {
+            @Override
+            public void onDataReceived(ArrayList<Datum> data) {
+                mNewProducts = data;
+                progress.setVisibility(View.GONE);
+                recycler_newArrivals.setAdapter(new ProductArrivalAdapter(data));
+
+
+            }
+
+            @Override
+            public void onDataIssue(String message) {
+
+            }
+
+            @Override
+            public void onFailure(String message) {
+
+            }
+        });
+
+        recycler_newArrivals.addOnScrollListener(new HorizontalScroller(layoutHorizontal) {
+            @Override
+            public boolean onLoadMore(int page, int totalItemsCount) {
+
+                return false;
+            }
+        });
+
+    }
+
+    private void setPopularList() {
+        final AVLoadingIndicatorView progress_popular = (AVLoadingIndicatorView) findViewById(R.id.progress_popular);
+        progress_popular.setVisibility(View.VISIBLE);
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_products);
+        LinearLayoutManager layoutManager = new GridLayoutManager(this,2);
 
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new MyOrderAdapter(DummyData.getDummyProducts()));
-        ProductsBAL.getProducts(categoryID,brandID);
-    }
+
+
+        ProductsBAL.getPopularProducts(categoryID,brandID,0, new PopularProductsListener() {
+            @Override
+            public void onDataReceived(ArrayList<Data> data) {
+                progress_popular.setVisibility(View.GONE);
+                recyclerView.setAdapter(new PopularProductAdapter(data));
+            }
+
+            @Override
+            public void onDataIssue(String message) {
+                progress_popular.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFailure(String message) {
+                progress_popular.setVisibility(View.GONE);
+            }
+        });
+
+        }
+
 }

@@ -4,6 +4,7 @@ import com.attribe.nayashoppy.app.model.Datum;
 import com.attribe.nayashoppy.app.model.Deals.Deals;
 import com.attribe.nayashoppy.app.model.Menu;
 import com.attribe.nayashoppy.app.model.arrival.NewArrival;
+import com.attribe.nayashoppy.app.model.popular_products.PopularProducts;
 import com.attribe.nayashoppy.app.model.product_category.ProductCategory;
 import retrofit2.Call;
 import retrofit2.http.*;
@@ -28,4 +29,7 @@ public interface ServicesInterface {
 
     @GET("http://api.nayashoppy.com/v1/catalog/")
     Call<ProductCategory> getAllProducts(@QueryMap Map<String,Integer> options);
+
+    @GET("http://api.nayashoppy.com/v1/catalog/popularproducts")
+    Call<PopularProducts> getPopularProducts(@QueryMap Map<String,Integer> options);
 }

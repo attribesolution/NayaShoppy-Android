@@ -15,11 +15,11 @@ public class Supplier {
     public String delivery;
     public String shipping;
     public String price;
-    public Integer original_price;
+    public String original_price;
     public String unique_id;
     public String discount;
-    public Integer rating;
-    public Integer rating_user_count;
+    public String rating;
+    public String rating_user_count;
     public String reviews;
     public String url;
     public String product_status;
@@ -32,99 +32,99 @@ public class Supplier {
     public String active;
     public String created;
 
-    public Integer getId() {
-        return id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Integer getProduct_id() {
-        return product_id;
+    public void setProduct_id(Integer product_id) {
+        this.product_id = product_id;
     }
 
-    public String getCod() {
-        return cod;
+    public void setCod(String cod) {
+        this.cod = cod;
     }
 
-    public String getEmi() {
-        return emi;
+    public void setEmi(String emi) {
+        this.emi = emi;
     }
 
-    public String getReturn_policy() {
-        return return_policy;
+    public void setReturn_policy(String return_policy) {
+        this.return_policy = return_policy;
     }
 
-    public String getDelivery() {
-        return delivery;
+    public void setDelivery(String delivery) {
+        this.delivery = delivery;
     }
 
-    public String getShipping() {
-        return shipping;
+    public void setShipping(String shipping) {
+        this.shipping = shipping;
     }
 
-    public String getPrice() {
-        return price;
+    public void setPrice(String price) {
+        this.price = price;
     }
 
-    public Integer getOriginal_price() {
-        return original_price;
+    public void setOriginal_price(String original_price) {
+        this.original_price = original_price;
     }
 
-    public String getUnique_id() {
-        return unique_id;
+    public void setUnique_id(String unique_id) {
+        this.unique_id = unique_id;
     }
 
-    public String getDiscount() {
-        return discount;
+    public void setDiscount(String discount) {
+        this.discount = discount;
     }
 
-    public Integer getRating() {
-        return rating;
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
-    public Integer getRating_user_count() {
-        return rating_user_count;
+    public void setRating_user_count(String rating_user_count) {
+        this.rating_user_count = rating_user_count;
     }
 
-    public String getReviews() {
-        return reviews;
+    public void setReviews(String reviews) {
+        this.reviews = reviews;
     }
 
-    public String getUrl() {
-        return url;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public String getProduct_status() {
-        return product_status;
+    public void setProduct_status(String product_status) {
+        this.product_status = product_status;
     }
 
-    public String getStore_name() {
-        return store_name;
+    public void setStore_name(String store_name) {
+        this.store_name = store_name;
     }
 
-    public Integer getStore_id() {
-        return store_id;
+    public void setStore_id(Integer store_id) {
+        this.store_id = store_id;
     }
 
-    public String getMeta_title() {
-        return meta_title;
+    public void setMeta_title(String meta_title) {
+        this.meta_title = meta_title;
     }
 
-    public String getMeta_keyword() {
-        return meta_keyword;
+    public void setMeta_keyword(String meta_keyword) {
+        this.meta_keyword = meta_keyword;
     }
 
-    public String getMeta_desc() {
-        return meta_desc;
+    public void setMeta_desc(String meta_desc) {
+        this.meta_desc = meta_desc;
     }
 
-    public Integer getPrice_status() {
-        return price_status;
+    public void setPrice_status(Integer price_status) {
+        this.price_status = price_status;
     }
 
-    public String getActive() {
-        return active;
+    public void setActive(String active) {
+        this.active = active;
     }
 
-    public String getCreated() {
-        return created;
+    public void setCreated(String created) {
+        this.created = created;
     }
 }

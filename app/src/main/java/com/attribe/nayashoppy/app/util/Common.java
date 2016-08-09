@@ -1,7 +1,11 @@
 package com.attribe.nayashoppy.app.util;
 
 import android.content.Context;
+import android.graphics.Point;
 import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.Display;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import com.attribe.nayashoppy.app.model.Datum;
 import com.squareup.picasso.Picasso;
@@ -54,6 +58,25 @@ public class Common {
     }
 
     public static void setImage(Context mContext, String imageURi, ImageView categoryImage) {
-        Picasso.with(mContext).load(imageURi).into(categoryImage);
+        try {
+            Picasso.with(mContext).load(imageURi).into(categoryImage);
+        }catch (Exception e){
+
+        }
+
+    }
+
+    public static void getDimension(Context context){
+
+        WindowManager WindowManager = (android.view.WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = WindowManager.getDefaultDisplay();
+
+        Point size = new Point();
+        display.getSize(size);
+
+        int width = size.x;
+        int height = size.y;
+
+        Log.d("Display","Device width: "+Integer.toString(width)+" Device Height: "+Integer.toString(height));
     }
 }

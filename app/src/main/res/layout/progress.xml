@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.wang.avi.AVLoadingIndicatorView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/progress_wheel"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:visibility="invisible"
+        android:background="@android:color/transparent"
+        app:indicator="BallClipRotatePulse"
+        app:indicator_color="@color/primary_dark"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+       />
