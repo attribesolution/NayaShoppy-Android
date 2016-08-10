@@ -6,9 +6,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import com.attribe.nayashoppy.app.R;
-import com.attribe.nayashoppy.app.adapters.MyOrderAdapter;
 import com.attribe.nayashoppy.app.adapters.PopularProductAdapter;
 import com.attribe.nayashoppy.app.adapters.ProductArrivalAdapter;
 import com.attribe.nayashoppy.app.model.popular_products.Data;
@@ -17,7 +17,6 @@ import com.attribe.nayashoppy.app.network.bals.ProductsBAL;
 import com.attribe.nayashoppy.app.network.interfaces.LatestProductsListener;
 import com.attribe.nayashoppy.app.network.interfaces.PopularProductsListener;
 import com.attribe.nayashoppy.app.screens.BaseActivity;
-import com.attribe.nayashoppy.app.util.DummyData;
 import com.attribe.nayashoppy.app.util.HorizontalScroller;
 import com.attribe.nayashoppy.app.util.NavigationUtils;
 import com.wang.avi.AVLoadingIndicatorView;
@@ -43,14 +42,15 @@ public class ScreenProducts extends BaseActivity {
 
 
     @Override
-    public void onToolbarInit(Toolbar toolbar) {
+    public void onToolbarInit(Toolbar toolbar, ActionBar actionBar) {
         toolbar.setTitle(NavigationUtils.getScreenTitle(this));
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setLogo(R.drawable.logo);
-        actionBar.setDisplayUseLogoEnabled(true);
+        setSupportActionBar(toolbar);
+//        ActionBar actionBar = getSupportActionBar();
+
+
+//        actionBar.setLogo(R.drawable.logo);
+//        actionBar.setDisplayUseLogoEnabled(true);
 
 //        TabLayout tab_layout = (TabLayout) findViewById(R.id.tabs);
 //
@@ -60,9 +60,19 @@ public class ScreenProducts extends BaseActivity {
 //        tab_layout.addTab(tab_layout.newTab().setText("Tab 2"));
 //        tab_layout.addTab(tab_layout.newTab().setText("Tab 3"));
 
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+        switch (item.getItemId()){
 
+            case android.R.id.home:
+                this.finish();
+                break;
+        }
+
+        return true;
     }
 
     private void init() {

@@ -5,9 +5,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import com.attribe.nayashoppy.app.R;
-import com.attribe.nayashoppy.app.adapters.MainScreenPagerAdapter;
 import com.attribe.nayashoppy.app.util.NavigationUtils;
 
 
@@ -15,6 +15,7 @@ public class ShopByCategory extends BaseActivity {
 
     private Toolbar toolbar;
     private int categoryID;
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +29,10 @@ public class ShopByCategory extends BaseActivity {
 
 
     @Override
-    public void onToolbarInit(Toolbar toolbar) {
+    public void onToolbarInit(Toolbar toolbar, ActionBar actionBar) {
 
         this.toolbar = toolbar;
+        this.actionBar = actionBar;
 
 
     }
@@ -52,7 +54,7 @@ public class ShopByCategory extends BaseActivity {
         //toolbar = (Toolbar) findViewById(R.id.toolbar_shop);
         toolbar.getRootView().findViewById(R.id.search_field).setVisibility(View.INVISIBLE);
         toolbar.setTitle("Shop By Categories");
-        setSupportActionBar(toolbar);
+
 
         //toolbar.removeView(toolbar.getRootView().findViewById(R.id.viewpager));
 
@@ -64,12 +66,23 @@ public class ShopByCategory extends BaseActivity {
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setCurrentItem(categoryID);
 
-        ActionBar actionBar = getSupportActionBar();
+//        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(toolbar);
     }
 
     private void setupViewPager(ViewPager viewPager) {
 
         viewPager.setAdapter(NavigationUtils.getPagerAdapter(this,getSupportFragmentManager()));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(item.getItemId()==android.R.id.home){
+
+            this.finish();
+        }
+        return true;
     }
 }

@@ -92,4 +92,8 @@ public class ProductsBAL {
             }
         });
     }
+
+    public static void getAllProducts() {
+
+    }
 }

@@ -1,7 +1,6 @@
 package com.attribe.nayashoppy.app.screens;
 
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -14,7 +13,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.*;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.attribe.nayashoppy.app.R;
@@ -48,9 +46,9 @@ public class Main extends BaseActivity {
 
 
     @Override
-    public void onToolbarInit(Toolbar toolbar) {
+    public void onToolbarInit(Toolbar toolbar, ActionBar actionBar) {
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
-        setSupportActionBar(toolbar);
+//        setSupportActionBar(toolbar);
 
         EditText editText =  (EditText)findViewById(R.id.search_field);
 
@@ -64,10 +62,10 @@ public class Main extends BaseActivity {
 //        tabLayout.setPadding(0,10,0,10);
 //        tabLayout.setLayoutParams(params);
 
-        ActionBar actionBar = getSupportActionBar();
+//        ActionBar actionBar = getSupportActionBar();
         //actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setLogo(R.drawable.logo);
-        actionBar.setDisplayUseLogoEnabled(true);
+//        actionBar.setLogo(R.drawable.logo);
+//        actionBar.setDisplayUseLogoEnabled(true);
 
 
 

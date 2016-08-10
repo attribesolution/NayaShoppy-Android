@@ -55,7 +55,11 @@
                 android:name=".screens.useraccount.ScreenAboutUs"
                 android:parentActivityName=".screens.Main">
         </activity>
-        <activity android:name=".screens.product.ScreenProducts">
+        <activity android:name=".screens.product.ScreenProducts"
+                  android:parentActivityName=".screens.ShopByCategory">
+
+        </activity>
+        <activity android:name=".screens.product.ScreenAllProduct">
 
         </activity>
     </application>

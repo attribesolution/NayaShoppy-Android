@@ -9,6 +9,9 @@ import com.attribe.nayashoppy.app.adapters.MainScreenPagerAdapter;
 import com.attribe.nayashoppy.app.model.Datum;
 import com.attribe.nayashoppy.app.screens.*;
 import com.attribe.nayashoppy.app.screens.categories.*;
+import com.attribe.nayashoppy.app.screens.product.FragmentAllProduct;
+import com.attribe.nayashoppy.app.screens.product.FragmentPopularProduct;
+import com.attribe.nayashoppy.app.screens.product.ScreenAllProduct;
 import com.attribe.nayashoppy.app.screens.product.ScreenProducts;
 import com.attribe.nayashoppy.app.screens.useraccount.*;
 
@@ -66,12 +69,12 @@ public class NavigationUtils {
 
     }
 
-    public static MainScreenPagerAdapter getPagerAdapter(Context context, FragmentManager supportFragmentManager) {
+    public static MainScreenPagerAdapter  getPagerAdapter(Context context, FragmentManager supportFragmentManager) {
         MainScreenPagerAdapter adapter = new MainScreenPagerAdapter(supportFragmentManager);
-        ArrayList<Datum> parentCategories = DevicePreferences.getInstance().getMenu();
+
         if(context instanceof ShopByCategory){
 
-
+            ArrayList<Datum> parentCategories = DevicePreferences.getInstance().getMenu();
             for(Datum menu:parentCategories){
 
                 adapter.addFrag(new BasicFragment(),menu.getTitle(),menu.getChildren());
@@ -96,6 +99,12 @@ public class NavigationUtils {
 
             adapter.addFrag(new Home(),"Home", null);
             adapter.addFrag(new DealsOfDay(),"Deals of the day", null);
+        }
+
+        if(context instanceof ScreenAllProduct){
+
+            adapter.addFrag(new FragmentAllProduct(),"All Products");
+            adapter.addFrag(new FragmentPopularProduct(),"Popular Products");
         }
 
         return adapter;
@@ -144,6 +153,15 @@ public class NavigationUtils {
 
         }
 
+        if(context instanceof ScreenAllProduct){
+            if(((ScreenAllProduct) context).getIntent().getBundleExtra(BUNDLE_PRODUCTS)!=null){
+
+                label = ((ScreenAllProduct) context).getIntent().getBundleExtra(BUNDLE_PRODUCTS).getString(KEY_SUBCATEGORY_TITLE,
+                        SUBCATEGORY_SCREEN_DEFAULT_TITLE);
+            }
+
+        }
+
 
 
         return label;
@@ -179,9 +197,24 @@ public class NavigationUtils {
     }
 
     public static void showProductScreen(Context mContext, Bundle bundle) {
-        Intent intent = new Intent(mContext, ScreenProducts.class);
-        intent.putExtra(BUNDLE_PRODUCTS,bundle);
-        mContext.startActivity(intent);
+
+        int categoryID = bundle.getInt(KEY_CATEGORY_ID);
+        int brandID = bundle.getInt(KEY_BRAND_ID);
+
+        if(categoryID ==1 && brandID ==0){
+            Intent intent = new Intent(mContext, ScreenProducts.class);
+            intent.putExtra(BUNDLE_PRODUCTS,bundle);
+            mContext.startActivity(intent);
+        }
+
+        else{
+
+            Intent intent = new Intent(mContext,ScreenAllProduct.class);
+            intent.putExtra(BUNDLE_PRODUCTS,bundle);
+            mContext.startActivity(intent);
+
+        }
+
 
     }
 

@@ -3,7 +3,7 @@ package com.attribe.nayashoppy.app.screens.useraccount;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.view.MenuItem;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.screens.BaseActivity;
 import com.attribe.nayashoppy.app.util.NavigationUtils;
@@ -20,15 +20,26 @@ public class ScreenWallet extends BaseActivity {
     }
 
     @Override
-    public void onToolbarInit(Toolbar toolbar) {
+    public void onToolbarInit(Toolbar toolbar, ActionBar actionBar) {
         this.toolbar =toolbar;
 
         toolbar.setTitle(NavigationUtils.getScreenTitle(this));
-        setSupportActionBar(toolbar);
 
-        ActionBar actionBar = getSupportActionBar();
+
+//        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setLogo(R.drawable.logo);
-        actionBar.setDisplayUseLogoEnabled(true);
+        setSupportActionBar(toolbar);
+//        actionBar.setLogo(R.drawable.logo);
+//        actionBar.setDisplayUseLogoEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(item.getItemId()==android.R.id.home){
+
+            this.finish();
+        }
+        return true;
     }
 }

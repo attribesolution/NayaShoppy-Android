@@ -6,4 +6,5 @@
     <dimen name="arrival_price">11sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="margin_top_for_toolbar">50dp</dimen>
+    <dimen name="toolbar_normal_height">80dp</dimen>
 </resources>

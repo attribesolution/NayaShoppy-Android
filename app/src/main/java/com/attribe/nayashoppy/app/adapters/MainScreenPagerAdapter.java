@@ -45,4 +45,13 @@ public class MainScreenPagerAdapter extends FragmentPagerAdapter{
         mFragmentTitleList.add(fragmentTitle);
 
     }
+
+    public void addFrag(Fragment fragment, String fragmentTitle) {
+        Bundle bundle = new Bundle();
+//        bundle.putSerializable(NavigationUtils.CHILD_MENU,children);
+//        fragment.setArguments(bundle);
+        mFragmentList.add(fragment);
+        mFragmentTitleList.add(fragmentTitle);
+
+    }
 }

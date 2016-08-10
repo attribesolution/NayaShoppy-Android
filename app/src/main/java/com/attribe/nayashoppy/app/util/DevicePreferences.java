@@ -74,10 +74,18 @@ public class DevicePreferences {
 
     public ArrayList<Datum> getMenu(){
         Gson gson = new Gson();
-        String menu = prefs.getString(KEY_MENU, null);
+        String menu="";
+        ArrayList<Datum> menuList=null;
+        try {
+            menu = prefs.getString(KEY_MENU, null);
 
-        TypeToken<ArrayList<Datum>> token = new TypeToken<ArrayList<Datum>>() {};
-        ArrayList<Datum> menuList = gson.fromJson(menu, token.getType());
+            TypeToken<ArrayList<Datum>> token = new TypeToken<ArrayList<Datum>>() {};
+            menuList = gson.fromJson(menu, token.getType());
+        }catch (Exception e){
+
+
+        }
+
 
         return menuList;
 

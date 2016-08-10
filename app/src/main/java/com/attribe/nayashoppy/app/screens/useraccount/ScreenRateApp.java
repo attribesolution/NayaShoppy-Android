@@ -1,12 +1,9 @@
 package com.attribe.nayashoppy.app.screens.useraccount;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.view.MenuItem;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.screens.BaseActivity;
 import com.attribe.nayashoppy.app.util.NavigationUtils;
@@ -24,16 +21,28 @@ public class ScreenRateApp extends BaseActivity {
     }
 
     @Override
-    public void onToolbarInit(Toolbar toolbar) {
+    public void onToolbarInit(Toolbar toolbar, ActionBar actionBar) {
 
         //this.toolbar = toolbar ;
         toolbar.setTitle(NavigationUtils.getScreenTitle(this));
-        setSupportActionBar(toolbar);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setLogo(R.drawable.logo);
-        actionBar.setDisplayUseLogoEnabled(true);
+
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setLogo(R.drawable.logo);
+//        actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(toolbar);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(item.getItemId()==android.R.id.home){
+
+            this.finish();
+        }
+        return true;
+    }
+
 
 }
