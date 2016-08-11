@@ -21,6 +21,7 @@ public class ScreenAllProduct extends BaseActivity{
     private int brandID;
     private ViewPager viewPager;
     private TabLayout tabLayout;
+    private Bundle bundle;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,20 +60,28 @@ public class ScreenAllProduct extends BaseActivity{
     }
 
     private void init() {
-        if(getIntent().getBundleExtra(NavigationUtils.BUNDLE_PRODUCTS)!=null){
 
-            Bundle bundle = getIntent().getBundleExtra(NavigationUtils.BUNDLE_PRODUCTS);
-            categoryID = bundle.getInt(NavigationUtils.KEY_CATEGORY_ID);
-            brandID = bundle.getInt(NavigationUtils.KEY_BRAND_ID);
+        try {
+            if(getIntent().getBundleExtra(NavigationUtils.BUNDLE_PRODUCTS)!=null){
 
+                bundle = getIntent().getBundleExtra(NavigationUtils.BUNDLE_PRODUCTS);
+                categoryID = bundle.getInt(NavigationUtils.KEY_CATEGORY_ID);
+                brandID = bundle.getInt(NavigationUtils.KEY_BRAND_ID);
+
+            }
+
+        } catch (Exception exc){
+
+            //TODO: handle exception
         }
+
 
 
     }
 
     private void setUpViewPager() {
 
-        viewPager.setAdapter(NavigationUtils.getPagerAdapter(this,getSupportFragmentManager()));
+        viewPager.setAdapter(NavigationUtils.getPagerAdapter(this,getSupportFragmentManager(),bundle));
         tabLayout.setupWithViewPager(viewPager);
     }
 

@@ -8,14 +8,14 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 /**
  * Created by Sabih Ahmed on 08-Aug-16.
  */
-public abstract class HorizontalScroller extends RecyclerView.OnScrollListener {
+public abstract class InfiniteScroller extends RecyclerView.OnScrollListener {
 
     private RecyclerView.LayoutManager mLayoutManager;
     // The minimum number of items to have below your current scroll position
     // before loading more.
-    private int visibleThreshold = 5;
+    private int visibleThreshold = 2;
     // The current offset index of data you have loaded
-    private int currentPage = 0;
+    private int currentPage = 1;
     // The total number of items in the dataset after the last load
     private int previousTotalItemCount = 0;
     // True if we are still waiting for the last set of data to load.
@@ -25,7 +25,7 @@ public abstract class HorizontalScroller extends RecyclerView.OnScrollListener {
     private int totalItemCount;
     private int firstVisibleItem;
 
-    public HorizontalScroller(LinearLayoutManager layoutHorizontal) {
+    public InfiniteScroller(LinearLayoutManager layoutHorizontal) {
 
         this.mLayoutManager = layoutHorizontal;
     }

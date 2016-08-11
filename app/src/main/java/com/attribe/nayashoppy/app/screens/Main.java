@@ -157,7 +157,7 @@ public class Main extends BaseActivity {
     //===================================private Methods=======================================================
     private void setupViewPager(ViewPager viewPager) {
 
-        this.viewPager.setAdapter(NavigationUtils.getPagerAdapter(this,getSupportFragmentManager()));
+        this.viewPager.setAdapter(NavigationUtils.getPagerAdapter(this,getSupportFragmentManager(),null));
         tabLayout.setupWithViewPager(this.viewPager);
 
 

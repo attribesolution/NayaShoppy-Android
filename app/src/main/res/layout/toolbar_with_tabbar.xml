@@ -2,7 +2,7 @@
 <android.support.design.widget.AppBarLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
 
@@ -12,7 +12,6 @@
             android:id="@+id/toolbar_home"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:layout_scrollFlags="scroll|enterAlways"
             android:background="@color/primary"
     >
         <!--
@@ -38,6 +37,6 @@
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
+              />
 
 </android.support.design.widget.AppBarLayout>

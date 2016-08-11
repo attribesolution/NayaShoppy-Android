@@ -3,6 +3,7 @@ package com.attribe.nayashoppy.app.util;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.MainScreenPagerAdapter;
@@ -69,15 +70,20 @@ public class NavigationUtils {
 
     }
 
-    public static MainScreenPagerAdapter  getPagerAdapter(Context context, FragmentManager supportFragmentManager) {
+    public static MainScreenPagerAdapter  getPagerAdapter(Context context,
+                                                          FragmentManager supportFragmentManager, @Nullable Bundle params) {
         MainScreenPagerAdapter adapter = new MainScreenPagerAdapter(supportFragmentManager);
+
 
         if(context instanceof ShopByCategory){
 
             ArrayList<Datum> parentCategories = DevicePreferences.getInstance().getMenu();
-            for(Datum menu:parentCategories){
 
-                adapter.addFrag(new BasicFragment(),menu.getTitle(),menu.getChildren());
+            for(Datum menu:parentCategories){
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(CHILD_MENU,menu.getChildren());
+                adapter.addFrag(new BasicFragment(),menu.getTitle(),bundle);
+                //adapter.addFrag(new BasicFragment(),menu.getTitle(),menu.getChildren());
             }
 
 //            adapter.addFrag(new MobilesAndTablets(),parentCategories.get(0).getTitle(),
@@ -103,8 +109,8 @@ public class NavigationUtils {
 
         if(context instanceof ScreenAllProduct){
 
-            adapter.addFrag(new FragmentAllProduct(),"All Products");
-            adapter.addFrag(new FragmentPopularProduct(),"Popular Products");
+            adapter.addFrag(new FragmentAllProduct(),"All Products",params);
+            adapter.addFrag(new FragmentPopularProduct(),"Popular Products",params);
         }
 
         return adapter;

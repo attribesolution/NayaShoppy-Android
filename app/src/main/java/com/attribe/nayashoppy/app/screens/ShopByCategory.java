@@ -73,7 +73,7 @@ public class ShopByCategory extends BaseActivity {
 
     private void setupViewPager(ViewPager viewPager) {
 
-        viewPager.setAdapter(NavigationUtils.getPagerAdapter(this,getSupportFragmentManager()));
+        viewPager.setAdapter(NavigationUtils.getPagerAdapter(this,getSupportFragmentManager(),null));
     }
 
     @Override

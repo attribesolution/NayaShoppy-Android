@@ -21,12 +21,12 @@ import java.util.Map;
 public class ProductsBAL {
 
 
-    public static void getNewProducts(int categoryID, int brandID, final LatestProductsListener listener  ) {
+    public static void getNewProducts(int categoryID, int brandID, int page, final LatestProductsListener listener  ) {
 
         Map<String,Integer> options= new HashMap<String, Integer>();
         options.put("category_id",categoryID);
         options.put("brand_id",brandID);
-
+        options.put("page",page);
         Call<ProductCategory> allProducts = RestClient.getAdapter().getAllProducts(options);
 
 

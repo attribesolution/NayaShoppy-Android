@@ -32,7 +32,8 @@ public abstract class BaseFragment extends Fragment{
 
         this.view = view;
         ExpandableListView listView = (ExpandableListView) view.findViewById(R.id.expandable_list);
-        ArrayList<Children> childMenu = (ArrayList<Children>) getArguments().getSerializable(NavigationUtils.CHILD_MENU);
+        ArrayList<Children> childMenu = (ArrayList<Children>) getArguments().
+                                        getSerializable(NavigationUtils.CHILD_MENU);
 
         SubCategoryAdapter adapter = new SubCategoryAdapter(getActivity(),
                 childMenu);

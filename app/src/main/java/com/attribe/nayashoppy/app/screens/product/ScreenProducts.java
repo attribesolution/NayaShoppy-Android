@@ -17,7 +17,7 @@ import com.attribe.nayashoppy.app.network.bals.ProductsBAL;
 import com.attribe.nayashoppy.app.network.interfaces.LatestProductsListener;
 import com.attribe.nayashoppy.app.network.interfaces.PopularProductsListener;
 import com.attribe.nayashoppy.app.screens.BaseActivity;
-import com.attribe.nayashoppy.app.util.HorizontalScroller;
+import com.attribe.nayashoppy.app.util.InfiniteScroller;
 import com.attribe.nayashoppy.app.util.NavigationUtils;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -103,7 +103,7 @@ public class ScreenProducts extends BaseActivity {
 
         recycler_newArrivals.setLayoutManager(layoutHorizontal);
 
-        ProductsBAL.getNewProducts(categoryID, brandID, new LatestProductsListener() {
+        ProductsBAL.getNewProducts(categoryID, brandID,0, new LatestProductsListener() {
             @Override
             public void onDataReceived(ArrayList<Datum> data) {
                 mNewProducts = data;
@@ -124,7 +124,7 @@ public class ScreenProducts extends BaseActivity {
             }
         });
 
-        recycler_newArrivals.addOnScrollListener(new HorizontalScroller(layoutHorizontal) {
+        recycler_newArrivals.addOnScrollListener(new InfiniteScroller(layoutHorizontal) {
             @Override
             public boolean onLoadMore(int page, int totalItemsCount) {
 
