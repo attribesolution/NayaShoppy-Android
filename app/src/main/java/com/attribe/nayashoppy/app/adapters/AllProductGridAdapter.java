@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.viewholders.AllProductHolder;
 import com.attribe.nayashoppy.app.adapters.viewholders.FooterProgress;
@@ -18,27 +19,17 @@ import java.util.ArrayList;
 /**
  * Created by Sabih Ahmed on 11-Aug-16.
  */
-public class AllProductAdapter extends RecyclerView.Adapter<PopularProductHolder> {
+public class AllProductGridAdapter extends RecyclerView.Adapter<PopularProductHolder> {
 
     private final ArrayList<Datum> mDataset;
     private Context mContext;
-
-    public AllProductAdapter(ArrayList<Datum> data) {
+    private Boolean isGrid;
+    public AllProductGridAdapter(ArrayList<Datum> data) {
 
         this.mDataset=data;
+
     }
 
-    @Override
-    public int getItemViewType(int position) {
-
-        int type=0;
-        if(mDataset.get(position) instanceof ProgressFooter){
-
-            type=1;
-
-        }
-        return type;
-    }
 
     @Override
     public PopularProductHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -46,18 +37,10 @@ public class AllProductAdapter extends RecyclerView.Adapter<PopularProductHolder
         mContext = parent.getContext();
 
         PopularProductHolder holder = null;
-        if(viewType ==1){
-            View view= LayoutInflater.from(mContext).inflate(R.layout.progress,parent,false);
 
-            holder = new FooterProgress(view);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.popular_product_item, parent, false);
+        holder = new PopularProductHolder(view);
 
-        }
-
-        else{
-
-            View view = LayoutInflater.from(mContext).inflate(R.layout.popular_product_item, parent, false);
-            holder = new PopularProductHolder(view);
-        }
 
         return holder;
     }
@@ -65,19 +48,17 @@ public class AllProductAdapter extends RecyclerView.Adapter<PopularProductHolder
     @Override
     public void onBindViewHolder(PopularProductHolder holder, int position) {
 
-        if(holder instanceof FooterProgress){
+        holder.productName.setText(mDataset.get(position).getProduct_name());
+        holder.productPrice.setText(mDataset.get(position).getLowest_price()+" "+
+                mDataset.get(position).getDiscount());
 
-            ((FooterProgress)holder).progress.setVisibility(View.VISIBLE);
-
-        }
-
-        else{
-            holder.productName.setText(mDataset.get(position).getProduct_name());
-            holder.productPrice.setText(mDataset.get(position).getLowest_price()+" "+
-                    mDataset.get(position).getDiscount());
-
+        try {
             Common.setImage(mContext,mDataset.get(position).getImages().get(0).getImage_path(),holder.productImage);
+        }catch (Exception exc){
+
         }
+
+
 
     }
 

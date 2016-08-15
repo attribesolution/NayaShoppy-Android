@@ -6,11 +6,10 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import com.attribe.nayashoppy.app.R;
-import com.attribe.nayashoppy.app.adapters.AllProductAdapter;
+import com.attribe.nayashoppy.app.adapters.AllProductGridAdapter;
+import com.attribe.nayashoppy.app.adapters.AllProductListAdapter;
 import com.attribe.nayashoppy.app.model.product_category.Datum;
 import com.attribe.nayashoppy.app.network.bals.ProductsBAL;
 import com.attribe.nayashoppy.app.network.interfaces.LatestProductsListener;
@@ -27,12 +26,15 @@ public class FragmentAllProduct extends Fragment {
 
     private View view;
     private RecyclerView recyclerView;
-    private GridLayoutManager layoutManager;
+    private GridLayoutManager gridLayoutManager;
+    private LinearLayoutManager linearLayoutManager;
     private int categoryID=0;
     private int brandID=0;
     private ArrayList<Datum> mDataset;
-    private AllProductAdapter adapter;
+    private AllProductGridAdapter gridViewAdapter;
+    private AllProductListAdapter listViewAdapter;
     private AVLoadingIndicatorView progress;
+    private boolean isGrid = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,14 +42,41 @@ public class FragmentAllProduct extends Fragment {
         view = inflater.inflate(R.layout.fragment_all_product, container, false);
 
         init();
+        setHasOptionsMenu(true);
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu,inflater);
+        inflater.inflate(R.menu.menu_all_product,menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+
+            case R.id.share:
+
+                break;
+
+            case R.id.grid:
+
+                ToggleProductView();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void init() {
         progress = (AVLoadingIndicatorView)view.findViewById(R.id.progress_wheel);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_fragment_all_products);
-        layoutManager = new GridLayoutManager(getActivity(),2);
-        recyclerView.setLayoutManager(layoutManager);
+        gridLayoutManager = new GridLayoutManager(getActivity(),2);
+
+        recyclerView.setLayoutManager(gridLayoutManager);
 
         try {
 
@@ -61,48 +90,81 @@ public class FragmentAllProduct extends Fragment {
         setAllProductList();
     }
 
-    private void setAllProductList() {
-        int page=1;
-        getProducts(categoryID,brandID,page, false);
+    /**This method toggles from grid view , to list view
+     * & vice versa
+     *
+     */
+    private void ToggleProductView(){
 
+        if(isGrid){// if it is already grid, set List view
+            linearLayoutManager = new LinearLayoutManager(getActivity());
+            recyclerView.removeAllViews();
+            recyclerView.setLayoutManager(linearLayoutManager);
+            recyclerView.addOnScrollListener(new EndlessScroller(linearLayoutManager));
+            recyclerView.setAdapter(listViewAdapter);
+
+            isGrid = false;
+        }
+        else{// if it is list, set grid
+            recyclerView.removeAllViews();
+            recyclerView.setLayoutManager(gridLayoutManager);
+            recyclerView.setAdapter(gridViewAdapter);
+            isGrid = true;
+        }
 
 
     }
 
-    private void getProducts(int categoryID, int brandID, int page, final boolean scrolled) {
-//        progress.setVisibility(View.VISIBLE);
-        ProductsBAL.getNewProducts(categoryID, brandID,page, new LatestProductsListener() {
+    private void setAllProductList() {
+        int page=1;
+        getProducts(categoryID,brandID,page, false);
 
+    }
+
+    private void getProducts(int categoryID, int brandID, int page, final boolean scrolled) {
+        progress.setVisibility(View.VISIBLE);
+        ProductsBAL.getNewProducts(categoryID, brandID,page, new LatestProductsListener() {
 
             @Override
             public void onDataReceived(ArrayList<Datum> data) {
 
-//                progress.setVisibility(View.GONE);
-                if(scrolled){
+                progress.setVisibility(View.GONE);
+                if (scrolled) {
                     mDataset.addAll(data);
-                    adapter.notifyDataSetChanged();
+                    if (isGrid) {
+                        gridViewAdapter.notifyDataSetChanged();
+                    } else {
+                        listViewAdapter.notifyDataSetChanged();
+                    }
+
+
                 }
 
-                if(!scrolled){
+                if (!scrolled) {
                     mDataset = data;
-                    adapter = new AllProductAdapter(mDataset);
-                    recyclerView.setAdapter(adapter);
-                    recyclerView.addOnScrollListener(new EndlessScroller(layoutManager));
+                    gridViewAdapter = new AllProductGridAdapter(mDataset);
+                    listViewAdapter = new AllProductListAdapter(mDataset);
+                    if (isGrid) {
+                        recyclerView.setAdapter(gridViewAdapter);
+                        recyclerView.addOnScrollListener(new EndlessScroller(gridLayoutManager));
+                    } else {
+
+                        recyclerView.setAdapter(listViewAdapter);
+                        recyclerView.addOnScrollListener(new EndlessScroller(linearLayoutManager));
+
+                    }
+
                 }
-
-
-
-
-            }
+    }
 
             @Override
             public void onDataIssue(String message) {
-//                progress.setVisibility(View.GONE);
+                progress.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(String message) {
-//                progress.setVisibility(View.GONE);
+                progress.setVisibility(View.GONE);
             }
         });
     }
@@ -117,8 +179,6 @@ public class FragmentAllProduct extends Fragment {
         @Override
         public boolean onLoadMore(int page, int totalItemsCount) {
 
-
-            mDataset.add(new ProgressFooter());
             getProducts(categoryID,brandID,page,true);
             return true;
         }

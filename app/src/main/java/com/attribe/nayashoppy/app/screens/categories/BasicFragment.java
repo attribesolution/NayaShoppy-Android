@@ -2,6 +2,7 @@ package com.attribe.nayashoppy.app.screens.categories;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,7 @@ public class BasicFragment extends BaseFragment{
     @Override
     public void onViewInitialized(ListView listView, ArrayList<Children> childMenu, SubCategoryAdapter adapter) {
 
-
     }
+
+
 }

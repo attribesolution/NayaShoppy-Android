@@ -22,7 +22,7 @@ public class Datum {
     public String shipping;
     public Object price;
     public Object unique_id;
-    public Object discount;
+    public String discount;
     public Object rating;
     public Object rating_user_count;
     public String reviews;
@@ -31,8 +31,8 @@ public class Datum {
     public String date_add;
     public String date_update;
     public String date_launch;
-    public Integer lowest_price;
-    public Integer original_price;
+    public String lowest_price;
+    public String original_price;
     public Integer highest_price;
     public String link_rewrite;
     public Integer supplier_count;
@@ -144,11 +144,11 @@ public class Datum {
         return date_launch;
     }
 
-    public Integer getLowest_price() {
+    public String getLowest_price() {
         return lowest_price;
     }
 
-    public Integer getOriginal_price() {
+    public String getOriginal_price() {
         return original_price;
     }
 
