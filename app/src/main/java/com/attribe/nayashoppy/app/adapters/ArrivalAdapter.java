@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.viewholders.ArrivalHolder;
-import com.attribe.nayashoppy.app.model.Product;
 import com.attribe.nayashoppy.app.model.arrival.Datum;
 import com.squareup.picasso.Picasso;
 

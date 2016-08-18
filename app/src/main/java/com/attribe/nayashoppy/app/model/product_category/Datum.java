@@ -2,12 +2,13 @@ package com.attribe.nayashoppy.app.model.product_category;
 
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Sabih Ahmed on 02-Aug-16.
  */
-public class Datum {
+public class Datum implements Serializable{
     public Integer product_id;
     public Integer categories_category_id;
     public Integer brands_brand_id;

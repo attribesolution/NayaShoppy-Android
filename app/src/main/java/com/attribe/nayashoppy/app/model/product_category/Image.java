@@ -1,11 +1,13 @@
 package com.attribe.nayashoppy.app.model.product_category;
 
+import java.io.Serializable;
+
 /**
  * Created by Sabih Ahmed on 02-Aug-16.
  */
 
 
-public class Image {
+public class Image implements Serializable{
 
     public Integer id;
     public Integer id_product;

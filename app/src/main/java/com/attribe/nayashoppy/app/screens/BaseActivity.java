@@ -38,5 +38,11 @@ public abstract class BaseActivity extends AppCompatActivity{
 
     }
 
+    public void getName(){
+        //TODO: remove this
+    }
+
+
+
     public abstract void onToolbarInit(Toolbar toolbar, ActionBar actionBar);
 }

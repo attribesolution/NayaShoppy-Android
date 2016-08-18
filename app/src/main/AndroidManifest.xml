@@ -14,12 +14,13 @@
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:label="@string/title_activity_screen_splash"
                 android:theme="@style/AppTheme">
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-
         </activity>
         <activity
                 android:name=".screens.Main"
@@ -55,11 +56,13 @@
                 android:name=".screens.useraccount.ScreenAboutUs"
                 android:parentActivityName=".screens.Main">
         </activity>
-        <activity android:name=".screens.product.ScreenProducts"
-                  android:parentActivityName=".screens.ShopByCategory">
-
+        <activity
+                android:name=".screens.product_listings.ScreenProducts"
+                android:parentActivityName=".screens.ShopByCategory">
         </activity>
-        <activity android:name=".screens.product.ScreenAllProduct">
+        <activity android:name=".screens.product_listings.ScreenAllProduct">
+        </activity>
+        <activity android:name=".screens.product_detail.ScreenProductDetail">
 
         </activity>
     </application>

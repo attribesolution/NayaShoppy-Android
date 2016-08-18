@@ -6,7 +6,7 @@ import com.attribe.nayashoppy.app.model.product_category.ProductCategory;
 import com.attribe.nayashoppy.app.network.RestClient;
 import com.attribe.nayashoppy.app.network.interfaces.LatestProductsListener;
 import com.attribe.nayashoppy.app.network.interfaces.PopularProductsListener;
-import com.google.gson.JsonSyntaxException;
+import com.attribe.nayashoppy.app.network.interfaces.ProductListener;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -95,5 +95,28 @@ public class ProductsBAL {
 
     public static void getAllProducts() {
 
+    }
+
+    public static void getProductDetail(String slug, final ProductListener productListener) {
+        Map<String,String> params= new HashMap<String, String >();
+        params.put("slug",slug);
+        Call<com.attribe.nayashoppy.app.model.Product> productDetail = RestClient.getAdapter().getProductDetail(params);
+
+        productDetail.enqueue(new Callback<com.attribe.nayashoppy.app.model.Product>() {
+            @Override
+            public void onResponse(Call<com.attribe.nayashoppy.app.model.Product> call, Response<com.attribe.nayashoppy.app.model.Product> response) {
+
+                if(response.isSuccessful()){
+
+                    productListener.onProductReceived(response.body().getData().get(0));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<com.attribe.nayashoppy.app.model.Product> call, Throwable t) {
+
+                productListener.onFailure(t.getMessage());
+            }
+        });
     }
 }

@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.viewholders.WhishListHolder;
-import com.attribe.nayashoppy.app.model.Product;
 import com.attribe.nayashoppy.app.util.DummyData;
 import com.squareup.picasso.Picasso;
+import com.attribe.nayashoppy.app.model.dummy_model.Product;
 
 import java.util.ArrayList;
 

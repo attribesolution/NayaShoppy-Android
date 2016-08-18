@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:nestedScrollingEnabled="true"
+                >
+
+    <android.support.v4.view.ViewPager
+            android:id="@+id/product_image_pager"
+            android:layout_width="match_parent"
+            android:layout_height="150dp" android:layout_marginTop="5dp">
+
+    </android.support.v4.view.ViewPager>
+    
+            <RelativeLayout
+                    android:id="@+id/price_container"
+                    android:layout_below="@+id/product_name_container"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp">
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:layout_marginTop="5dp">
+
+
+                    <org.sufficientlysecure.htmltextview.HtmlTextView
+                            android:id="@+id/product_price"
+                            android:layout_width="200dp"
+                            android:layout_height="40dp" android:layout_gravity="center_vertical"/>
+
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="200dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center_vertical" android:gravity="center_vertical">
+
+                        <ImageView
+                                  android:layout_width="30dp"
+                                   android:layout_height="10dp"/>
+
+                        <RatingBar android:layout_width="wrap_content"
+                                   android:layout_height="10dp"
+                                   android:numStars="5"
+                                   android:progressDrawable="@drawable/rating_bar"
+                        />
+
+                        <TextView
+
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:text="145 Reviews"
+                                />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+    <RelativeLayout
+            android:id="@+id/stores_heading"
+            android:layout_below="@+id/price_container"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical" android:layout_marginLeft="5dp" android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp">
+
+        <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="ONLINE STORES"
+                  android:textStyle="bold"
+                 />
+    </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_supplier"
+            android:layout_below="@+id/stores_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp" android:layout_marginLeft="5dp" android:layout_marginRight="5dp">
+
+    </android.support.v7.widget.RecyclerView>
+    <FrameLayout
+
+            android:id="@+id/product_name_container"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/product_image_pager"
+            android:layout_centerHorizontal="true">
+
+        <TextView
+                  android:id="@+id/product_name"
+                  android:layout_gravity="center"
+                  android:layout_width="wrap_content"
+                  android:layout_height="20dp"
+                  android:text="Apple Iphone 6S(32 GB)"
+                  android:maxLines="1"/>
+    </FrameLayout>
+    
+    <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:orientation="vertical"
+            android:layout_alignTop="@+id/product_image_pager"
+            android:layout_alignParentEnd="true" android:layout_marginTop="20dp" android:layout_marginRight="20dp"
+            android:gravity="center_horizontal">
+
+        <ImageView android:layout_width="40dp"
+                     android:layout_height="40dp"
+                     android:src="@drawable/wishlist"
+                     >
+
+        </ImageView>
+
+        <ImageView   android:layout_width="40dp"
+                     android:layout_height="40dp"
+                     android:src="@drawable/share"
+                    >
+
+        </ImageView>
+    </LinearLayout>
+
+
+</RelativeLayout>

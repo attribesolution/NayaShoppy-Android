@@ -1,4 +1,4 @@
-package com.attribe.nayashoppy.app.screens.product;
+package com.attribe.nayashoppy.app.screens.product_listings;
 
 /**
  * Created by Sabih Ahmed on 11-Aug-16.

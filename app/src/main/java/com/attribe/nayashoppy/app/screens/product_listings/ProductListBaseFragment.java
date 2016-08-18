@@ -1,20 +1,22 @@
-package com.attribe.nayashoppy.app.screens.product;
+package com.attribe.nayashoppy.app.screens.product_listings;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import com.attribe.nayashoppy.app.R;
-import com.attribe.nayashoppy.app.adapters.AllProductGridAdapter;
+import com.attribe.nayashoppy.app.adapters.PopularProductAdapter;
 import com.attribe.nayashoppy.app.model.popular_products.Data;
 import com.attribe.nayashoppy.app.model.product_category.Datum;
 import com.attribe.nayashoppy.app.network.bals.ProductsBAL;
-import com.attribe.nayashoppy.app.network.interfaces.LatestProductsListener;
 import com.attribe.nayashoppy.app.network.interfaces.PopularProductsListener;
+import com.attribe.nayashoppy.app.util.InfiniteScroller;
 import com.attribe.nayashoppy.app.util.NavigationUtils;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -32,13 +34,31 @@ public abstract class ProductListBaseFragment extends Fragment{
     private GridLayoutManager gridLayoutManager;
     private int categoryID;
     private int brandID;
-    private ArrayList<Datum> mDataset;
-    private AllProductGridAdapter gridViewAdapter;
+    private ArrayList<Data> mPopularProductList;
+    private ArrayList<Datum> mAllProductList;
+    private PopularProductAdapter gridViewAdapter;
+    private boolean isScrolled;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+
+        if(item.getItemId()==R.id.grid){
+
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void togglePopularProductView() {
+
     }
 
     public void init(View view){
@@ -95,16 +115,10 @@ public abstract class ProductListBaseFragment extends Fragment{
 
 
 
-        fetchPopularProductData(categoryID,brandID,1);
-
-        //onViewInitialized(categoryID,brandID,progress,recyclerView,gridLayoutManager);
-
-
-
-
     }
 
-    private void fetchData(){
+    private void fetchData(int categoryID, int brandID, int page, boolean isScrolled){
+
 
         //fetch all Product/ popular product dynamically
 
@@ -113,37 +127,25 @@ public abstract class ProductListBaseFragment extends Fragment{
         //fetch data from Products bal and return data set
     }
 
-    private void fetchPopularProductData(int categoryID, int brandID, int page){
+    private void fetchPopularProductData(int categoryID, int brandID, int page, final boolean isScrolled){
 
-        //ToDo: remove this from here
-        ProductsBAL.getNewProducts(categoryID, brandID, page, new LatestProductsListener() {
-            @Override
-            public void onDataReceived(ArrayList<Datum> data) {
-                mDataset = data;
-                gridViewAdapter = new AllProductGridAdapter(mDataset);
-                recyclerView.setAdapter(gridViewAdapter);
-            }
-
-            @Override
-            public void onDataIssue(String message) {
-
-            }
-
-            @Override
-            public void onFailure(String message) {
-
-            }
-        });
-
-        /** Commented bcz of PopularAdapter
         ProductsBAL.getPopularProducts(categoryID,brandID, page , new PopularProductsListener() {
             @Override
             public void onDataReceived(ArrayList<Data> data) {
 
-                mDataset = data;
-                gridViewAdapter = new AllProductGridAdapter(mDataset);
-                recyclerView.setAdapter(gridViewAdapter);
-                onDataFetched();
+                if(isScrolled){
+
+                    mPopularProductList.addAll(data);
+                    gridViewAdapter.notifyDataSetChanged();
+                }
+                if(!isScrolled){
+                    mPopularProductList = data;
+                    gridViewAdapter = new PopularProductAdapter(mPopularProductList);
+                    recyclerView.setAdapter(gridViewAdapter);
+                    recyclerView.addOnScrollListener(new EndlessScrollListener(gridLayoutManager));
+                }
+
+
             }
 
             @Override
@@ -157,9 +159,25 @@ public abstract class ProductListBaseFragment extends Fragment{
 
                 //TODO: handle exception here
             }
-        });**/
+        });
     }
 
     abstract void onDataFetched();
     abstract void onViewInitialized(int categoryID, int brandID, AVLoadingIndicatorView progress, RecyclerView recyclerView, GridLayoutManager gridLayoutManager);
+
+    private class EndlessScrollListener extends InfiniteScroller {
+
+
+        public EndlessScrollListener(LinearLayoutManager layoutHorizontal) {
+            super(layoutHorizontal);
+        }
+
+        @Override
+        public boolean onLoadMore(int page, int totalItemsCount) {
+
+
+            fetchData(categoryID,brandID,page,true);
+            return false;
+        }
+    }
 }

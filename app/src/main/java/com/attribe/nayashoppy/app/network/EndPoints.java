@@ -13,4 +13,5 @@ public class EndPoints {
     public static final String STAGE_GET_MENU = "topmenu";
     public static final String STAGE_GET_DEALS = "dealsoftheday";
     public static final String STAGE_GET_ARRIVALS = "http://api.nayashoppy.com/v1/default/newarrival";
+    public static final String STAGE_PRODUCT_DETAIL = "http://api.nayashoppy.com/v1/catalog/detail";
 }

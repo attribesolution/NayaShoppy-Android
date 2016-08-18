@@ -90,4 +90,12 @@ public class DevicePreferences {
         return menuList;
 
     }
+
+    public String getCurrency() {
+
+        String currency ="Rs ";
+
+
+        return currency;
+    }
 }

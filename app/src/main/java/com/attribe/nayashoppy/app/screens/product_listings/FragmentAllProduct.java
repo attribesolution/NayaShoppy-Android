@@ -1,4 +1,4 @@
-package com.attribe.nayashoppy.app.screens.product;
+package com.attribe.nayashoppy.app.screens.product_listings;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

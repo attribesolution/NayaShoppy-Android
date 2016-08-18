@@ -1,4 +1,4 @@
-package com.attribe.nayashoppy.app.screens.product;
+package com.attribe.nayashoppy.app.screens.product_listings;
 
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;

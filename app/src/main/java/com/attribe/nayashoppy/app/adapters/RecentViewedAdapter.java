@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.viewholders.RecentViewedHolder;
-import com.attribe.nayashoppy.app.model.Product;
+import com.attribe.nayashoppy.app.model.dummy_model.Product;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

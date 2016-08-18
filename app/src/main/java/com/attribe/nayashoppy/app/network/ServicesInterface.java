@@ -1,15 +1,14 @@
 package com.attribe.nayashoppy.app.network;
 
-import com.attribe.nayashoppy.app.model.Datum;
 import com.attribe.nayashoppy.app.model.Deals.Deals;
 import com.attribe.nayashoppy.app.model.Menu;
+import com.attribe.nayashoppy.app.model.Product;
 import com.attribe.nayashoppy.app.model.arrival.NewArrival;
 import com.attribe.nayashoppy.app.model.popular_products.PopularProducts;
 import com.attribe.nayashoppy.app.model.product_category.ProductCategory;
 import retrofit2.Call;
 import retrofit2.http.*;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -32,4 +31,7 @@ public interface ServicesInterface {
 
     @GET("http://api.nayashoppy.com/v1/catalog/popularproducts")
     Call<PopularProducts> getPopularProducts(@QueryMap Map<String,Integer> options);
+
+    @GET(EndPoints.STAGE_PRODUCT_DETAIL)
+    Call<Product> getProductDetail(@QueryMap Map<String, String> params);
 }

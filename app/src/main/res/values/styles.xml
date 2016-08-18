@@ -10,8 +10,6 @@
         <item name="tabIndicatorColor">@color/primary</item>
         <item name="tabSelectedTextColor">@color/primary</item>
         <item name="tabTextAppearance">@style/MyCustomTabText</item>
-
-
     </style>
 
     <style name="MyCustomTabText" parent="TextAppearance.Design.Tab">
@@ -27,6 +25,8 @@
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:background">#CD3132</item>
     </style>
+
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 </resources>

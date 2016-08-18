@@ -10,10 +10,14 @@ import com.attribe.nayashoppy.app.adapters.MainScreenPagerAdapter;
 import com.attribe.nayashoppy.app.model.Datum;
 import com.attribe.nayashoppy.app.screens.*;
 import com.attribe.nayashoppy.app.screens.categories.*;
-import com.attribe.nayashoppy.app.screens.product.FragmentAllProduct;
-import com.attribe.nayashoppy.app.screens.product.FragmentPopularProduct;
-import com.attribe.nayashoppy.app.screens.product.ScreenAllProduct;
-import com.attribe.nayashoppy.app.screens.product.ScreenProducts;
+import com.attribe.nayashoppy.app.screens.product_detail.FragmentPrices;
+import com.attribe.nayashoppy.app.screens.product_detail.FragmentReviews;
+import com.attribe.nayashoppy.app.screens.product_detail.FragmentSpecification;
+import com.attribe.nayashoppy.app.screens.product_detail.ScreenProductDetail;
+import com.attribe.nayashoppy.app.screens.product_listings.FragmentAllProduct;
+import com.attribe.nayashoppy.app.screens.product_listings.FragmentPopularProduct;
+import com.attribe.nayashoppy.app.screens.product_listings.ScreenAllProduct;
+import com.attribe.nayashoppy.app.screens.product_listings.ScreenProducts;
 import com.attribe.nayashoppy.app.screens.useraccount.*;
 
 import java.util.ArrayList;
@@ -34,6 +38,10 @@ public class NavigationUtils {
     public static final String BUNDLE_PRODUCTS = "bundle_products";
     public static final String KEY_SUBCATEGORY_TITLE = "subcategoryTitle";
     private static final String SUBCATEGORY_SCREEN_DEFAULT_TITLE = "";
+    private static final String KEY_PRODUCT = "product";
+    public static final String KEY_PRODUCT_ID = "product_id";
+    public static final String KEY_PRODUCT_NAME = "productName";
+    public static final String KEY_PRODUCT_SLUG = "slug";
     private static ProgressLoader progress;
 
     public static void showHome(Context context) {
@@ -71,7 +79,8 @@ public class NavigationUtils {
     }
 
     public static MainScreenPagerAdapter  getPagerAdapter(Context context,
-                                                          FragmentManager supportFragmentManager, @Nullable Bundle params) {
+                                                          FragmentManager supportFragmentManager,
+                                                          @Nullable Bundle params) {
         MainScreenPagerAdapter adapter = new MainScreenPagerAdapter(supportFragmentManager);
 
 
@@ -111,6 +120,12 @@ public class NavigationUtils {
 
             adapter.addFrag(new FragmentAllProduct(),"All Products",params);
             adapter.addFrag(new FragmentPopularProduct(),"Popular Products",params);
+        }
+
+        if(context instanceof ScreenProductDetail){
+            adapter.addFrag(new FragmentPrices(),"PRICES",params);
+            adapter.addFrag(new FragmentSpecification(),"SPECIFICATIONS",params);
+            adapter.addFrag(new FragmentReviews(),"REVIEWS",params);
         }
 
         return adapter;
@@ -168,6 +183,21 @@ public class NavigationUtils {
 
         }
 
+        if(context instanceof ScreenProductDetail){
+
+            try {
+                Bundle productBundle = ((ScreenProductDetail) context).getIntent().getBundleExtra(BUNDLE_PRODUCTS);
+                int productID = productBundle.getInt(KEY_PRODUCT_ID,0);
+
+                label =  productBundle.getString(KEY_PRODUCT_NAME,label);
+            }
+            catch (Exception exc){
+
+            }
+
+
+        }
+
 
 
         return label;
@@ -204,6 +234,9 @@ public class NavigationUtils {
 
     public static void showProductScreen(Context mContext, Bundle bundle) {
 
+        //extract cat_id & brand_ID just to check which brand is this
+        //ScreenProducts have to be shown in case of cat_id 1 & brand_id=0
+
         int categoryID = bundle.getInt(KEY_CATEGORY_ID);
         int brandID = bundle.getInt(KEY_BRAND_ID);
 
@@ -232,5 +265,12 @@ public class NavigationUtils {
 
 
         return progress;
+    }
+
+    public static void showProductDetailScreen(Context mContext, Bundle bundle) {
+        Intent intent = new Intent(mContext, ScreenProductDetail.class);
+        intent.putExtra(NavigationUtils.BUNDLE_PRODUCTS,bundle);
+        mContext.startActivity(intent);
+
     }
 }

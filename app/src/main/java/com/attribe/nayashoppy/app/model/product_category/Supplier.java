@@ -1,11 +1,13 @@
 package com.attribe.nayashoppy.app.model.product_category;
 
+import java.io.Serializable;
+
 /**
  * Created by Sabih Ahmed on 02-Aug-16.
  */
 
 
-public class Supplier {
+public class Supplier implements Serializable{
 
     public Integer id;
     public Integer product_id;
@@ -32,99 +34,99 @@ public class Supplier {
     public String active;
     public String created;
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Integer getId() {
+        return id;
     }
 
-    public void setProduct_id(Integer product_id) {
-        this.product_id = product_id;
+    public Integer getProduct_id() {
+        return product_id;
     }
 
-    public void setCod(String cod) {
-        this.cod = cod;
+    public String getCod() {
+        return cod;
     }
 
-    public void setEmi(String emi) {
-        this.emi = emi;
+    public String getEmi() {
+        return emi;
     }
 
-    public void setReturn_policy(String return_policy) {
-        this.return_policy = return_policy;
+    public String getReturn_policy() {
+        return return_policy;
     }
 
-    public void setDelivery(String delivery) {
-        this.delivery = delivery;
+    public String getDelivery() {
+        return delivery;
     }
 
-    public void setShipping(String shipping) {
-        this.shipping = shipping;
+    public String getShipping() {
+        return shipping;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public String getPrice() {
+        return price;
     }
 
-    public void setOriginal_price(String original_price) {
-        this.original_price = original_price;
+    public String getOriginal_price() {
+        return original_price;
     }
 
-    public void setUnique_id(String unique_id) {
-        this.unique_id = unique_id;
+    public String getUnique_id() {
+        return unique_id;
     }
 
-    public void setDiscount(String discount) {
-        this.discount = discount;
+    public String getDiscount() {
+        return discount;
     }
 
-    public void setRating(String rating) {
-        this.rating = rating;
+    public String getRating() {
+        return rating;
     }
 
-    public void setRating_user_count(String rating_user_count) {
-        this.rating_user_count = rating_user_count;
+    public String getRating_user_count() {
+        return rating_user_count;
     }
 
-    public void setReviews(String reviews) {
-        this.reviews = reviews;
+    public String getReviews() {
+        return reviews;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public String getUrl() {
+        return url;
     }
 
-    public void setProduct_status(String product_status) {
-        this.product_status = product_status;
+    public String getProduct_status() {
+        return product_status;
     }
 
-    public void setStore_name(String store_name) {
-        this.store_name = store_name;
+    public String getStore_name() {
+        return store_name;
     }
 
-    public void setStore_id(Integer store_id) {
-        this.store_id = store_id;
+    public Integer getStore_id() {
+        return store_id;
     }
 
-    public void setMeta_title(String meta_title) {
-        this.meta_title = meta_title;
+    public String getMeta_title() {
+        return meta_title;
     }
 
-    public void setMeta_keyword(String meta_keyword) {
-        this.meta_keyword = meta_keyword;
+    public String getMeta_keyword() {
+        return meta_keyword;
     }
 
-    public void setMeta_desc(String meta_desc) {
-        this.meta_desc = meta_desc;
+    public String getMeta_desc() {
+        return meta_desc;
     }
 
-    public void setPrice_status(Integer price_status) {
-        this.price_status = price_status;
+    public Integer getPrice_status() {
+        return price_status;
     }
 
-    public void setActive(String active) {
-        this.active = active;
+    public String getActive() {
+        return active;
     }
 
-    public void setCreated(String created) {
-        this.created = created;
+    public String getCreated() {
+        return created;
     }
 }

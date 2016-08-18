@@ -1,52 +1,22 @@
 package com.attribe.nayashoppy.app.model;
 
+import com.attribe.nayashoppy.app.model.popular_products.Data;
+
+import java.util.ArrayList;
+
 /**
- * Created by Sabih Ahmed on 20-Jul-16.
+ * Created by Sabih Ahmed on 17-Aug-16.
  */
 public class Product {
 
-    private String productName;
-    private String productPrice;
-    private String productVendor;
-    private String productImageURL;
+    public Meta meta;
+    public ArrayList<Data> data;
 
-    public Product(String productName, String productPrice, String productVendor, String productImageURL) {
-        this.productName = productName;
-        this.productPrice = productPrice;
-        this.productVendor = productVendor;
-        this.productImageURL = productImageURL;
+    public Meta getMeta() {
+        return meta;
     }
 
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public String getProductPrice() {
-        return productPrice;
-    }
-
-    public void setProductPrice(String productPrice) {
-        this.productPrice = productPrice;
-    }
-
-    public String getProductVendor() {
-        return productVendor;
-    }
-
-    public void setProductVendor(String productVendor) {
-        this.productVendor = productVendor;
-    }
-
-    public String getProductImageURL() {
-        return productImageURL;
-    }
-
-    public void setProductImageURL(String productImageURL) {
-        this.productImageURL = productImageURL;
+    public ArrayList<Data> getData() {
+        return data;
     }
 }

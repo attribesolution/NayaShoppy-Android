@@ -49,6 +49,7 @@ dependencies {
     compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.wang.avi:library:1.0.5'
+    compile 'org.sufficientlysecure:html-textview:1.8'
 
 
 }
