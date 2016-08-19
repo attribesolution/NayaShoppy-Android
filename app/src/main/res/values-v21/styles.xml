@@ -27,4 +27,5 @@
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:background">#CD3132</item>
     </style>
+    <style name="supplier_logo"></style>
 </resources>

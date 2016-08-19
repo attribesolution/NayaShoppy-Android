@@ -94,7 +94,8 @@ public class FragmentPrices extends Fragment {
                 "BEST PRICE<br>\n" +
                 "<font color=\"#CD3132\" <big>"+
                 currency+lowestPrice+
-                "</font> <strike color=\"red\" >" +currency+originalPrice+ "</strike> <font color=\"#39B12C\"> (80% OFF)</font> \n" +
+                "</font> <strike color=\"red\" >" +currency+originalPrice+ "</strike> " +"<br>"+
+                "<font color=\"#39B12C\"> (80% OFF)</font> \n" +
                 "</html>";
 
         productPrice.setHtml(html);
