@@ -14,6 +14,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/primary"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
                 android:titleTextColor="@color/white"
                 app:layout_scrollFlags="scroll|enterAlways"
         >
@@ -33,6 +34,8 @@
                     android:layout_below="@id/tabs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
+
+    <include layout="@layout/filter"/>
 
     </RelativeLayout>
 

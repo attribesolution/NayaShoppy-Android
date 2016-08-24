@@ -219,9 +219,26 @@ public class Data {
         public ArrayList<FeatureValue> featureValues;
 
 
+        public String getFeatureGroupName() {
+            return featureGroupName;
+        }
+
+        public ArrayList<FeatureValue> getFeatureValues() {
+            return featureValues;
+        }
+
         public class FeatureValue {
             public String featureName;
             public String featureValue;
+
+
+            public String getFeatureName() {
+                return featureName;
+            }
+
+            public String getFeatureValue() {
+                return featureValue;
+            }
         }
 
     }

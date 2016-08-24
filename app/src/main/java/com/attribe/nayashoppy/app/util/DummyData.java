@@ -1,7 +1,7 @@
 package com.attribe.nayashoppy.app.util;
 
-import android.database.DatabaseUtils;
 import com.attribe.nayashoppy.app.model.ParentCategory;
+import com.attribe.nayashoppy.app.model.dummy_model.FilterKeys;
 import com.attribe.nayashoppy.app.model.dummy_model.Product;
 
 import java.util.ArrayList;
@@ -70,5 +70,8 @@ public class DummyData {
     }
 
 
+    public static void getDummyFilter() {
 
+
+    }
 }

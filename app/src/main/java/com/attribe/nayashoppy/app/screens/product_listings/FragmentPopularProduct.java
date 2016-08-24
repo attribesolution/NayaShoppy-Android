@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.*;
+import android.widget.LinearLayout;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.PopularProductAdapter;
 import com.attribe.nayashoppy.app.adapters.PopularProductListAdapter;
@@ -38,6 +39,8 @@ public class FragmentPopularProduct extends Fragment {
     private AVLoadingIndicatorView progress;
     private LinearLayoutManager linearLayoutManager;
     private PopularProductListAdapter listViewAdapter;
+    private LinearLayout sortingArea;
+    private LinearLayout filteringArea;
 
     @Nullable
     @Override
@@ -51,11 +54,22 @@ public class FragmentPopularProduct extends Fragment {
         return view;
     }
 
+
+    /**Initializes view, get intent / bundle extras
+     * and initializes instance variables
+     *
+     */
     private void init() {
 
         progress = (AVLoadingIndicatorView)view.findViewById(R.id.progress_wheel);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_fragment_popular);
         gridLayoutManager = new GridLayoutManager(getActivity(),GRID_SPAN_COUNT);
+
+        sortingArea = (LinearLayout) getActivity().findViewById(R.id.sorting_parent);
+        sortingArea.setOnClickListener(new AllProductSortingListener());
+
+        filteringArea = (LinearLayout) getActivity().findViewById(R.id.filtering_parent);
+        filteringArea.setOnClickListener(new AllProductFilterListener());
 
         recyclerView.setLayoutManager(gridLayoutManager);
 
@@ -67,9 +81,13 @@ public class FragmentPopularProduct extends Fragment {
 
         }
 
+
         getProducts(categoryID,brandID,page,false);
     }
 
+    /**Get products list asynchronously, and sets the view
+     *
+     */
     private void getProducts(int categoryID, int brandID, int page, final boolean isScrolled) {
         progress.setVisibility(View.VISIBLE);
         ProductsBAL.getPopularProducts(categoryID,brandID, page , new PopularProductsListener() {
@@ -119,6 +137,10 @@ public class FragmentPopularProduct extends Fragment {
         });
     }
 
+    /**This method toggles from grid view , to list view
+     * & vice versa
+     *
+     */
     private void ToggleProductView(){
 
         if(isGrid){// if it is already grid, set List view
@@ -166,6 +188,20 @@ public class FragmentPopularProduct extends Fragment {
         public boolean onLoadMore(int page, int totalItemsCount) {
             getProducts(categoryID,brandID,page,true);
             return false;
+        }
+    }
+
+    private class AllProductSortingListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+
+        }
+    }
+
+    private class AllProductFilterListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+
         }
     }
 }

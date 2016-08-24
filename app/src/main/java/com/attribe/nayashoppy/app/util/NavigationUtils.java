@@ -14,10 +14,7 @@ import com.attribe.nayashoppy.app.screens.product_detail.FragmentPrices;
 import com.attribe.nayashoppy.app.screens.product_detail.FragmentReviews;
 import com.attribe.nayashoppy.app.screens.product_detail.FragmentSpecification;
 import com.attribe.nayashoppy.app.screens.product_detail.ScreenProductDetail;
-import com.attribe.nayashoppy.app.screens.product_listings.FragmentAllProduct;
-import com.attribe.nayashoppy.app.screens.product_listings.FragmentPopularProduct;
-import com.attribe.nayashoppy.app.screens.product_listings.ScreenAllProduct;
-import com.attribe.nayashoppy.app.screens.product_listings.ScreenProducts;
+import com.attribe.nayashoppy.app.screens.product_listings.*;
 import com.attribe.nayashoppy.app.screens.useraccount.*;
 
 import java.util.ArrayList;
@@ -271,6 +268,16 @@ public class NavigationUtils {
         Intent intent = new Intent(mContext, ScreenProductDetail.class);
         intent.putExtra(NavigationUtils.BUNDLE_PRODUCTS,bundle);
         mContext.startActivity(intent);
+
+    }
+
+    public static void showFilterScreen(Context context ,int categoryID, int brandID) {
+        Intent intent = new Intent(context,ScreenFilter.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt(KEY_CATEGORY_ID,categoryID);
+        bundle.putInt(KEY_BRAND_ID,brandID);
+
+        context.startActivity(intent);
 
     }
 }

@@ -60,6 +60,10 @@
                 android:name=".screens.product_listings.ScreenProducts"
                 android:parentActivityName=".screens.ShopByCategory">
         </activity>
+
+        <activity android:name=".screens.product_listings.ScreenFilter">
+        </activity>
+
         <activity android:name=".screens.product_listings.ScreenAllProduct">
         </activity>
         <activity android:name=".screens.product_detail.ScreenProductDetail">

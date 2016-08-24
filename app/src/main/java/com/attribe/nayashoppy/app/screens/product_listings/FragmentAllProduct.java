@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.*;
+import android.widget.LinearLayout;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.AllProductGridAdapter;
 import com.attribe.nayashoppy.app.adapters.AllProductListAdapter;
@@ -35,6 +36,8 @@ public class FragmentAllProduct extends Fragment {
     private AllProductListAdapter listViewAdapter;
     private AVLoadingIndicatorView progress;
     private boolean isGrid = true;
+    private LinearLayout sortingArea;
+    private LinearLayout filteringArea;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -71,10 +74,20 @@ public class FragmentAllProduct extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+    /**Initializes view, get intent / bundle extras
+     * and initializes instance variables
+     *
+     */
     private void init() {
         progress = (AVLoadingIndicatorView)view.findViewById(R.id.progress_wheel);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_fragment_all_products);
         gridLayoutManager = new GridLayoutManager(getActivity(),2);
+
+        sortingArea = (LinearLayout) getActivity().findViewById(R.id.sorting_parent);
+        sortingArea.setOnClickListener(new AllProductSortingListener());
+
+        filteringArea = (LinearLayout) getActivity().findViewById(R.id.filtering_parent);
+        filteringArea.setOnClickListener(new AllProductFilterListener());
 
         recyclerView.setLayoutManager(gridLayoutManager);
 
@@ -115,12 +128,22 @@ public class FragmentAllProduct extends Fragment {
 
     }
 
+    /**Fetches list of products
+     *
+     */
     private void setAllProductList() {
         int page=1;
         getProducts(categoryID,brandID,page, false);
 
     }
 
+    /** Get products list asynchronously, and sets the view
+     *
+     * @param categoryID
+     * @param brandID
+     * @param page
+     * @param scrolled
+     */
     private void getProducts(int categoryID, int brandID, int page, final boolean scrolled) {
         progress.setVisibility(View.VISIBLE);
         ProductsBAL.getNewProducts(categoryID, brandID,page, new LatestProductsListener() {
@@ -181,6 +204,25 @@ public class FragmentAllProduct extends Fragment {
 
             getProducts(categoryID,brandID,page,true);
             return true;
+        }
+    }
+
+    private class AllProductSortingListener implements View.OnClickListener {
+
+
+        @Override
+        public void onClick(View view) {
+
+
+
+        }
+    }
+
+    private class AllProductFilterListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+
+            NavigationUtils.showFilterScreen(getActivity(),categoryID,brandID);
         }
     }
 }

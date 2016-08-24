@@ -4,13 +4,8 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <WebView
-            android:id="@+id/specification"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:paddingBottom="10dp"
-            />
-
-
+    <TextView
+              android:id="@+id/key_name"
+              android:layout_width="match_parent"
+              android:layout_height="60dp"/>
 </LinearLayout>
