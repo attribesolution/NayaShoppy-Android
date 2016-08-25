@@ -34,4 +34,13 @@
         <item name="android:layout_height">25dp</item>
         <item name="android:layout_width">100dp</item>
     </style>
+
+    <style name="prod_detail_portions_heading" parent="@android:style/TextAppearance">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingLeft">20dp</item>
+        
+    </style>
 </resources>

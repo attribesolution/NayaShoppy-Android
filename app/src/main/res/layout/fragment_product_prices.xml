@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-              xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              app:layout_behavior="@string/appbar_scrolling_view_behavior"
-              android:nestedScrollingEnabled="true">
-
-    <android.support.v4.view.ViewPager
-            android:id="@+id/product_image_pager"
+<android.support.v4.widget.NestedScrollView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
-            android:layout_height="150dp" android:layout_marginTop="5dp">
+            android:layout_height="match_parent">
 
-    </android.support.v4.view.ViewPager>
-    
+<LinearLayout android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+
+                >
+        <RelativeLayout
+
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+        >
+
+            <android.support.v4.view.ViewPager
+                    android:id="@+id/product_image_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp" android:layout_marginTop="5dp">
+
+            </android.support.v4.view.ViewPager>
+
             <RelativeLayout
                     android:id="@+id/price_container"
                     android:layout_below="@+id/product_name_container"
@@ -67,70 +77,94 @@
 
             </RelativeLayout>
 
-    <RelativeLayout
-            android:id="@+id/stores_heading_container"
-            android:layout_below="@+id/price_container"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center_vertical"
-            android:layout_marginTop="5dp"
-            android:background="@color/white"
-            android:paddingLeft="20dp">
+            <RelativeLayout
+                    android:id="@+id/stores_heading_container"
+                    android:layout_below="@+id/price_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white"
+                    android:paddingLeft="20dp">
 
-        <TextView
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:text="ONLINE STORES"
-                  android:textStyle="bold"
-                 />
-    </RelativeLayout>
-    <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_supplier"
-            android:layout_below="@+id/stores_heading_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp" android:layout_marginLeft="5dp" android:layout_marginRight="5dp">
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ONLINE STORES"
+                        android:textStyle="bold"
+                />
+            </RelativeLayout>
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_supplier"
+                    android:layout_below="@+id/stores_heading_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp" android:layout_marginLeft="5dp" android:layout_marginRight="5dp">
 
-    </android.support.v7.widget.RecyclerView>
-    <FrameLayout
+            </android.support.v7.widget.RecyclerView>
 
-            android:id="@+id/product_name_container"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_below="@+id/product_image_pager"
-            android:layout_centerHorizontal="true" android:layout_marginTop="5dp">
+            <include
+                     android:id="@+id/prod_specs"
+                     layout="@layout/portion_prod_specs"
+                     android:layout_width="match_parent"
+                     android:layout_height="@dimen/portion_prod_specs_height"
+                     android:layout_below="@+id/recycler_supplier"/>
 
-        <TextView
-                  android:id="@+id/product_name"
-                  android:layout_gravity="center"
-                  android:layout_width="wrap_content"
-                  android:layout_height="20dp"
-                  android:text="Apple Iphone 6S(32 GB)"
-                  android:maxLines="1"/>
-    </FrameLayout>
-    
-    <LinearLayout
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:orientation="vertical"
-            android:layout_alignTop="@+id/product_image_pager"
-            android:layout_alignParentEnd="true" android:layout_marginTop="20dp" android:layout_marginRight="10dp"
-            android:gravity="center_horizontal">
+            <include
+                     layout="@layout/portion_prod_reviews"
+                     android:id="@+id/prod_reviews"
+                     android:layout_width="match_parent"
+                     android:layout_height="@dimen/portion_prod_reviews_height"
+                     android:layout_below="@+id/prod_specs"/>
 
-        <ImageView android:layout_width="40dp"
-                     android:layout_height="40dp"
-                     android:src="@drawable/wishlist"
-                     >
+            <include layout="@layout/portion_similar_prods"
+                     android:layout_width="match_parent"
+                     android:layout_height="@dimen/portion_similar_prod_height"
+                     android:layout_below="@+id/prod_reviews"
+                    />
 
-        </ImageView>
+            <FrameLayout
 
-        <ImageView   android:layout_width="40dp"
-                     android:layout_height="40dp"
-                     android:src="@drawable/share"
-                    >
+                    android:id="@+id/product_name_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/product_image_pager"
+                    android:layout_centerHorizontal="true" android:layout_marginTop="5dp">
 
-        </ImageView>
+                <TextView
+                        android:id="@+id/product_name"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:maxLines="1"/>
+            </FrameLayout>
+
+            <LinearLayout
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:orientation="vertical"
+                    android:layout_alignTop="@+id/product_image_pager"
+                    android:layout_alignParentEnd="true" android:layout_marginTop="20dp" android:layout_marginRight="10dp"
+                    android:gravity="center_horizontal">
+
+                <ImageView android:layout_width="40dp"
+                           android:layout_height="40dp"
+                           android:src="@drawable/wishlist"
+                >
+
+                </ImageView>
+
+                <ImageView   android:layout_width="40dp"
+                             android:layout_height="40dp"
+                             android:src="@drawable/share"
+                >
+
+                </ImageView>
+            </LinearLayout>
+
+
+        </RelativeLayout>
     </LinearLayout>
 
+</android.support.v4.widget.NestedScrollView>
 
-</RelativeLayout>

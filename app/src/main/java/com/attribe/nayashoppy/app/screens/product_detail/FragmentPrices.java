@@ -12,12 +12,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.HomeSliderAdapter;
+import com.attribe.nayashoppy.app.adapters.SimilarProductAdapter;
 import com.attribe.nayashoppy.app.adapters.SupplierAdapter;
 import com.attribe.nayashoppy.app.model.popular_products.Data;
 import com.attribe.nayashoppy.app.model.product_category.Image;
 import com.attribe.nayashoppy.app.model.product_category.Supplier;
+import com.attribe.nayashoppy.app.model.product_detail.SimilarProduct;
 import com.attribe.nayashoppy.app.network.bals.ProductsBAL;
 import com.attribe.nayashoppy.app.network.interfaces.ProductListener;
+import com.attribe.nayashoppy.app.network.interfaces.SimilarProductListener;
 import com.attribe.nayashoppy.app.util.DevicePreferences;
 import com.attribe.nayashoppy.app.util.NavigationUtils;
 import org.sufficientlysecure.htmltextview.HtmlTextView;
@@ -68,7 +71,30 @@ public class FragmentPrices extends Fragment {
                 setProductImages(data.getImages());
                 setProductBestPrice(data.getLowest_price(),data.getOriginal_price());
                 setSupplierList(data.getSuppliers());
+                getSimilarProducts(data.getLowest_price(),data.getCategories_category_id());
 
+            }
+
+            @Override
+            public void onDataIssue(String message) {
+
+            }
+
+            @Override
+            public void onFailure(String message) {
+
+            }
+        });
+    }
+
+    private void getSimilarProducts(String lowest_price, int categories_category_id) {
+
+        ProductsBAL.getSimilarProducts(lowest_price,categories_category_id, new SimilarProductListener() {
+            @Override
+            public void onDataReceived(SimilarProduct body) {
+
+
+                SimilarProductAdapter adapter = new SimilarProductAdapter(body.getData());
             }
 
             @Override

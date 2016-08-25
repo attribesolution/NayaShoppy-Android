@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/portion_prod_reviews_height">
+
+    <TextView
+            android:text="User Reviews"
+            style="@style/prod_detail_portions_heading"
+            />
+
+    <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="300dp" android:padding="10dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

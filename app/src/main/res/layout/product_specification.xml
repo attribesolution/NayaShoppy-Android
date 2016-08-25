@@ -4,13 +4,23 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+
     <WebView
             android:id="@+id/specification"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:paddingBottom="10dp"
-            />
+            android:visibility="gone"
+        />
 
+    <ExpandableListView
+            android:id="@+id/specs_list"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:groupIndicator="@null"
+            >
+
+    </ExpandableListView>
 
 </LinearLayout>

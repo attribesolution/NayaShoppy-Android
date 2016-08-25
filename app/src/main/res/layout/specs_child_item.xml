@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/grey_border"
+            >
+
+
+    <TextView
+            android:id="@+id/specs_feature_key"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="BRAND"
+            android:gravity="center_vertical|left"
+            android:textStyle="normal"
+            android:textColor="#858A90"
+            android:paddingTop="10dp" android:paddingBottom="10dp" android:paddingLeft="25dp"
+            android:layout_alignParentLeft="true" android:layout_marginRight="3dp"/>
+
+        <View
+              android:id="@+id/divider_center"
+              android:layout_width="5dp"
+              android:layout_height="match_parent"
+              android:minHeight="1dp"
+              android:background="?android:attr/listDivider"
+              android:layout_toEndOf="@+id/specs_feature_key"
+              android:layout_marginTop="10dp" android:layout_marginBottom="10dp"
+              />
+
+    <TextView
+            android:id="@+id/specs_feature_value"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/divider_center"
+            android:text="SAMSUNG"
+            android:paddingLeft="25dp"
+            android:gravity="center_vertical"
+            android:textColor="#858A90"
+            android:paddingTop="10dp" android:paddingBottom="10dp" android:layout_alignParentRight="true"
+            android:layout_marginLeft="3dp"/>
+    </RelativeLayout>
+</RelativeLayout>

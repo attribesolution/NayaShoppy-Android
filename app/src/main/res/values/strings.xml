@@ -22,4 +22,6 @@
     <string name="hint_password">Password</string>
     <string name="button_login">Sign in</string>
     <string name="filter_icon_sort">SORT</string>
+    <string name="specs_head">SPECIFICATIONS</string>
+    <string name="button_see_specs">SEE FULL SPECIFICATION</string>
 </resources>

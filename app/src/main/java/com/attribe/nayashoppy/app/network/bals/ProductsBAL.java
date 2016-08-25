@@ -3,10 +3,12 @@ package com.attribe.nayashoppy.app.network.bals;
 import com.attribe.nayashoppy.app.model.popular_products.PopularProducts;
 import com.attribe.nayashoppy.app.model.product_category.Datum;
 import com.attribe.nayashoppy.app.model.product_category.ProductCategory;
+import com.attribe.nayashoppy.app.model.product_detail.SimilarProduct;
 import com.attribe.nayashoppy.app.network.RestClient;
 import com.attribe.nayashoppy.app.network.interfaces.LatestProductsListener;
 import com.attribe.nayashoppy.app.network.interfaces.PopularProductsListener;
 import com.attribe.nayashoppy.app.network.interfaces.ProductListener;
+import com.attribe.nayashoppy.app.network.interfaces.SimilarProductListener;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -116,6 +118,35 @@ public class ProductsBAL {
             public void onFailure(Call<com.attribe.nayashoppy.app.model.Product> call, Throwable t) {
 
                 productListener.onFailure(t.getMessage());
+            }
+        });
+    }
+
+    public static void getSimilarProducts(String lowest_price, int categories_category_id,
+                                          final SimilarProductListener similarProductListener) {
+        Map<String,String> params= new HashMap<String, String >();
+        params.put("price",lowest_price);
+        params.put("category_id",String.valueOf(categories_category_id));
+
+        Call<SimilarProduct> similarProducts = RestClient.getAdapter().getSimilarProducts(params);
+
+        similarProducts.enqueue(new Callback<SimilarProduct>() {
+            @Override
+            public void onResponse(Call<SimilarProduct> call, Response<SimilarProduct> response) {
+
+                if(response.isSuccessful()){
+
+                    if(response.body()!=null){
+                        similarProductListener.onDataReceived(response.body());
+
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SimilarProduct> call, Throwable t) {
+
+                similarProductListener.onFailure(t.getMessage());
             }
         });
     }

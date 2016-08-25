@@ -6,6 +6,7 @@ import com.attribe.nayashoppy.app.model.Product;
 import com.attribe.nayashoppy.app.model.arrival.NewArrival;
 import com.attribe.nayashoppy.app.model.popular_products.PopularProducts;
 import com.attribe.nayashoppy.app.model.product_category.ProductCategory;
+import com.attribe.nayashoppy.app.model.product_detail.SimilarProduct;
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -34,4 +35,7 @@ public interface ServicesInterface {
 
     @GET(EndPoints.STAGE_PRODUCT_DETAIL)
     Call<Product> getProductDetail(@QueryMap Map<String, String> params);
+
+    @GET(EndPoints.STAGE_SIMILAR_PRODUCTS)
+    Call<SimilarProduct> getSimilarProducts(@QueryMap Map<String, String> params);
 }
