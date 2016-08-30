@@ -21,12 +21,13 @@
             android:textStyle="normal"
             android:textColor="#858A90"
             android:paddingTop="10dp" android:paddingBottom="10dp" android:paddingLeft="25dp"
-            android:layout_alignParentLeft="true" android:layout_marginRight="3dp"/>
+            android:layout_alignParentLeft="true" android:layout_marginRight="3dp"
+            android:layout_centerVertical="true"/>
 
         <View
               android:id="@+id/divider_center"
-              android:layout_width="5dp"
-              android:layout_height="match_parent"
+              android:layout_width="1dp"
+              android:layout_height="40dp"
               android:minHeight="1dp"
               android:background="?android:attr/listDivider"
               android:layout_toEndOf="@+id/specs_feature_key"
@@ -43,6 +44,6 @@
             android:gravity="center_vertical"
             android:textColor="#858A90"
             android:paddingTop="10dp" android:paddingBottom="10dp" android:layout_alignParentRight="true"
-            android:layout_marginLeft="3dp"/>
+            android:layout_marginLeft="3dp" android:layout_centerVertical="true"/>
     </RelativeLayout>
 </RelativeLayout>

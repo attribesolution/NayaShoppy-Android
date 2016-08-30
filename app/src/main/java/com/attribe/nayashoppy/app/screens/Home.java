@@ -164,30 +164,19 @@ public class Home extends Fragment {
             @Override
             public void onDataFetched(ArrayList<com.attribe.nayashoppy.app.model.arrival.Datum> data) {
                 ArrivalAdapter adapter = new ArrivalAdapter(data);
-
                 arrivalsRecycler.setAdapter(adapter);
-
             }
 
             @Override
             public void onDataIssue() {
-
                 //TODO: handle issue
             }
 
             @Override
             public void onFailure() {
-                //TODO: handle failure
+                    //TODO: handle failure
             }
         });
-
-
-
-
-
-
-
-
 
     }
 

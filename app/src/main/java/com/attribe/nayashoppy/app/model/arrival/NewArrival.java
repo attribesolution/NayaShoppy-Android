@@ -1,7 +1,6 @@
 package com.attribe.nayashoppy.app.model.arrival;
 
 import java.util.ArrayList;
-
 /**
  * Created by Sabih Ahmed on 29-Jul-16.
  */

@@ -5,9 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.viewholders.ArrivalHolder;
 import com.attribe.nayashoppy.app.model.arrival.Datum;
+import com.attribe.nayashoppy.app.util.NavigationUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ public class ArrivalAdapter extends RecyclerView.Adapter<ArrivalHolder>{
 
     private ArrayList<Datum> mProductList;
     private Context mContext;
+
 
     public ArrivalAdapter(ArrayList<Datum> productList) {
 
@@ -54,6 +57,7 @@ public class ArrivalAdapter extends RecyclerView.Adapter<ArrivalHolder>{
         holder.productName.setText(product.product_name);
         holder.productPrice.setText(product.getLowest_price()+" ("+product.getDiscount()+"% OFF )");
 
+        holder.productImage.setOnClickListener(new ProductTapListener(product));
 
     }
 
@@ -62,5 +66,21 @@ public class ArrivalAdapter extends RecyclerView.Adapter<ArrivalHolder>{
     public int getItemCount() {
 
         return mProductList.size();
+    }
+
+    private class ProductTapListener implements View.OnClickListener {
+
+
+        private Datum mProduct;
+
+        public ProductTapListener(Datum product) {
+            this.mProduct = product;
+        }
+
+        @Override
+        public void onClick(View view) {
+
+            NavigationUtils.showProductDetailScreen(mContext,mProduct);
+        }
     }
 }

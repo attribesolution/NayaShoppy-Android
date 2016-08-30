@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="@dimen/portion_similar_prod_height">
+              android:layout_height="wrap_content">
 
     <TextView
             style="@style/prod_detail_portions_heading"
@@ -11,5 +11,5 @@
     <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_similar_prods"
             android:layout_width="match_parent"
-            android:layout_height="200dp"></android.support.v7.widget.RecyclerView>
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 </LinearLayout>

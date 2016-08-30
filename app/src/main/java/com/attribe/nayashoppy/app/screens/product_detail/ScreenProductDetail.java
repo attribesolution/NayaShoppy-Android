@@ -19,7 +19,7 @@ import com.attribe.nayashoppy.app.util.UINotifier;
 import java.util.ArrayList;
 
 
-public class ScreenProductDetail extends AppCompatActivity {
+public class ScreenProductDetail extends AppCompatActivity implements FragmentPrices.FullSpecsListener{
 
     private ViewPager viewpager;
     private TabLayout tabLayout;
@@ -77,4 +77,8 @@ public class ScreenProductDetail extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewpager);
     }
 
+    @Override
+    public void setOnFullSpecsClick() {
+        viewpager.setCurrentItem(1,true);
+    }
 }

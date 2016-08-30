@@ -77,11 +77,10 @@ public class AllProductGridAdapter extends RecyclerView.Adapter<PopularProductHo
 
         @Override
         public void onClick(View view) {
-            Bundle bundle = new Bundle();
-            bundle.putString(NavigationUtils.KEY_PRODUCT_NAME,mProduct.getProduct_name());
-            bundle.putInt(NavigationUtils.KEY_PRODUCT_ID,mProduct.getProduct_id());
-            bundle.putString(NavigationUtils.KEY_PRODUCT_SLUG,mProduct.getSlug());
-            NavigationUtils.showProductDetailScreen(mContext,bundle);
+
+
+
+            NavigationUtils.showProductDetailScreen(mContext,mProduct);
         }
     }
 }

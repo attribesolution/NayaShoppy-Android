@@ -230,6 +230,7 @@ public class Data {
         public class FeatureValue {
             public String featureName;
             public String featureValue;
+            public boolean isFilter;
 
 
             public String getFeatureName() {
@@ -238,6 +239,10 @@ public class Data {
 
             public String getFeatureValue() {
                 return featureValue;
+            }
+
+            public boolean isFilter() {
+                return isFilter;
             }
         }
 

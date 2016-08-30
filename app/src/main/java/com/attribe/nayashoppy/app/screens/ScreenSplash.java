@@ -3,6 +3,7 @@ package com.attribe.nayashoppy.app.screens;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 import com.attribe.nayashoppy.app.R;
+import com.attribe.nayashoppy.app.config.AppConfig;
 import com.attribe.nayashoppy.app.network.bals.MenuBAL;
 import com.attribe.nayashoppy.app.network.interfaces.MenuListener;
 import com.attribe.nayashoppy.app.util.Common;
@@ -27,6 +28,7 @@ public class ScreenSplash extends AppCompatActivity {
         progress = NavigationUtils.getProgress(false);
         progress.show(getSupportFragmentManager(),"");
         DevicePreferences.getInstance().init(getApplicationContext());
+        AppConfig.getInstance().setMode(1);
         Common.getDimension(this);
         //showHomeWithDelay();
 

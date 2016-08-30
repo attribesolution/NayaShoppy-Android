@@ -12,10 +12,19 @@
         <TextView style="@style/prod_detail_portions_heading"
                   android:text="@string/specs_head"
                   />
-        <ListView android:layout_width="match_parent"
-                  android:layout_height="200dp" android:layout_margin="5dp"/>
-        
-        <Button android:layout_width="match_parent"
+
+        <WebView
+                android:id="@+id/specs_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+        </WebView>
+        <!--<ListView android:layout_width="match_parent"-->
+                  <!--android:layout_height="200dp" android:layout_margin="5dp"/>-->
+        <!---->
+        <Button
+                android:id="@+id/button_full_specs"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="@string/button_see_specs"
                 />

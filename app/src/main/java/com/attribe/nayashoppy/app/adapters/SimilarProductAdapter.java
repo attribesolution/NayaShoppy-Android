@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.viewholders.SimilarProductHolder;
 import com.attribe.nayashoppy.app.model.product_detail.Datum;
+import com.attribe.nayashoppy.app.util.Common;
 
 import java.util.ArrayList;
 
@@ -37,6 +38,17 @@ public class SimilarProductAdapter extends RecyclerView.Adapter<SimilarProductHo
 
     @Override
     public void onBindViewHolder(SimilarProductHolder holder, int position) {
+
+        Datum similarProd = mDataset.get(position);
+
+        try {
+            Common.setImage(mContext,similarProd.getImages().get(0).getImage_path(),holder.prodImage);
+        }catch (Exception exc){
+
+        }
+
+        holder.prodName.setText(similarProd.getProduct_name());
+        holder.prodPrice.setText(similarProd.getLowest_price());
 
 
     }

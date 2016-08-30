@@ -7,24 +7,24 @@ import java.util.ArrayList;
  */
 public class Datum {
 
-    public Integer product_id;
-    public Integer categories_category_id;
-    public Integer brands_brand_id;
+    public int product_id;
+    public int categories_category_id;
+    public int brands_brand_id;
     public String product_name;
     public String slug;
     public String image;
     public String product_description;
     public String model_number;
-    public Object cod;
+    public String cod;
     public String emi;
-    public Object return_policy;
+    public String return_policy;
     public String delivery;
     public String shipping;
-    public Object price;
-    public Object unique_id;
+    public String price;
+    public String unique_id;
     public String discount;
-    public Object rating;
-    public Object rating_user_count;
+    public String rating;
+    public String rating_user_count;
     public String reviews;
     public String url;
     public String product_status;
@@ -33,30 +33,29 @@ public class Datum {
     public String date_launch;
     public String lowest_price;
     public String original_price;
-    public Integer highest_price;
+    public String highest_price;
     public String link_rewrite;
-    public Integer supplier_count;
-    public Integer store_name;
-    public Integer store_id;
+    public int supplier_count;
+    public int store_name;
+    public int store_id;
     public String meta_title;
-    public Object meta_keyword;
-    public Object meta_desc;
-    public Integer show_home_page;
+    public String meta_keyword;
+    public String meta_desc;
+    public int show_home_page;
     public String active;
     public String created;
+    public ArrayList<Image> images;
+    public ArrayList<Supplier> suppliers;;
 
-    public ArrayList<Image> images = new ArrayList<Image>();
-    public ArrayList<Supplier> suppliers = new ArrayList<Supplier>();
-
-    public Integer getProduct_id() {
+    public int getProduct_id() {
         return product_id;
     }
 
-    public Integer getCategories_category_id() {
+    public int getCategories_category_id() {
         return categories_category_id;
     }
 
-    public Integer getBrands_brand_id() {
+    public int getBrands_brand_id() {
         return brands_brand_id;
     }
 
@@ -80,7 +79,7 @@ public class Datum {
         return model_number;
     }
 
-    public Object getCod() {
+    public String getCod() {
         return cod;
     }
 
@@ -88,7 +87,7 @@ public class Datum {
         return emi;
     }
 
-    public Object getReturn_policy() {
+    public String getReturn_policy() {
         return return_policy;
     }
 
@@ -100,23 +99,23 @@ public class Datum {
         return shipping;
     }
 
-    public Object getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public Object getUnique_id() {
+    public String getUnique_id() {
         return unique_id;
     }
 
-    public Object getDiscount() {
+    public String getDiscount() {
         return discount;
     }
 
-    public Object getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public Object getRating_user_count() {
+    public String getRating_user_count() {
         return rating_user_count;
     }
 
@@ -152,7 +151,7 @@ public class Datum {
         return original_price;
     }
 
-    public Integer getHighest_price() {
+    public String getHighest_price() {
         return highest_price;
     }
 
@@ -160,15 +159,15 @@ public class Datum {
         return link_rewrite;
     }
 
-    public Integer getSupplier_count() {
+    public int getSupplier_count() {
         return supplier_count;
     }
 
-    public Integer getStore_name() {
+    public int getStore_name() {
         return store_name;
     }
 
-    public Integer getStore_id() {
+    public int getStore_id() {
         return store_id;
     }
 
@@ -176,15 +175,15 @@ public class Datum {
         return meta_title;
     }
 
-    public Object getMeta_keyword() {
+    public String getMeta_keyword() {
         return meta_keyword;
     }
 
-    public Object getMeta_desc() {
+    public String getMeta_desc() {
         return meta_desc;
     }
 
-    public Integer getShow_home_page() {
+    public int getShow_home_page() {
         return show_home_page;
     }
 

@@ -3,12 +3,10 @@ package com.attribe.nayashoppy.app.network.bals;
 import com.attribe.nayashoppy.app.model.popular_products.PopularProducts;
 import com.attribe.nayashoppy.app.model.product_category.Datum;
 import com.attribe.nayashoppy.app.model.product_category.ProductCategory;
+import com.attribe.nayashoppy.app.model.product_detail.ProductReview;
 import com.attribe.nayashoppy.app.model.product_detail.SimilarProduct;
 import com.attribe.nayashoppy.app.network.RestClient;
-import com.attribe.nayashoppy.app.network.interfaces.LatestProductsListener;
-import com.attribe.nayashoppy.app.network.interfaces.PopularProductsListener;
-import com.attribe.nayashoppy.app.network.interfaces.ProductListener;
-import com.attribe.nayashoppy.app.network.interfaces.SimilarProductListener;
+import com.attribe.nayashoppy.app.network.interfaces.*;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -16,6 +14,8 @@ import retrofit2.Response;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.attribe.nayashoppy.app.network.RestClient.getAdapter;
 
 /**
  * Created by Sabih Ahmed on 02-Aug-16.
@@ -29,7 +29,7 @@ public class ProductsBAL {
         options.put("category_id",categoryID);
         options.put("brand_id",brandID);
         options.put("page",page);
-        Call<ProductCategory> allProducts = RestClient.getAdapter().getAllProducts(options);
+        Call<ProductCategory> allProducts = getAdapter().getAllProducts(options);
 
 
         allProducts.enqueue(new Callback<ProductCategory>() {
@@ -65,7 +65,7 @@ public class ProductsBAL {
         params.put("brand_id",brandID);
         params.put("page",page);
 
-        Call<PopularProducts> popularProducts = RestClient.getAdapter().getPopularProducts(params);
+        Call<PopularProducts> popularProducts = getAdapter().getPopularProducts(params);
 
         popularProducts.enqueue(new Callback<PopularProducts>() {
             @Override
@@ -102,7 +102,7 @@ public class ProductsBAL {
     public static void getProductDetail(String slug, final ProductListener productListener) {
         Map<String,String> params= new HashMap<String, String >();
         params.put("slug",slug);
-        Call<com.attribe.nayashoppy.app.model.Product> productDetail = RestClient.getAdapter().getProductDetail(params);
+        Call<com.attribe.nayashoppy.app.model.Product> productDetail = getAdapter().getProductDetail(params);
 
         productDetail.enqueue(new Callback<com.attribe.nayashoppy.app.model.Product>() {
             @Override
@@ -128,7 +128,7 @@ public class ProductsBAL {
         params.put("price",lowest_price);
         params.put("category_id",String.valueOf(categories_category_id));
 
-        Call<SimilarProduct> similarProducts = RestClient.getAdapter().getSimilarProducts(params);
+        Call<SimilarProduct> similarProducts = getAdapter().getSimilarProducts(params);
 
         similarProducts.enqueue(new Callback<SimilarProduct>() {
             @Override
@@ -147,6 +147,47 @@ public class ProductsBAL {
             public void onFailure(Call<SimilarProduct> call, Throwable t) {
 
                 similarProductListener.onFailure(t.getMessage());
+            }
+        });
+    }
+
+    public static void getProductReviews(int product_id, final ProductReviewListener productReviewListener) {
+
+        Call<ProductReview> reviews = RestClient.getAdapter().getProductReviews(product_id);
+
+        reviews.enqueue(new Callback<ProductReview>() {
+            @Override
+            public void onResponse(Call<ProductReview> call, Response<ProductReview> response) {
+
+                if(response.isSuccessful()){
+
+                    if(response.body()!=null){
+
+                        if(response.body().getData().isEmpty()){
+
+                            productReviewListener.onDataEmpty();
+                        }
+
+                        else{
+
+                            productReviewListener.onDataReceived(response.body().getData());
+                        }
+
+                    }
+
+                }
+
+                else{
+
+                    productReviewListener.onDataIssue(response.message());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ProductReview> call, Throwable t) {
+
+                productReviewListener.onFailure(t.getMessage());
             }
         });
     }

@@ -264,9 +264,28 @@ public class NavigationUtils {
         return progress;
     }
 
-    public static void showProductDetailScreen(Context mContext, Bundle bundle) {
+    public static void showProductDetailScreen(Context mContext, /**Bundle bundle**/ com.attribe.nayashoppy.app.model.product_category.Datum product) {
         Intent intent = new Intent(mContext, ScreenProductDetail.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putString(NavigationUtils.KEY_PRODUCT_NAME,product.getProduct_name());
+        bundle.putInt(NavigationUtils.KEY_PRODUCT_ID,product.getProduct_id());
+        bundle.putString(NavigationUtils.KEY_PRODUCT_SLUG,product.getSlug());
         intent.putExtra(NavigationUtils.BUNDLE_PRODUCTS,bundle);
+
+        mContext.startActivity(intent);
+
+    }
+
+    public static void showProductDetailScreen(Context mContext, com.attribe.nayashoppy.app.model.arrival.Datum product) {
+        Intent intent = new Intent(mContext, ScreenProductDetail.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putString(NavigationUtils.KEY_PRODUCT_NAME,product.getProduct_name());
+        bundle.putInt(NavigationUtils.KEY_PRODUCT_ID,product.getProduct_id());
+        bundle.putString(NavigationUtils.KEY_PRODUCT_SLUG,product.getSlug());
+        intent.putExtra(NavigationUtils.BUNDLE_PRODUCTS,bundle);
+
         mContext.startActivity(intent);
 
     }
