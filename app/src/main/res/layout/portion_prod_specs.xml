@@ -6,7 +6,7 @@
 
     <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/portion_prod_specs_height"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
         <TextView style="@style/prod_detail_portions_heading"

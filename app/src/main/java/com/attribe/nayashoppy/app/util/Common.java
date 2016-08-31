@@ -7,7 +7,9 @@ import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.model.Datum;
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -57,9 +59,10 @@ public class Common {
 
     }
 
-    public static void setImage(Context mContext, String imageURi, ImageView categoryImage) {
+    public static void setImage(Context context, String imageURi, ImageView categoryImage) {
         try {
-            Picasso.with(mContext).load(imageURi).into(categoryImage);
+            Glide.with(context).load(imageURi).placeholder(R.drawable.image_place_holder).crossFade().into(categoryImage);
+            //Picasso.with(context).load(imageURi).into(categoryImage);
         }catch (Exception e){
 
         }

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import com.attribe.nayashoppy.app.R;
+import com.attribe.nayashoppy.app.util.Common;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -46,7 +47,14 @@ public class HomeSliderAdapter extends PagerAdapter{
         View itemView = mLayoutInflater.inflate(R.layout.home_slider_item, container, false);
 
         ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
-        Picasso.with(mContext).load(imageURLList.get(position)).into(imageView);
+        try {
+            Common.setImage(mContext,imageURLList.get(position),imageView);
+        }
+        catch (Exception exc){
+
+        }
+
+
 
         container.addView(itemView);
         return itemView;

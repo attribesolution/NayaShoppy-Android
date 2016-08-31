@@ -2,15 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="@dimen/portion_prod_reviews_height">
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="5dp"
+                >
 
     <TextView
             android:text="User Reviews"
             style="@style/prod_detail_portions_heading"
             />
 
+    <FrameLayout
+                 android:id="@+id/no_review_frame"
+                 android:layout_width="match_parent"
+                 android:layout_height="200dp">
+
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="100dp"
+                  android:text="@string/no_reviews"
+                  android:layout_gravity="center" android:gravity="center_vertical|center_horizontal"/>
+
+    </FrameLayout>
     <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_reviews"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="300dp" android:padding="10dp">
 

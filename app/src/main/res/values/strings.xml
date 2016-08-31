@@ -24,4 +24,5 @@
     <string name="filter_icon_sort">SORT</string>
     <string name="specs_head">SPECIFICATIONS</string>
     <string name="button_see_specs">SEE FULL SPECIFICATION</string>
+    <string name="no_reviews">No Reviews at the moment</string>
 </resources>

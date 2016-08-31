@@ -8,17 +8,20 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.HomeSliderAdapter;
 import com.attribe.nayashoppy.app.adapters.ProductReviewAdapter;
 import com.attribe.nayashoppy.app.adapters.SimilarProductAdapter;
 import com.attribe.nayashoppy.app.adapters.SupplierAdapter;
+import com.attribe.nayashoppy.app.custom_views.SnappyLinearLayoutManager;
 import com.attribe.nayashoppy.app.model.popular_products.Data;
 import com.attribe.nayashoppy.app.model.product_category.Image;
 import com.attribe.nayashoppy.app.model.product_category.Supplier;
@@ -54,6 +57,7 @@ public class FragmentPrices extends Fragment {
     private RecyclerView recycler_prod_review;
     private WebView specs_view;
     private ArrayList<Data.FeaturesList.FeatureValue> processedList;
+    private FrameLayout no_review_frame;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -123,6 +127,7 @@ public class FragmentPrices extends Fragment {
         fullSpecs = (Button)view.findViewById(R.id.button_full_specs);
         fullSpecs.setOnClickListener(new FullSpecsButtonListener());
         ratingBar = (ProperRatingBar) view.findViewById(R.id.prod_rating_bar);
+        no_review_frame = (FrameLayout) view.findViewById(R.id.no_review_frame);
     }
 
     private void initData() {
@@ -156,7 +161,7 @@ public class FragmentPrices extends Fragment {
     private void setProductKeySpecs(ArrayList<Data.FeaturesList> featuresList) {
 
         processedList = new ArrayList<Data.FeaturesList.FeatureValue>();
-        String htmlstart = "<html>\n" + "<body>\n" + "<table>";
+        String htmlstart = "<html>\n" + "<body>\n" + "<table >";
 
         String htmltableRow = "";
 
@@ -173,7 +178,7 @@ public class FragmentPrices extends Fragment {
         }
 
         for(Data.FeaturesList.FeatureValue featureIterator:processedList){
-            htmltableRow += "<tr>\n" +
+            htmltableRow += "<tr border=\"1\">\n" +
                     "    <td>"+featureIterator.getFeatureName()+"</td>\n" +
                     "    <td>"+featureIterator.getFeatureValue()+"</td>\n" +
                     "  </tr>";
@@ -260,12 +265,29 @@ public class FragmentPrices extends Fragment {
             @Override
             public void onDataReceived(ArrayList<ProductReview.Datum> data) {
 
-                ProductReviewAdapter adapter = new ProductReviewAdapter(data);
-                recycler_prod_review.setLayoutManager(new LinearLayoutManager(getActivity(),
-                        LinearLayoutManager.HORIZONTAL,false));
+                if(!data.isEmpty()){
 
-                recycler_prod_review.setAdapter(adapter);
+                    //hide no review frame
+                    //show review list
 
+                    no_review_frame.setVisibility(View.GONE);
+                    recycler_prod_review.setVisibility(View.VISIBLE);
+
+                    ProductReviewAdapter adapter = new ProductReviewAdapter(data);
+                    SnappyLinearLayoutManager reviewLayoutManager = new SnappyLinearLayoutManager(getActivity(),
+                            SnappyLinearLayoutManager.HORIZONTAL,false);
+
+                    recycler_prod_review.setLayoutManager(reviewLayoutManager);
+
+                    recycler_prod_review.setAdapter(adapter);
+
+                    recycler_prod_review.setOnDragListener(new View.OnDragListener() {
+                        @Override
+                        public boolean onDrag(View view, DragEvent dragEvent) {
+                            return false;
+                        }
+                    });
+                }
 
             }
 

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.viewholders.ArrivalHolder;
 import com.attribe.nayashoppy.app.model.arrival.Datum;
+import com.attribe.nayashoppy.app.util.Common;
 import com.attribe.nayashoppy.app.util.NavigationUtils;
 import com.squareup.picasso.Picasso;
 
@@ -45,11 +46,12 @@ public class ArrivalAdapter extends RecyclerView.Adapter<ArrivalHolder>{
 
         Datum product = mProductList.get(position);
 
+
         try {
-            Picasso.with(mContext).load(product.getImages().get(0).getImage_path()).into(holder.productImage);
+            Common.setImage(mContext,product.getImages().get(0).getImage_path(),holder.productImage);
         }
 
-        catch (NullPointerException npe){
+        catch (Exception exc){
 
 
         }
