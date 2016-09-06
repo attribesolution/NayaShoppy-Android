@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.viewholders.SimilarProductHolder;
 import com.attribe.nayashoppy.app.model.product_detail.Datum;
@@ -20,11 +19,15 @@ public class SimilarProductAdapter extends RecyclerView.Adapter<SimilarProductHo
 
     private final ArrayList<Datum> mDataset;
     private Context mContext;
+    private ISimilarProductClickListener similarProductListener;
 
     public SimilarProductAdapter(ArrayList<Datum> similarProductList) {
         this.mDataset= similarProductList;
     }
 
+    public void setSimilarProductListener(ISimilarProductClickListener similarProductListener) {
+        this.similarProductListener = similarProductListener;
+    }
 
     @Override
     public SimilarProductHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -50,11 +53,36 @@ public class SimilarProductAdapter extends RecyclerView.Adapter<SimilarProductHo
         holder.prodName.setText(similarProd.getProduct_name());
         holder.prodPrice.setText(similarProd.getLowest_price());
 
+        holder.parent.setOnClickListener(new SimilarProductClickListener(similarProd));
+        holder.prodImage.setOnClickListener(new SimilarProductClickListener(similarProd));
 
     }
 
     @Override
     public int getItemCount() {
         return mDataset.size();
+    }
+
+    private class SimilarProductClickListener implements View.OnClickListener {
+        private final Datum mProduct;
+
+        public SimilarProductClickListener(Datum similarProd) {
+            mProduct = similarProd;
+        }
+
+        @Override
+        public void onClick(View view) {
+
+            similarProductListener.OnSimilarProductClick(mProduct);
+            //NavigationUtils.showProductDetailScreen(mContext,mProduct);
+        }
+    }
+
+
+    public interface ISimilarProductClickListener{
+
+        void OnSimilarProductClick(Datum product);
+
+
     }
 }

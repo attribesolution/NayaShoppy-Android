@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.ProductScreenPager;
@@ -19,7 +20,7 @@ import com.attribe.nayashoppy.app.util.UINotifier;
 import java.util.ArrayList;
 
 
-public class ScreenProductDetail extends AppCompatActivity implements FragmentPrices.FullSpecsListener{
+public class ScreenProductDetail extends BaseActivity implements FragmentPrices.FullSpecsListener{
 
     private ViewPager viewpager;
     private TabLayout tabLayout;
@@ -30,9 +31,16 @@ public class ScreenProductDetail extends AppCompatActivity implements FragmentPr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.screen_product_detail);
-
-        //super.initToolbar(this.getWindow().getDecorView().findViewById(android.R.id.content));
         init();
+        super.initToolbar(this.getWindow().getDecorView().findViewById(android.R.id.content));
+
+    }
+
+    @Override
+    public void onToolbarInit(Toolbar toolbar, ActionBar actionBar) {
+        toolbar.setTitle(NavigationUtils.getScreenTitle(this));
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(toolbar);
     }
 
     private void init() {
@@ -46,12 +54,6 @@ public class ScreenProductDetail extends AppCompatActivity implements FragmentPr
             UINotifier.showSnackBar(parentLayout,exc.getLocalizedMessage());
         }
 
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar_home);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setLogo(R.drawable.logo);
-        actionBar.setDisplayUseLogoEnabled(true);
 
         viewpager = (ViewPager) findViewById(R.id.viewpager);
         tabLayout = (TabLayout) findViewById(R.id.tablayout);
@@ -75,6 +77,19 @@ public class ScreenProductDetail extends AppCompatActivity implements FragmentPr
         }
 
         tabLayout.setupWithViewPager(viewpager);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+
+            case android.R.id.home:
+                this.finish();
+                break;
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -22,7 +22,7 @@
         <include layout="@layout/progress"/>
     </FrameLayout>
 
-
+    <include layout="@layout/filter"/>
 
 
 </RelativeLayout>

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.DragEvent;
@@ -17,7 +17,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import com.attribe.nayashoppy.app.R;
-import com.attribe.nayashoppy.app.adapters.HomeSliderAdapter;
+import com.attribe.nayashoppy.app.adapters.ImagePagerAdapter;
 import com.attribe.nayashoppy.app.adapters.ProductReviewAdapter;
 import com.attribe.nayashoppy.app.adapters.SimilarProductAdapter;
 import com.attribe.nayashoppy.app.adapters.SupplierAdapter;
@@ -25,6 +25,7 @@ import com.attribe.nayashoppy.app.custom_views.SnappyLinearLayoutManager;
 import com.attribe.nayashoppy.app.model.popular_products.Data;
 import com.attribe.nayashoppy.app.model.product_category.Image;
 import com.attribe.nayashoppy.app.model.product_category.Supplier;
+import com.attribe.nayashoppy.app.model.product_detail.Datum;
 import com.attribe.nayashoppy.app.model.product_detail.ProductReview;
 import com.attribe.nayashoppy.app.model.product_detail.SimilarProduct;
 import com.attribe.nayashoppy.app.network.bals.ProductsBAL;
@@ -41,7 +42,7 @@ import java.util.ArrayList;
 /**
  * Created by Sabih Ahmed on 16-Aug-16.
  */
-public class FragmentPrices extends Fragment {
+public class FragmentPrices extends Fragment implements SimilarProductAdapter.ISimilarProductClickListener{
 
     private View view;
     private static String DEFAULT_SLUG="apple-iphone-4s-black-8-gb";
@@ -58,6 +59,7 @@ public class FragmentPrices extends Fragment {
     private WebView specs_view;
     private ArrayList<Data.FeaturesList.FeatureValue> processedList;
     private FrameLayout no_review_frame;
+    private NestedScrollView parentScroller;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -117,6 +119,7 @@ public class FragmentPrices extends Fragment {
 
 
     private void bindViews() {
+        parentScroller = (NestedScrollView) view.findViewById(R.id.parent_scroller);
         recycler_supplier = (RecyclerView) view.findViewById(R.id.recycler_supplier);
         recycler_similar_prod = (RecyclerView)view.findViewById(R.id.recycler_similar_prods);
         recycler_prod_review = (RecyclerView)view.findViewById(R.id.recycler_reviews);
@@ -210,7 +213,7 @@ public class FragmentPrices extends Fragment {
         }
 
         try {
-            imagesPager.setAdapter(new HomeSliderAdapter(getActivity(),imageList));
+            imagesPager.setAdapter(new ImagePagerAdapter(getActivity(),imageList));
         }catch (Exception exc){
 
         }
@@ -236,6 +239,7 @@ public class FragmentPrices extends Fragment {
 
     private void setSupplierList(ArrayList<Supplier> data) {
         recycler_supplier.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recycler_supplier.setNestedScrollingEnabled(true);
         recycler_supplier.setAdapter(new SupplierAdapter(data));
 
     }
@@ -243,6 +247,10 @@ public class FragmentPrices extends Fragment {
     private void setProductRating(String rating) {
         Double rate_in_double = 0.0;
         int rate_in_int= 0;
+
+        //rating comes in string from server,
+        //have to check if it contains decimal values
+        //if it does, have to round off to nearest integer
 
         if(!rating.isEmpty()){
             try {
@@ -317,6 +325,7 @@ public class FragmentPrices extends Fragment {
             public void onDataReceived(SimilarProduct body) {
 
                 SimilarProductAdapter adapter = new SimilarProductAdapter(body.getData());
+                adapter.setSimilarProductListener(FragmentPrices.this);
                 recycler_similar_prod.setLayoutManager(
                         new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
 
@@ -334,6 +343,16 @@ public class FragmentPrices extends Fragment {
 
             }
         });
+    }
+
+    @Override
+    public void OnSimilarProductClick(Datum product) {
+
+
+        slug = product.getSlug();
+        initData();
+        //parentScroller.setSmoothScrollingEnabled(true);
+        parentScroller.smoothScrollTo(0,0);
     }
 
     public interface FullSpecsListener {

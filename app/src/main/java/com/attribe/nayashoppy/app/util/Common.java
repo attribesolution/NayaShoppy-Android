@@ -61,8 +61,8 @@ public class Common {
 
     public static void setImage(Context context, String imageURi, ImageView categoryImage) {
         try {
-            Glide.with(context).load(imageURi).placeholder(R.drawable.image_place_holder).crossFade().into(categoryImage);
-            //Picasso.with(context).load(imageURi).into(categoryImage);
+            //Glide.with(context).load(imageURi).placeholder(R.drawable.image_place_holder).crossFade().into(categoryImage);
+            Picasso.with(context).load(imageURi).placeholder(R.drawable.image_place_holder).into(categoryImage);
         }catch (Exception e){
 
         }

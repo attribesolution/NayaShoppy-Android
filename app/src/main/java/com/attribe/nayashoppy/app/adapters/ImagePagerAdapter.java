@@ -17,14 +17,14 @@ import java.util.zip.Inflater;
 /**
  * Created by Sabih Ahmed on 19-Jul-16.
  */
-public class HomeSliderAdapter extends PagerAdapter{
+public class ImagePagerAdapter extends PagerAdapter{
 
 
     private Context mContext;
     private ArrayList<String> imageURLList;
     private LayoutInflater mLayoutInflater;
 
-    public HomeSliderAdapter(Context mContext, ArrayList<String> imageURLs) {
+    public ImagePagerAdapter(Context mContext, ArrayList<String> imageURLs) {
 
         this.mContext = mContext;
         imageURLList = imageURLs;

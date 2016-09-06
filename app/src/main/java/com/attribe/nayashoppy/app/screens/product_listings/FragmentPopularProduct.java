@@ -65,11 +65,7 @@ public class FragmentPopularProduct extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_fragment_popular);
         gridLayoutManager = new GridLayoutManager(getActivity(),GRID_SPAN_COUNT);
 
-        sortingArea = (LinearLayout) getActivity().findViewById(R.id.sorting_parent);
-        sortingArea.setOnClickListener(new AllProductSortingListener());
 
-        filteringArea = (LinearLayout) getActivity().findViewById(R.id.filtering_parent);
-        filteringArea.setOnClickListener(new AllProductFilterListener());
 
         recyclerView.setLayoutManager(gridLayoutManager);
 

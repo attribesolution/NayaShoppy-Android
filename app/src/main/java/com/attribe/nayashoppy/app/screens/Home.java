@@ -16,10 +16,15 @@ import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.*;
 import com.attribe.nayashoppy.app.model.Coupon;
 import com.attribe.nayashoppy.app.model.Datum;
+import com.attribe.nayashoppy.app.model.Slider.Slider;
+import com.attribe.nayashoppy.app.network.RestClient;
 import com.attribe.nayashoppy.app.network.bals.ArrivalBAL;
 import com.attribe.nayashoppy.app.network.interfaces.ArrivalListener;
 import com.attribe.nayashoppy.app.util.DevicePreferences;
 import com.attribe.nayashoppy.app.util.DummyData;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -34,7 +39,7 @@ public class Home extends Fragment {
     private ViewPager slider;
     private GridView gridView;
     private ArrayList<String> sliderImageURLList;
-    private HomeSliderAdapter mImageAdapter;
+    private ImagePagerAdapter mImageAdapter;
     private Handler handler = new Handler();
     private Runnable Update;
     private TimerTask taskExecutor;
@@ -70,14 +75,51 @@ public class Home extends Fragment {
     //===================================private Methods=======================================================
 
     private void initSlider() {
+        Call<Slider> slider = RestClient.getAdapter().getSlider();
         sliderImageURLList = new ArrayList<String>();
-        sliderImageURLList.add("http://52.66.82.224/images/banner/1.jpg");
-        sliderImageURLList.add("http://52.66.82.224/images/banner/3.jpg");
-        sliderImageURLList.add("http://52.66.82.224/images/banner/2.jpg");
 
-        mImageAdapter = new HomeSliderAdapter(this.getContext(), sliderImageURLList);
 
-        slider.setAdapter(mImageAdapter);
+        slider.enqueue(new Callback<Slider>() {
+            @Override
+            public void onResponse(Call<Slider> call, Response<Slider> response) {
+                if(response.isSuccessful()){
+
+                    try {
+                        if(response.body().getData()!=null || response.body().getData().size()>0){
+
+                            try{
+                                ArrayList<Slider.Datum.Image> images = response.body().getData().get(0).getImages();
+                                for(Slider.Datum.Image image: images){
+
+                                    sliderImageURLList.add(image.getImage());
+
+                                    mImageAdapter = new ImagePagerAdapter(getActivity(), sliderImageURLList);
+
+                                    Home.this.slider.setAdapter(mImageAdapter);
+                                }
+
+                            }catch (Exception exc){
+
+                            }
+
+
+
+                        }
+                    }catch (Exception exc){
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Slider> call, Throwable t) {
+
+            }
+        });
+
+
+
 
         Update = new Runnable() {
             int position = 3;
@@ -86,7 +128,7 @@ public class Home extends Fragment {
                 // Change the position of view pager
                 if (position == 3)
                     position = 0;
-                slider.setCurrentItem(position++, true);
+                Home.this.slider.setCurrentItem(position++, true);
 
             }
         };

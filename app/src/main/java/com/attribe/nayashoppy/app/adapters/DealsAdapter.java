@@ -10,6 +10,8 @@ import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.viewholders.DealsHolder;
 import com.attribe.nayashoppy.app.model.Deals.Child;
 import com.attribe.nayashoppy.app.model.Deals.Datum;
+import com.attribe.nayashoppy.app.util.Common;
+import com.attribe.nayashoppy.app.util.NavigationUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -44,15 +46,38 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsHolder> {
     @Override
     public void onBindViewHolder(DealsHolder holder, int position) {
 
-        holder.productName.setText(mDealsList.get(position).getTitle());
-        holder.productPrice.setText(mDealsList.get(position).getOffer_price()+" "+
-                mDealsList.get(position).getPrice());
+        Child product = mDealsList.get(position);
 
-        Picasso.with(mContext).load(mDealsList.get(position).getImage_path()).into(holder.productImage);
+        holder.productName.setText(product.getTitle());
+        holder.productPrice.setText(product.getOffer_price()+" "+
+                product.getPrice());
+
+        try {
+            Common.setImage(mContext,product.getImage_path(),holder.productImage);
+
+        }catch (Exception exc){
+
+        }
+
+        holder.parent.setOnClickListener(new ProductTapListener(product));
     }
 
     @Override
     public int getItemCount() {
         return mDealsList.size();
+    }
+
+    private class ProductTapListener implements View.OnClickListener {
+
+        private Child mProduct;
+
+        public ProductTapListener(Child product) {
+            this.mProduct = product;
+        }
+
+        @Override
+        public void onClick(View view) {
+            NavigationUtils.showProductDetailScreen(mContext,mProduct);
+        }
     }
 }

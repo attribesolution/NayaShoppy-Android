@@ -43,7 +43,6 @@
                     android:id="@+id/similar_product_image"
                     android:layout_width="80dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/clean_shoe"
                     android:layout_gravity="center_horizontal"/>
 
             <TextView

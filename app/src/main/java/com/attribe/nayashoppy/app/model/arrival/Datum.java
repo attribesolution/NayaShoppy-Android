@@ -196,7 +196,7 @@ public class Datum {
     }
 
     public ArrayList<Image> getImages() {
-        return images;
+        return this.images;
     }
 
     public ArrayList<Supplier> getSuppliers() {

@@ -42,7 +42,13 @@ public class PopularProductAdapter extends RecyclerView.Adapter<PopularProductHo
         holder.productPrice.setText(mDataset.get(position).getLowest_price()+" "+
                 mDataset.get(position).getDiscount());
 
-        Common.setImage(mContext,mDataset.get(position).getImages().get(0).getImage_path(),holder.productImage);
+        try {
+            Common.setImage(mContext,mDataset.get(position).getImages().get(0).getImage_path(),holder.productImage);
+        }catch (Exception exc){
+
+        }
+
+
     }
 
     @Override

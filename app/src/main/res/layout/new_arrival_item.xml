@@ -9,6 +9,7 @@
         card_view:cardCornerRadius="0dp">
 
     <RelativeLayout
+            android:id="@+id/arrival_parent"
             android:layout_width="150dp"
             android:layout_height="180dp"
             android:paddingTop="10dp"

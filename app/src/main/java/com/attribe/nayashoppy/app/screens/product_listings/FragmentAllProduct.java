@@ -83,10 +83,10 @@ public class FragmentAllProduct extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_fragment_all_products);
         gridLayoutManager = new GridLayoutManager(getActivity(),2);
 
-        sortingArea = (LinearLayout) getActivity().findViewById(R.id.sorting_parent);
+        sortingArea = (LinearLayout) view.findViewById(R.id.sorting_parent);
         sortingArea.setOnClickListener(new AllProductSortingListener());
 
-        filteringArea = (LinearLayout) getActivity().findViewById(R.id.filtering_parent);
+        filteringArea = (LinearLayout) view.findViewById(R.id.filtering_parent);
         filteringArea.setOnClickListener(new AllProductFilterListener());
 
         recyclerView.setLayoutManager(gridLayoutManager);

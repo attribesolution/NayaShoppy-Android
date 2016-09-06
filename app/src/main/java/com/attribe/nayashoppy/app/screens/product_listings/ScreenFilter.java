@@ -12,6 +12,7 @@ import com.attribe.nayashoppy.app.adapters.FilterAdapter;
 import com.attribe.nayashoppy.app.adapters.FilterValuesAdapter;
 import com.attribe.nayashoppy.app.model.dummy_model.FilterKeys;
 import com.attribe.nayashoppy.app.model.dummy_model.FilterValue;
+import com.attribe.nayashoppy.app.network.RestClient;
 import com.attribe.nayashoppy.app.screens.BaseActivity;
 
 import java.util.ArrayList;
@@ -48,6 +49,8 @@ public class ScreenFilter extends BaseActivity implements FilterAdapter.KeySelec
 
 
     private void setKeysList() {
+
+        //RestClient.getAdapter().getFilters();
         keysListView = (ListView) findViewById(R.id.keys_list);
         valuesList = (ListView)findViewById(R.id.values_list);
 

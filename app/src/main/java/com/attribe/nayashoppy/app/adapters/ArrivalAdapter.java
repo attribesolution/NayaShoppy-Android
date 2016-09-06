@@ -60,6 +60,7 @@ public class ArrivalAdapter extends RecyclerView.Adapter<ArrivalHolder>{
         holder.productPrice.setText(product.getLowest_price()+" ("+product.getDiscount()+"% OFF )");
 
         holder.productImage.setOnClickListener(new ProductTapListener(product));
+        holder.parent.setOnClickListener(new ProductTapListener(product));
 
     }
 

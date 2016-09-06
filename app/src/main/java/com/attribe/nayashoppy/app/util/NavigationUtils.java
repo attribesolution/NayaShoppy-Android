@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.MainScreenPagerAdapter;
 import com.attribe.nayashoppy.app.model.Datum;
+import com.attribe.nayashoppy.app.model.Deals.Child;
 import com.attribe.nayashoppy.app.screens.*;
 import com.attribe.nayashoppy.app.screens.categories.*;
 import com.attribe.nayashoppy.app.screens.product_detail.FragmentPrices;
@@ -264,7 +265,13 @@ public class NavigationUtils {
         return progress;
     }
 
-    public static void showProductDetailScreen(Context mContext, /**Bundle bundle**/ com.attribe.nayashoppy.app.model.product_category.Datum product) {
+    /** Show Product Detail
+     * Overloaded method due to inconsistent product object received from webservice
+     * @param mContext
+     * @param product
+     */
+    public static void showProductDetailScreen(Context mContext,
+                                               com.attribe.nayashoppy.app.model.product_category.Datum product) {
         Intent intent = new Intent(mContext, ScreenProductDetail.class);
 
         Bundle bundle = new Bundle();
@@ -277,6 +284,13 @@ public class NavigationUtils {
 
     }
 
+
+    /**Show Product Detail
+     * Overloaded method due to inconsistent product object received from webservice
+     *
+     * @param mContext
+     * @param product
+     */
     public static void showProductDetailScreen(Context mContext, com.attribe.nayashoppy.app.model.arrival.Datum product) {
         Intent intent = new Intent(mContext, ScreenProductDetail.class);
 
@@ -290,6 +304,26 @@ public class NavigationUtils {
 
     }
 
+    public static void showProductDetailScreen(Context mContext, com.attribe.nayashoppy.app.model.product_detail.Datum product) {
+        Intent intent = new Intent(mContext, ScreenProductDetail.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putString(NavigationUtils.KEY_PRODUCT_NAME,product.getProduct_name());
+        bundle.putInt(NavigationUtils.KEY_PRODUCT_ID,product.getProduct_id());
+        bundle.putString(NavigationUtils.KEY_PRODUCT_SLUG,product.getSlug());
+        intent.putExtra(NavigationUtils.BUNDLE_PRODUCTS,bundle);
+        mContext.startActivity(intent);
+    }
+
+    /**For Deals of day
+     *
+     * @param mContext
+     * @param mProduct
+     */
+    public static void showProductDetailScreen(Context mContext, Child mProduct) {
+
+    }
+
     public static void showFilterScreen(Context context ,int categoryID, int brandID) {
         Intent intent = new Intent(context,ScreenFilter.class);
         Bundle bundle = new Bundle();
@@ -299,4 +333,7 @@ public class NavigationUtils {
         context.startActivity(intent);
 
     }
+
+
+
 }
