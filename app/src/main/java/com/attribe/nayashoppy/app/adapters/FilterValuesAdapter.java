@@ -11,6 +11,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.model.dummy_model.FilterValue;
+import com.attribe.nayashoppy.app.model.product_category.CategoryFilter;
 import com.attribe.nayashoppy.app.screens.product_listings.ScreenFilter;
 
 import java.util.ArrayList;
@@ -21,12 +22,14 @@ import java.util.ArrayList;
 public class FilterValuesAdapter extends BaseAdapter {
 
     private final Context mContext;
-    private final ArrayList<FilterValue> mDataset;
+    private final ArrayList<CategoryFilter.Facets.Filter.Value> mDataset;
     private View row;
 
-    public FilterValuesAdapter(Context context, ArrayList<FilterValue> values) {
+
+    public FilterValuesAdapter(Context context, ArrayList<CategoryFilter.Facets.Filter.Value> values) {
         this.mContext = context;
         this.mDataset = values;
+
     }
 
     @Override

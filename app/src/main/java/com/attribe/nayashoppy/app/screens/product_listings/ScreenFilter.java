@@ -12,8 +12,12 @@ import com.attribe.nayashoppy.app.adapters.FilterAdapter;
 import com.attribe.nayashoppy.app.adapters.FilterValuesAdapter;
 import com.attribe.nayashoppy.app.model.dummy_model.FilterKeys;
 import com.attribe.nayashoppy.app.model.dummy_model.FilterValue;
+import com.attribe.nayashoppy.app.model.product_category.CategoryFilter;
 import com.attribe.nayashoppy.app.network.RestClient;
 import com.attribe.nayashoppy.app.screens.BaseActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import java.util.ArrayList;
 
@@ -26,7 +30,7 @@ public class ScreenFilter extends BaseActivity implements FilterAdapter.KeySelec
     ListView valuesList;
     ArrayList<FilterValue> filterValues;
     ArrayList<FilterKeys> keysList;
-
+    private ArrayList<CategoryFilter.Facets.Filter> filterList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +54,39 @@ public class ScreenFilter extends BaseActivity implements FilterAdapter.KeySelec
 
     private void setKeysList() {
 
-        //RestClient.getAdapter().getFilters();
+        Call<CategoryFilter> filters = RestClient.getAdapter().getFilters(2);
+
+        filters.enqueue(new Callback<CategoryFilter>() {
+            @Override
+            public void onResponse(Call<CategoryFilter> call, Response<CategoryFilter> response) {
+
+                if(response.isSuccessful()){
+                    if(response.body().facets!=null){
+
+                        filterList = response.body().facets.getFilters();
+                        FilterAdapter filterAdapter = new FilterAdapter(ScreenFilter.this, filterList);
+                        keysListView.setAdapter(filterAdapter);
+                        filterAdapter.setKeySelectListener(ScreenFilter.this);
+
+                    }
+                }
+
+                for(CategoryFilter.Facets.Filter filter : response.body().facets.getFilters()){
+                    filter.getName();
+
+                    for(CategoryFilter.Facets.Filter.Value value: filter.getValues()){
+
+                        value.getName();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CategoryFilter> call, Throwable t) {
+
+            }
+        });
+
         keysListView = (ListView) findViewById(R.id.keys_list);
         valuesList = (ListView)findViewById(R.id.values_list);
 
@@ -72,9 +108,7 @@ public class ScreenFilter extends BaseActivity implements FilterAdapter.KeySelec
         keysList = new ArrayList<FilterKeys>();
 
         keysList.add(keys);
-        FilterAdapter filterAdapter = new FilterAdapter(this, keysList);
-        filterAdapter.setKeySelectListener(this);
-        keysListView.setAdapter(filterAdapter);
+
 
     }
 
@@ -89,7 +123,8 @@ public class ScreenFilter extends BaseActivity implements FilterAdapter.KeySelec
     }
 
     @Override
-    public void onKeySelected(int mPosition) {
-        valuesList.setAdapter(new FilterValuesAdapter(this,keysList.get(mPosition).getValues()));
+    public void onKeySelected(int position) {
+
+        valuesList.setAdapter(new FilterValuesAdapter(this,filterList.get(position).getValues()));
     }
 }

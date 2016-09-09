@@ -10,6 +10,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.model.dummy_model.FilterKeys;
+import com.attribe.nayashoppy.app.model.product_category.CategoryFilter;
+import com.attribe.nayashoppy.app.screens.product_listings.ScreenFilter;
 
 import java.util.ArrayList;
 
@@ -20,14 +22,14 @@ public class FilterAdapter extends BaseAdapter {
 
 
     private Context mContext;
-    private ArrayList<FilterKeys> mDataset;
+    private ArrayList<CategoryFilter.Facets.Filter> mDataset;
     private View row;
     private KeySelectListener keySelectListener;
 
 
-    public FilterAdapter(Context context, ArrayList<FilterKeys> keys) {
+    public FilterAdapter(ScreenFilter context, ArrayList<CategoryFilter.Facets.Filter> filtersList) {
         this.mContext = context;
-        this.mDataset = keys;
+        this.mDataset = filtersList;
     }
 
     public void setKeySelectListener(KeySelectListener keySelectListener) {
@@ -40,8 +42,8 @@ public class FilterAdapter extends BaseAdapter {
     }
 
     @Override
-    public FilterKeys getItem(int i) {
-        return mDataset.get(i);
+    public CategoryFilter.Facets.Filter getItem(int position) {
+        return mDataset.get(position);
     }
 
     @Override
@@ -50,7 +52,7 @@ public class FilterAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(int position, View view, ViewGroup viewGroup) {
         ViewHolder holder;
         if(view!=null){
 
@@ -66,9 +68,9 @@ public class FilterAdapter extends BaseAdapter {
             view.setTag(holder);
         }
 
-        holder.keyName.setText(mDataset.get(i).getKey());
+        holder.keyName.setText(getItem(position).getName());
 
-        holder.keyName.setOnClickListener(new KeyClickListener(i));
+        holder.keyName.setOnClickListener(new KeyClickListener(position));
 
 
         return view;
