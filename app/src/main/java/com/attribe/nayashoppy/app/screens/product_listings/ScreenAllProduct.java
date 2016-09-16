@@ -1,5 +1,7 @@
 package com.attribe.nayashoppy.app.screens.product_listings;
 
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -38,8 +40,13 @@ public class ScreenAllProduct extends BaseActivity{
     public void onToolbarInit(Toolbar toolbar, ActionBar actionBar) {
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         toolbar.setTitle(NavigationUtils.getScreenTitle(this));
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        //actionBar.setDisplayHomeAsUpEnabled(true);
         setSupportActionBar(toolbar);
+
+        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        actionBar.setHomeAsUpIndicator(upArrow);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         viewPager = (ViewPager) toolbar.getRootView().findViewById(R.id.viewpager);
         tabLayout= (TabLayout) toolbar.getRootView().findViewById(R.id.tabs);
     }
