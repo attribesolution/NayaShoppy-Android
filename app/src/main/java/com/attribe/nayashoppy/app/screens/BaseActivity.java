@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import com.attribe.nayashoppy.app.R;
+import com.attribe.nayashoppy.app.util.NavigationUtils;
 
 /**
  * Created by Sabih Ahmed on 18-Jul-16.
@@ -20,11 +21,16 @@ public abstract class BaseActivity extends AppCompatActivity{
     }
 
 
+    /**This method sets toolbar in derived activity class
+     * Pass
+     * @param view
+     */
     public void initToolbar(View view) {
 
         try {
 
             toolbar = (Toolbar) view.findViewById(R.id.toolbar_home);
+            toolbar.setTitleTextColor(getResources().getColor(R.color.white));
             setSupportActionBar(toolbar);
             ActionBar actionBar = getSupportActionBar();
             actionBar.setLogo(R.drawable.logo);

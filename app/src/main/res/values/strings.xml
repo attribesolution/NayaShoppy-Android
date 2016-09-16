@@ -1,7 +1,7 @@
 <resources>
 
 
-    <string name="app_name">NayaShoppy</string>
+    <string name="app_name">NAYA SHOPPY</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -25,4 +25,7 @@
     <string name="specs_head">SPECIFICATIONS</string>
     <string name="button_see_specs">SEE FULL SPECIFICATION</string>
     <string name="no_reviews">No Reviews at the moment</string>
+
+    <string name="filter_apply">Apply Filters</string>
+    <string name="filter_reset">Reset</string>
 </resources>

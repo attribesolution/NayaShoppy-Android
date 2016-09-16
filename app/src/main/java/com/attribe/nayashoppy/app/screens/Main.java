@@ -47,28 +47,14 @@ public class Main extends BaseActivity {
 
     @Override
     public void onToolbarInit(Toolbar toolbar, ActionBar actionBar) {
-        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
-//        setSupportActionBar(toolbar);
+        toolbar.setTitle(NavigationUtils.getScreenTitle(this));
 
         EditText editText =  (EditText)findViewById(R.id.search_field);
 
         editText.setHintTextColor(getResources().getColor(R.color.black));
         editText.setOnEditorActionListener(new SearchActionListener());
-
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-
         tabLayout = (TabLayout) findViewById(R.id.tabs);
-//        AppBarLayout.LayoutParams params = new AppBarLayout.LayoutParams(AppBarLayout.LayoutParams.MATCH_PARENT,60);
-//        tabLayout.setPadding(0,10,0,10);
-//        tabLayout.setLayoutParams(params);
-
-//        ActionBar actionBar = getSupportActionBar();
-        //actionBar.setDisplayHomeAsUpEnabled(true);
-//        actionBar.setLogo(R.drawable.logo);
-//        actionBar.setDisplayUseLogoEnabled(true);
-
-
-
 
     }
 

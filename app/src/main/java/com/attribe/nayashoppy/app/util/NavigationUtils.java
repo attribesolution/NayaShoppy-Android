@@ -131,7 +131,15 @@ public class NavigationUtils {
 
     public static String getScreenTitle(Context context) {
 
-        String label="";
+        //set app name as default title
+        String label = context.getString(R.string.app_name);
+
+        if(context instanceof Main){
+
+            label = context.getResources().getString(R.string.label_home);
+
+        }
+
 
         if(context instanceof ScreenMyOrder){
 

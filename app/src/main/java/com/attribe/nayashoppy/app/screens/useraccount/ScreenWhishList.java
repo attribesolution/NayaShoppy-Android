@@ -25,14 +25,8 @@ public class ScreenWhishList extends BaseActivity {
 
     @Override
     public void onToolbarInit(Toolbar toolbar, ActionBar actionBar) {
-
-
         toolbar.setTitle(NavigationUtils.getScreenTitle(this));
-
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setLogo(R.drawable.logo);
         actionBar.setDisplayHomeAsUpEnabled(true);
-//        actionBar.setDisplayUseLogoEnabled(true);
         setSupportActionBar(toolbar);
 
     }

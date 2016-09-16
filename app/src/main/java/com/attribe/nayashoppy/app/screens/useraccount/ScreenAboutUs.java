@@ -21,10 +21,6 @@ public class ScreenAboutUs extends BaseActivity {
     public void onToolbarInit(Toolbar toolbar, ActionBar actionBar) {
 
         toolbar.setTitle(NavigationUtils.getScreenTitle(this));
-
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setLogo(R.drawable.logo);
-//        actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         setSupportActionBar(toolbar);
     }

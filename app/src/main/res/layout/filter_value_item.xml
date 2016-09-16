@@ -7,9 +7,13 @@
             >
 
 
-        <CheckBox android:layout_width="wrap_content"
-                  android:layout_height="wrap_content" android:layout_gravity="center_vertical"/>
-        <TextView
+        <CheckBox
+                  android:id="@+id/values_selector"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center_vertical"/>
+
+        <CheckedTextView
                 android:id="@+id/filter_value"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" android:layout_gravity="center_vertical" android:padding="8dp"/>

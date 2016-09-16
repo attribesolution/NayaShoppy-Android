@@ -42,10 +42,19 @@ public class CategoryFilter {
             }
 
             public class Value {
+
                 public int key;
                 public int count;
                 public String name;
+                public boolean isSelected;
 
+                public boolean isSelected() {
+                    return isSelected;
+                }
+
+                public void setSelected(boolean selected) {
+                    isSelected = selected;
+                }
 
                 public int getKey() {
                     return key;

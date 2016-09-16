@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.screens.BaseActivity;
+import com.attribe.nayashoppy.app.util.Common;
 import com.attribe.nayashoppy.app.util.NavigationUtils;
 
 /**
@@ -38,14 +39,11 @@ public class ScreenAllProduct extends BaseActivity{
 
     @Override
     public void onToolbarInit(Toolbar toolbar, ActionBar actionBar) {
-        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         toolbar.setTitle(NavigationUtils.getScreenTitle(this));
-        //actionBar.setDisplayHomeAsUpEnabled(true);
         setSupportActionBar(toolbar);
 
-        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
-        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
-        actionBar.setHomeAsUpIndicator(upArrow);
+//        ActionBar colorChangedActionBar = Common.setBackButtonColor(this, actionBar);
+//        colorChangedActionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         viewPager = (ViewPager) toolbar.getRootView().findViewById(R.id.viewpager);
         tabLayout= (TabLayout) toolbar.getRootView().findViewById(R.id.tabs);

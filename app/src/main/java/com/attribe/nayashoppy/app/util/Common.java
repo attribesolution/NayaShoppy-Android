@@ -2,6 +2,9 @@ package com.attribe.nayashoppy.app.util;
 
 import android.content.Context;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.support.v7.app.ActionBar;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -9,7 +12,6 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.model.Datum;
-import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -81,5 +83,19 @@ public class Common {
         int height = size.y;
 
         Log.d("Display","Device width: "+Integer.toString(width)+" Device Height: "+Integer.toString(height));
+    }
+
+    public static ActionBar setBackButtonColor(Context context, ActionBar actionBar) {
+        try {
+            Drawable upArrow = context.getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+            upArrow.setColorFilter(context.getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+            actionBar.setHomeAsUpIndicator(upArrow);
+        }catch (Exception exc){
+            //Todo: Handle Exception
+        }
+
+
+        return actionBar;
+
     }
 }

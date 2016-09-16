@@ -4,9 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ListAdapter;
-import android.widget.TextView;
+import android.widget.*;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.attribe.nayashoppy.app.R;
@@ -48,8 +46,10 @@ public class FilterValuesAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup viewGroup) {
-        ViewHolder holder ;
+    public View getView(final int position, View view, ViewGroup viewGroup) {
+        final ViewHolder holder ;
+
+        final CategoryFilter.Facets.Filter.Value value = mDataset.get(position);
         if(view!=null){
             holder = (ViewHolder) view.getTag();
         }
@@ -59,20 +59,43 @@ public class FilterValuesAdapter extends BaseAdapter {
 
             holder = new ViewHolder(view);
 
+            holder.filterValueCheck.setChecked(value.isSelected);
+            holder.filterValue.setText(value.getName());
+
             view.setTag(holder);
+
+
         }
 
-        holder.filterValue.setText(mDataset.get(position).getName());
+        holder.filterValueCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean checked = ((CheckBox) view).isChecked();
+
+                if(checked){
+                    value.setSelected(checked);
+
+                }
+                else {
+                    value.setSelected(checked);
+                }
+
+            }
+        });
+
+
 
         return view;
     }
 
     static class ViewHolder{
-        @BindView(R.id.filter_value)TextView filterValue;
+        @BindView(R.id.filter_value)CheckedTextView filterValue;
 
+        CheckBox filterValueCheck;
         public ViewHolder(View view) {
 
-            filterValue= (TextView) view.findViewById(R.id.filter_value);
+            filterValue= (CheckedTextView) view.findViewById(R.id.filter_value);
+            filterValueCheck = (CheckBox) view.findViewById(R.id.values_selector);
         }
     }
 }

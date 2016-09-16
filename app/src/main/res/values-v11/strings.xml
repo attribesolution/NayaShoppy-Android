@@ -8,7 +8,9 @@
 
 
 
+
     !-- Screen labels --!
+    <string name="label_home">NAYA SHOPPY</string>
     <string name="label_shop_categorical">Shop by Categories</string>
     <string name="label_deals">Deals of the day</string>
 

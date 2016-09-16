@@ -21,16 +21,10 @@ public class ScreenWallet extends BaseActivity {
 
     @Override
     public void onToolbarInit(Toolbar toolbar, ActionBar actionBar) {
-        this.toolbar =toolbar;
-
         toolbar.setTitle(NavigationUtils.getScreenTitle(this));
-
-
-//        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         setSupportActionBar(toolbar);
-//        actionBar.setLogo(R.drawable.logo);
-//        actionBar.setDisplayUseLogoEnabled(true);
+
     }
 
     @Override
