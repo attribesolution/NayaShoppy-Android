@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.attribe.nayashoppy.app.R;
-import com.attribe.nayashoppy.app.adapters.viewholders.WhishListHolder;
+import com.attribe.nayashoppy.app.adapters.viewholders.WishListHolder;
 import com.attribe.nayashoppy.app.util.DummyData;
 import com.squareup.picasso.Picasso;
 import com.attribe.nayashoppy.app.model.dummy_model.Product;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /**
  * Created by Sabih Ahmed on 27-Jul-16.
  */
-public class WishListAdapter extends RecyclerView.Adapter<WhishListHolder> {
+public class WishListAdapter extends RecyclerView.Adapter<WishListHolder> {
 
     private Context mContext;
     private ArrayList<Product> wishList;
@@ -27,17 +27,17 @@ public class WishListAdapter extends RecyclerView.Adapter<WhishListHolder> {
     }
 
     @Override
-    public WhishListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public WishListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mContext = parent.getContext();
 
         View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.whish_list_item,parent,false);
 
-        WhishListHolder whishListHolder =  new WhishListHolder(layout);
+        WishListHolder whishListHolder =  new WishListHolder(layout);
         return whishListHolder;
     }
 
     @Override
-    public void onBindViewHolder(WhishListHolder holder, int position) {
+    public void onBindViewHolder(WishListHolder holder, int position) {
 
         holder.productName.setText(wishList.get(position).getProductName());
         holder.productPrice.setText(wishList.get(position).getProductPrice());

@@ -153,7 +153,7 @@ public class NavigationUtils {
             label = context.getResources().getString(R.string.label_my_wallet);
         }
 
-        if(context instanceof ScreenWhishList){
+        if(context instanceof ScreenWishList){
 
             label =context.getResources().getString(R.string.label_whish_list);
         }
@@ -224,7 +224,7 @@ public class NavigationUtils {
     }
 
     public static void showWhishListScreen(Context context) {
-        Intent intent = new Intent(context,ScreenWhishList.class);
+        Intent intent = new Intent(context,ScreenWishList.class);
         context.startActivity(intent);
     }
 

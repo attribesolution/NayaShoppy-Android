@@ -11,7 +11,7 @@ import com.attribe.nayashoppy.app.adapters.WishListAdapter;
 import com.attribe.nayashoppy.app.screens.BaseActivity;
 import com.attribe.nayashoppy.app.util.NavigationUtils;
 
-public class ScreenWhishList extends BaseActivity {
+public class ScreenWishList extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,6 @@ public class ScreenWhishList extends BaseActivity {
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(new WishListAdapter(this));
-
 
     }
 

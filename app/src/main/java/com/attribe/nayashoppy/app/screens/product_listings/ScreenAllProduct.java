@@ -42,8 +42,8 @@ public class ScreenAllProduct extends BaseActivity{
         toolbar.setTitle(NavigationUtils.getScreenTitle(this));
         setSupportActionBar(toolbar);
 
-//        ActionBar colorChangedActionBar = Common.setBackButtonColor(this, actionBar);
-//        colorChangedActionBar.setDisplayHomeAsUpEnabled(true);
+        ActionBar colorChangedActionBar = Common.setBackButtonColor(this, actionBar);
+        colorChangedActionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         viewPager = (ViewPager) toolbar.getRootView().findViewById(R.id.viewpager);
         tabLayout= (TabLayout) toolbar.getRootView().findViewById(R.id.tabs);

@@ -48,7 +48,7 @@
                 android:parentActivityName=".screens.Main">
         </activity>
         <activity
-                android:name=".screens.useraccount.ScreenWhishList"
+                android:name=".screens.useraccount.ScreenWishList"
                 android:parentActivityName=".screens.Main">
         </activity>
         <activity

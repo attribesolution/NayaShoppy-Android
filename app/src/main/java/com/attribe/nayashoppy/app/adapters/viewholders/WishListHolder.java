@@ -9,14 +9,14 @@ import com.attribe.nayashoppy.app.R;
 /**
  * Created by Sabih Ahmed on 27-Jul-16.
  */
-public class WhishListHolder extends RecyclerView.ViewHolder {
+public class WishListHolder extends RecyclerView.ViewHolder {
 
     public ImageView image;
     public TextView productName;
     public TextView productPrice;
     public TextView productVendor;
 
-    public WhishListHolder(View itemView) {
+    public WishListHolder(View itemView) {
         super(itemView);
         image = (ImageView) itemView.findViewById(R.id.whish_image);
         productName = (TextView) itemView.findViewById(R.id.whish_product_name);
