@@ -36,15 +36,19 @@ public class AllProductListAdapter extends RecyclerView.Adapter<AllProductListHo
 
     @Override
     public void onBindViewHolder(AllProductListHolder holder, int position) {
-        holder.productName.setText(mDataset.get(position).getProduct_name());
-        holder.productPrice.setText(mDataset.get(position).getLowest_price()+" "+
-                mDataset.get(position).getDiscount());
+
+        Datum product = mDataset.get(position);
+        holder.productName.setText(product.getProduct_name());
+        holder.productPrice.setText(product.getLowest_price()+" "+
+                product.getDiscount());
 
         try {
-            Common.setImage(mContext,mDataset.get(position).getImages().get(0).getImage_path(),holder.productImage);
+            Common.setImage(mContext,product.getImages().get(0).getImage_path(),holder.productImage);
         }catch (Exception exc){
 
         }
+
+        holder.shareIcon.setOnClickListener(new AllProductGridAdapter.ShareClickListener(product));
     }
 
     @Override

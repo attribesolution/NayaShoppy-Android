@@ -1,6 +1,7 @@
 package com.attribe.nayashoppy.app.util;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -97,5 +98,13 @@ public class Common {
 
         return actionBar;
 
+    }
+
+    public static void showShareChooser(Context mContext, String productUrl) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, productUrl);
+        sendIntent.setType("text/plain");
+        mContext.startActivity(Intent.createChooser(sendIntent, "Send to:"));
     }
 }
