@@ -14,11 +14,15 @@ public class PopularProductListHolder extends RecyclerView.ViewHolder{
     public TextView productName;
     public TextView productPrice;
     public ImageView productImage;
+    public ImageView shareIcon;
+    public ImageView wishIcon;
 
     public PopularProductListHolder(View itemView) {
         super(itemView);
         productImage = (ImageView)itemView.findViewById(R.id.popular_product_list_image);
         productName = (TextView) itemView.findViewById(R.id.popular_product_list_item_prod_name);
         productPrice = (TextView) itemView.findViewById(R.id.popular_product_list_item_prod_price);
+        shareIcon = (ImageView)itemView.findViewById(R.id.popular_product_list_item_share_icon);
+        wishIcon = (ImageView)itemView.findViewById(R.id.popular_product_list_item_wish_icon);
     }
 }

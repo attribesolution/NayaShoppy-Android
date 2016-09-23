@@ -91,12 +91,14 @@
                         android:layout_alignParentEnd="true" android:id="@+id/linearLayout">
 
                     <ImageView
+                            android:id="@+id/popular_product_list_item_wish_icon"
                             android:layout_width="40dp"
                             android:layout_height="wrap_content"
                             android:src="@drawable/wishlist"
                     />
 
                     <ImageView
+                            android:id="@+id/popular_product_list_item_share_icon"
                             android:layout_width="40dp"
                             android:layout_height="wrap_content"
                             android:src="@drawable/share"

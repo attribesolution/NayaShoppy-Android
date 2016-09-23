@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class PopularProductAdapter extends RecyclerView.Adapter<PopularProductHolder> {
 
     private ArrayList<Data> mDataset;
-    private Context mContext;
+    private static Context mContext;
 
     public PopularProductAdapter(ArrayList<Data> data) {
 
@@ -38,15 +38,18 @@ public class PopularProductAdapter extends RecyclerView.Adapter<PopularProductHo
     @Override
     public void onBindViewHolder(PopularProductHolder holder, int position) {
 
-        holder.productName.setText(mDataset.get(position).getProduct_name());
-        holder.productPrice.setText(mDataset.get(position).getLowest_price()+" "+
-                mDataset.get(position).getDiscount());
+        Data product = mDataset.get(position);
+        holder.productName.setText(product.getProduct_name());
+        holder.productPrice.setText(product.getLowest_price()+" "+
+                product.getDiscount());
 
         try {
-            Common.setImage(mContext,mDataset.get(position).getImages().get(0).getImage_path(),holder.productImage);
+            Common.setImage(mContext,product.getImages().get(0).getImage_path(),holder.productImage);
         }catch (Exception exc){
 
         }
+
+        holder.shareIcon.setOnClickListener(new ShareClickListener(product));
 
 
     }
@@ -54,5 +57,19 @@ public class PopularProductAdapter extends RecyclerView.Adapter<PopularProductHo
     @Override
     public int getItemCount() {
         return mDataset.size();
+    }
+
+    public static class ShareClickListener implements View.OnClickListener {
+        private Data product;
+
+        public ShareClickListener(Data product) {
+            this.product = product;
+        }
+
+        @Override
+        public void onClick(View view) {
+
+            Common.showShareChooser(mContext,product.getUrl());
+        }
     }
 }

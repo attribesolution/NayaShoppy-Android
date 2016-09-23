@@ -100,11 +100,11 @@ public class Common {
 
     }
 
-    public static void showShareChooser(Context mContext, String productUrl) {
+    public static void showShareChooser(Context context, String productUrl) {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_TEXT, productUrl);
         sendIntent.setType("text/plain");
-        mContext.startActivity(Intent.createChooser(sendIntent, "Send to:"));
+        context.startActivity(Intent.createChooser(sendIntent, "Send to:"));
     }
 }
