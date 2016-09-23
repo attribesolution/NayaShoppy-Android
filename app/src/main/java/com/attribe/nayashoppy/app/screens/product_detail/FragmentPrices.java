@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.ImagePagerAdapter;
@@ -32,6 +33,7 @@ import com.attribe.nayashoppy.app.network.bals.ProductsBAL;
 import com.attribe.nayashoppy.app.network.interfaces.ProductListener;
 import com.attribe.nayashoppy.app.network.interfaces.ProductReviewListener;
 import com.attribe.nayashoppy.app.network.interfaces.SimilarProductListener;
+import com.attribe.nayashoppy.app.util.Common;
 import com.attribe.nayashoppy.app.util.DevicePreferences;
 import com.attribe.nayashoppy.app.util.NavigationUtils;
 import io.techery.properratingbar.ProperRatingBar;
@@ -60,6 +62,9 @@ public class FragmentPrices extends Fragment implements SimilarProductAdapter.IS
     private ArrayList<Data.FeaturesList.FeatureValue> processedList;
     private FrameLayout no_review_frame;
     private NestedScrollView parentScroller;
+    private ImageView shareIcon;
+    private ImageView wishIcon;
+    private Data mProduct;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -131,6 +136,10 @@ public class FragmentPrices extends Fragment implements SimilarProductAdapter.IS
         fullSpecs.setOnClickListener(new FullSpecsButtonListener());
         ratingBar = (ProperRatingBar) view.findViewById(R.id.prod_rating_bar);
         no_review_frame = (FrameLayout) view.findViewById(R.id.no_review_frame);
+        shareIcon = (ImageView)view.findViewById(R.id.product_detail_share);
+        wishIcon = (ImageView)view.findViewById(R.id.product_detail_wish);
+
+        shareIcon.setOnClickListener(new ShareClickListener());
     }
 
     private void initData() {
@@ -138,14 +147,15 @@ public class FragmentPrices extends Fragment implements SimilarProductAdapter.IS
             @Override
             public void onProductReceived(Data data) {
 
-                setProductName(data.getProduct_name());
-                setProductImages(data.getImages());
-                setProductBestPrice(data.getLowest_price(),data.getOriginal_price());
-                setSupplierList(data.getSuppliers());
-                setProductKeySpecs(data.getFeaturesList());
-                setProductRating(data.getRating());
-                getProductReviews(data.getProduct_id());
-                getSimilarProducts(data.getLowest_price(),data.getCategories_category_id());
+                mProduct = data;
+                setProductName(mProduct.getProduct_name());
+                setProductImages(mProduct.getImages());
+                setProductBestPrice(mProduct.getLowest_price(),mProduct.getOriginal_price());
+                setSupplierList(mProduct.getSuppliers());
+                setProductKeySpecs(mProduct.getFeaturesList());
+                setProductRating(mProduct.getRating());
+                getProductReviews(mProduct.getProduct_id());
+                getSimilarProducts(mProduct.getLowest_price(),mProduct.getCategories_category_id());
 
             }
 
@@ -368,6 +378,13 @@ public class FragmentPrices extends Fragment implements SimilarProductAdapter.IS
         public void onClick(View view) {
 
             fullSpecsListener.setOnFullSpecsClick();
+        }
+    }
+
+    private class ShareClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Common.showShareChooser(getActivity(),mProduct.getUrl());
         }
     }
 }
