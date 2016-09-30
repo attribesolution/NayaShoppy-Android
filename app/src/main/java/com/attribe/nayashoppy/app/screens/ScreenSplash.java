@@ -27,6 +27,8 @@ public class ScreenSplash extends AppCompatActivity {
         setContentView(R.layout.screen_splash);
         progress = NavigationUtils.getProgress(false);
         progress.show(getSupportFragmentManager(),"");
+
+        //Initializing Device prefs class first time in life
         DevicePreferences.getInstance().init(getApplicationContext());
         AppConfig.getInstance().setMode(1);
         Common.getDimension(this);
