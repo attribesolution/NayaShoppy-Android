@@ -82,12 +82,14 @@ public class Home extends Fragment {
         slider.enqueue(new Callback<Slider>() {
             @Override
             public void onResponse(Call<Slider> call, Response<Slider> response) {
-                if(response.isSuccessful()){
+                if(response.isSuccessful())
+                {
 
                     try {
                         if(response.body().getData()!=null || response.body().getData().size()>0){
 
-                            try{
+                            try
+                            {
                                 ArrayList<Slider.Datum.Image> images = response.body().getData().get(0).getImages();
                                 for(Slider.Datum.Image image: images){
 
@@ -98,14 +100,16 @@ public class Home extends Fragment {
                                     Home.this.slider.setAdapter(mImageAdapter);
                                 }
 
-                            }catch (Exception exc){
+                            }
+                            catch (Exception exc){
 
                             }
 
 
 
                         }
-                    }catch (Exception exc){
+                    }
+                    catch (Exception exc){
 
                     }
 

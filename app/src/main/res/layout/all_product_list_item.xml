@@ -19,8 +19,10 @@
 
                     <FrameLayout
                             android:layout_width="80dp"
-                            android:layout_height="match_parent" android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp" android:layout_marginBottom="10dp">
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp">
                         <ImageView
                                 android:id="@+id/all_product_list_image"
                                 android:layout_width="80dp"
@@ -32,8 +34,10 @@
                     <LinearLayout
                             android:orientation="vertical"
                             android:layout_width="200dp"
-                            android:layout_height="wrap_content" android:layout_marginLeft="20dp"
-                            android:layout_centerVertical="true" android:layout_toStartOf="@+id/linearLayout"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/linearLayout"
                             android:paddingLeft="10dp">
 
                     <TextView
@@ -53,7 +57,8 @@
                      <LinearLayout
                              android:orientation="horizontal"
                              android:layout_width="match_parent"
-                             android:layout_height="wrap_content" android:layout_marginTop="10dp">
+                             android:layout_height="wrap_content"
+                             android:layout_marginTop="10dp">
                          
                          <TextView android:layout_width="wrap_content"
                                    android:layout_height="wrap_content"
@@ -65,7 +70,8 @@
 
                                  android:orientation="vertical"
                                  android:layout_width="wrap_content"
-                                 android:layout_height="wrap_content" android:layout_marginLeft="10dp">
+                                 android:layout_height="wrap_content"
+                                 android:layout_marginLeft="10dp">
 
                              <RatingBar android:layout_width="wrap_content"
                                         android:layout_height="10dp"
@@ -88,7 +94,8 @@
                             android:layout_width="80dp"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_alignParentEnd="true" android:id="@+id/linearLayout">
+                            android:layout_alignParentEnd="true"
+                            android:id="@+id/linearLayout">
 
                         <ImageView
                                 android:id="@+id/icon_wish"

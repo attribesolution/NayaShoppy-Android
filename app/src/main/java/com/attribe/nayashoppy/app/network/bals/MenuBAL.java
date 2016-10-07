@@ -8,7 +8,6 @@ import com.attribe.nayashoppy.app.util.DevicePreferences;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 import java.util.ArrayList;
 
 /**
@@ -25,13 +24,15 @@ public class MenuBAL {
 
         Call<Menu> menu = RestClient.getAdapter().getMenu();
 
-        menu.enqueue(new Callback<Menu>() {
+        menu.enqueue(new Callback<Menu>()
+        {
             @Override
             public void onResponse(Call<Menu> call, Response<Menu> response) {
                 menuList = new ArrayList();
                 if(response.isSuccessful()){
 
-                    if(!response.body().getData().isEmpty()){
+                    if(!response.body().getData().isEmpty())
+                    {
                         menuListener.onMenuReceived();
                         menuList = response.body().getData();
                         try {
@@ -43,7 +44,8 @@ public class MenuBAL {
                         }
                     }
 
-                    else{
+                    else
+                    {
                         menuListener.onDataIssue(response.body().getMeta().getMessage());
                     }
                 }

@@ -53,6 +53,7 @@ public class AllProductGridAdapter extends RecyclerView.Adapter<PopularProductHo
         holder.productPrice.setText(product.getLowest_price()+" "+
                 product.getDiscount());
 
+
         try {
             Common.setImage(mContext,product.getImages().get(0).getImage_path(),holder.productImage);
         }catch (Exception exc){
@@ -61,6 +62,7 @@ public class AllProductGridAdapter extends RecyclerView.Adapter<PopularProductHo
 
         holder.shareIcon.setOnClickListener(new ShareClickListener(product));
         holder.parent.setOnClickListener(new ProductClickListener(product));
+        holder.wishIcon.setOnClickListener(new WishIconListner(product));
 
 
 
@@ -101,6 +103,20 @@ public class AllProductGridAdapter extends RecyclerView.Adapter<PopularProductHo
 
             Common.showShareChooser(mContext, product.getUrl());
 
+        }
+    }
+    //here we add data in wish list
+    private class WishIconListner implements View.OnClickListener {
+        private Datum product;
+        public WishIconListner(Datum wishproduct){
+            this.product=wishproduct;
+
+
+        }
+
+        @Override
+        public void onClick(View view) {
+         Toast.makeText(mContext,""+product.product_name.toString(),Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -149,8 +149,8 @@ public class FragmentAllProduct extends Fragment {
         ProductsBAL.getNewProducts(categoryID, brandID,page, new LatestProductsListener() {
 
             @Override
-            public void onDataReceived(ArrayList<Datum> data) {
-
+            public void onDataReceived(ArrayList<Datum> data)
+            {
                 progress.setVisibility(View.GONE);
                 if (scrolled) {
                     mDataset.addAll(data);
