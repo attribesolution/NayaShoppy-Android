@@ -44,6 +44,8 @@ public class DealsOfDay extends Fragment {
 
                 try {
                     dealsList = deals.get(1);
+                   // dealsList = deals;
+
                     setList();
                 }catch (Exception iobe){
                     //TODO: handle exception

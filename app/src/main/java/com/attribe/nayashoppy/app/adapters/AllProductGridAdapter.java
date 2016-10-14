@@ -1,18 +1,16 @@
 package com.attribe.nayashoppy.app.adapters;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+import com.attribe.nayashoppy.app.AbstractClasses.WishIconListner;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.viewholders.PopularProductHolder;
 import com.attribe.nayashoppy.app.model.product_category.Datum;
-import com.attribe.nayashoppy.app.util.Common;
-import com.attribe.nayashoppy.app.util.NavigationUtils;
+import com.attribe.nayashoppy.app.util.*;
 
 import java.util.ArrayList;
 
@@ -62,7 +60,12 @@ public class AllProductGridAdapter extends RecyclerView.Adapter<PopularProductHo
 
         holder.shareIcon.setOnClickListener(new ShareClickListener(product));
         holder.parent.setOnClickListener(new ProductClickListener(product));
-        holder.wishIcon.setOnClickListener(new WishIconListner(product));
+        WishProduct wishProduct=new WishProduct(product.getProduct_id(),
+                product.getProduct_name(),product.getLowest_price(),
+                product.getSuppliers().get(0).getStore_name(),
+                product.getImages().get(0).getImage_path());
+       // holder.wishIcon.setOnClickListener(new WishIconListner(product));
+        holder.wishIcon.setOnClickListener(new com.attribe.nayashoppy.app.AbstractClasses.WishIconListner(wishProduct,mContext));
 
 
 
@@ -86,6 +89,9 @@ public class AllProductGridAdapter extends RecyclerView.Adapter<PopularProductHo
 
 
             NavigationUtils.showProductDetailScreen(mContext,mProduct);
+            ViewedProduct viewedProduct=new ViewedProduct(mProduct.getProduct_name(),mProduct.getLowest_price()
+            ,mProduct.getSuppliers().get(0).getStore_name(),mProduct.getImages().get(0).getImage_path());
+            RecentViewed.getIntstance().addrecentviewedItem(viewedProduct);
         }
     }
 
@@ -106,17 +112,27 @@ public class AllProductGridAdapter extends RecyclerView.Adapter<PopularProductHo
         }
     }
     //here we add data in wish list
-    private class WishIconListner implements View.OnClickListener {
+    public static class WishIconListner implements View.OnClickListener {
         private Datum product;
+//        public WishIconListner(Datum wishproduct){
+//            this.product=wishproduct;
+//
+//        }
         public WishIconListner(Datum wishproduct){
             this.product=wishproduct;
-
 
         }
 
         @Override
         public void onClick(View view) {
-         Toast.makeText(mContext,""+product.product_name.toString(),Toast.LENGTH_SHORT).show();
+            //add data into wishlist
+            WishProduct wishItem=new WishProduct(product.getProduct_id(),product.getProduct_name(),product.getLowest_price(),
+                    product.getSuppliers().get(0).getStore_name(),
+                    product.getImages().get(0).getImage_path());
+            WishCart.getInstance().addWishItem(wishItem,mContext);
+            Toast.makeText(mContext,"Item Added",Toast.LENGTH_SHORT).show();
+
+
         }
     }
 }

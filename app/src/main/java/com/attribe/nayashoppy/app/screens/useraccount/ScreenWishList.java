@@ -6,9 +6,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.WishListAdapter;
 import com.attribe.nayashoppy.app.screens.BaseActivity;
+import com.attribe.nayashoppy.app.util.DevicePreferences;
 import com.attribe.nayashoppy.app.util.NavigationUtils;
 
 public class ScreenWishList extends BaseActivity {
@@ -47,7 +49,16 @@ public class ScreenWishList extends BaseActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_wish_List);
 
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new WishListAdapter(this));
+        if(DevicePreferences.getInstance().getWishList()!=null) {
+
+            //recyclerView.setAdapter(new WishListAdapter(this));
+            recyclerView.setAdapter(new WishListAdapter(this,DevicePreferences.getInstance().getWishList()));
+
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(),"No item in wish list",Toast.LENGTH_SHORT).show();
+        }
 
     }
 

@@ -7,11 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.viewholders.WishListHolder;
-import com.attribe.nayashoppy.app.util.DummyData;
+import com.attribe.nayashoppy.app.util.DevicePreferences;
+import com.attribe.nayashoppy.app.util.WishProduct;
+import com.attribe.nayashoppy.app.util.WishCart;
 import com.squareup.picasso.Picasso;
-import com.attribe.nayashoppy.app.model.dummy_model.Product;
+
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Sabih Ahmed on 27-Jul-16.
@@ -19,10 +22,12 @@ import java.util.ArrayList;
 public class WishListAdapter extends RecyclerView.Adapter<WishListHolder> {
 
     private Context mContext;
-    private ArrayList<Product> wishList;
+    //private ArrayList<WishProduct> wishList;
+    private ArrayList<WishProduct> wishList;
 
-    public WishListAdapter(Context mContext) {
-        wishList = DummyData.getDummyProducts();
+    public WishListAdapter(Context mContext, ArrayList<WishProduct> wishProductList) {
+
+        this.wishList=wishProductList;
         this.mContext = mContext;
     }
 
@@ -40,7 +45,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListHolder> {
     public void onBindViewHolder(WishListHolder holder, int position) {
 
         holder.productName.setText(wishList.get(position).getProductName());
-        holder.productPrice.setText(wishList.get(position).getProductPrice());
+        holder.productPrice.setText("Rs "+wishList.get(position).getProductPrice());
         Picasso.with(mContext).load(wishList.get(position).getProductImageURL()).into(holder.image);
         holder.productVendor.setText(wishList.get(position).getProductVendor());
     }
@@ -48,6 +53,8 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListHolder> {
 
     @Override
     public int getItemCount() {
+
         return wishList.size();
+
     }
 }

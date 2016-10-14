@@ -273,7 +273,7 @@ public class NavigationUtils {
         return progress;
     }
 
-    /** Show Product Detail
+    /** Show WishProduct Detail
      * Overloaded method due to inconsistent product object received from webservice
      * @param mContext
      * @param product
@@ -293,7 +293,7 @@ public class NavigationUtils {
     }
 
 
-    /**Show Product Detail
+    /**Show WishProduct Detail
      * Overloaded method due to inconsistent product object received from webservice
      *
      * @param mContext

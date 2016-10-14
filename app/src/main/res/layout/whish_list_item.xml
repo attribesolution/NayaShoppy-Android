@@ -3,7 +3,7 @@
               xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="130dp">
+              android:layout_height="135dp">
 
 
     <ImageView
@@ -23,7 +23,7 @@
             android:layout_toEndOf="@+id/whish_image"
             android:layout_centerVertical="true"
             android:layout_marginStart="40dp"
-            >
+            android:id="@+id/product_details_area">
 
                     <TextView
                             android:id="@+id/whish_product_name"
@@ -42,6 +42,7 @@
                             android:layout_below="@+id/whish_product_name"
                             android:text="Rs 2500 20% OFF"
                             android:layout_centerVertical="true"
+                            android:textColor="@color/primary"
                     />
 
     </LinearLayout>
@@ -55,5 +56,11 @@
               android:textColor="@color/white"
               android:background="@drawable/border_vendor_whishlist"
               android:text="Amazon"
+              android:layout_margin="3dp"
     />
+    <View android:layout_width="match_parent"
+          android:layout_height="5dp"
+          android:background="@color/primary"
+          android:layout_below="@+id/whish_vendor" />
+
 </RelativeLayout>

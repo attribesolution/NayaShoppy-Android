@@ -120,7 +120,7 @@ public abstract class ProductListBaseFragment extends Fragment{
     private void fetchData(int categoryID, int brandID, int page, boolean isScrolled){
 
 
-        //fetch all Product/ popular product dynamically
+        //fetch all WishProduct/ popular product dynamically
 
     }
     private void fetchAllProductData(int categoryID, int brandID,int page) {

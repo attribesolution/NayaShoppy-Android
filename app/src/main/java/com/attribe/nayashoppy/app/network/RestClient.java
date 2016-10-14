@@ -9,6 +9,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Sabih Ahmed on 06-Jun-16.
@@ -46,6 +47,7 @@ public class RestClient {
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        httpClient.connectTimeout(10000, TimeUnit.MILLISECONDS);
         // add your other interceptors …
 
         // add logging as last interceptor

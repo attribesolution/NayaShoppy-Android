@@ -22,6 +22,7 @@ import com.attribe.nayashoppy.app.network.bals.ArrivalBAL;
 import com.attribe.nayashoppy.app.network.interfaces.ArrivalListener;
 import com.attribe.nayashoppy.app.util.DevicePreferences;
 import com.attribe.nayashoppy.app.util.DummyData;
+import com.attribe.nayashoppy.app.util.RecentViewed;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -228,7 +229,9 @@ public class Home extends Fragment {
 
     private void initRecentlyViewed(){
 
-        RecentViewedAdapter recentsAdapter= new RecentViewedAdapter(DummyData.getDummyProducts());
+       // RecentViewedAdapter recentsAdapter= new RecentViewedAdapter(DummyData.getDummyProducts());
+        RecentViewedAdapter recentsAdapter= new RecentViewedAdapter(RecentViewed.recentviewedList);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(),
                 LinearLayoutManager.HORIZONTAL,false);
 

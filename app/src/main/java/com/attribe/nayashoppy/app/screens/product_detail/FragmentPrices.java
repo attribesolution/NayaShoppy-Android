@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.attribe.nayashoppy.app.AbstractClasses.WishIconListner;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.ImagePagerAdapter;
 import com.attribe.nayashoppy.app.adapters.ProductReviewAdapter;
@@ -36,6 +37,7 @@ import com.attribe.nayashoppy.app.network.interfaces.SimilarProductListener;
 import com.attribe.nayashoppy.app.util.Common;
 import com.attribe.nayashoppy.app.util.DevicePreferences;
 import com.attribe.nayashoppy.app.util.NavigationUtils;
+import com.attribe.nayashoppy.app.util.WishProduct;
 import io.techery.properratingbar.ProperRatingBar;
 import org.sufficientlysecure.htmltextview.HtmlTextView;
 
@@ -140,6 +142,7 @@ public class FragmentPrices extends Fragment implements SimilarProductAdapter.IS
         wishIcon = (ImageView)view.findViewById(R.id.product_detail_wish);
 
         shareIcon.setOnClickListener(new ShareClickListener());
+
     }
 
     private void initData() {
@@ -156,6 +159,11 @@ public class FragmentPrices extends Fragment implements SimilarProductAdapter.IS
                 setProductRating(mProduct.getRating());
                 getProductReviews(mProduct.getProduct_id());
                 getSimilarProducts(mProduct.getLowest_price(),mProduct.getCategories_category_id());
+
+                WishProduct wishProduct=new WishProduct(mProduct.getProduct_id(),mProduct.getProduct_name(),
+                        mProduct.getLowest_price(),mProduct.getSuppliers().get(0).getStore_name(),mProduct.getImages().get(1).getImage_path());
+                wishIcon.setOnClickListener(new WishIconListner(wishProduct,getActivity().getApplicationContext()));
+
 
             }
 
@@ -210,7 +218,9 @@ public class FragmentPrices extends Fragment implements SimilarProductAdapter.IS
 
     }
 
-    private void setProductName(String product_name) {
+    private void setProductName(String product_name)
+    {
+
         productName.setText(product_name);
     }
 

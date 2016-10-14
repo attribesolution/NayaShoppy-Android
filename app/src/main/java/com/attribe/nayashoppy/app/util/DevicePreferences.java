@@ -15,6 +15,7 @@ public class DevicePreferences {
 
 
     private static final String KEY_MENU = "menu";
+    private static final String KEY_WISHLIST = "wishlist";
     private static DevicePreferences instance;
     private static SharedPreferences prefs;
     private Context mContext;
@@ -97,5 +98,73 @@ public class DevicePreferences {
 
 
         return currency;
+    }
+
+    public void addwishItem(WishProduct product)
+    {
+        ArrayList<WishProduct> wishProducts=getWishList();
+        if(wishProducts==null)
+        {
+            wishProducts=new ArrayList<WishProduct>();
+            wishProducts.add(product);
+            setWishlist(wishProducts);
+        }
+        else
+        {
+
+
+            wishProducts.add(product);
+            setWishlist(wishProducts);
+        }
+
+
+    }
+   public void setWishlist(ArrayList<WishProduct> wishlist)
+   {
+
+
+        SharedPreferences.Editor editor;
+        try {
+            editor = prefs.edit();
+            Gson gson = new Gson();
+
+            String wishObject = gson.toJson(wishlist);
+            editor.putString(KEY_WISHLIST,wishObject);
+            editor.commit();
+        }
+        catch (Exception e){
+            if(e.getClass().equals(NullPointerException.class)){
+                //TODO: Handle npe here
+                throw new RuntimeException("Shared Pref not initialized ");
+            }
+
+            else{
+                throw new RuntimeException("Something bad happened while storing wishlist");
+            }
+
+
+        }
+
+    }
+    public ArrayList<WishProduct> getWishList(){
+        Gson gson = new Gson();
+        String wish="";
+        ArrayList<WishProduct> wishList=null;
+        try {
+            wish = prefs.getString(KEY_WISHLIST, null);
+
+            TypeToken<ArrayList<WishProduct>> token = new TypeToken<ArrayList<WishProduct>>() {};
+            wishList = gson.fromJson(wish, token.getType());
+        }catch (Exception e)
+        {
+
+
+        }
+
+
+        return wishList;
+
+
+
     }
 }

@@ -6,12 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.attribe.nayashoppy.app.AbstractClasses.WishIconListner;
 import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.viewholders.DealsHolder;
 import com.attribe.nayashoppy.app.model.Deals.Child;
 import com.attribe.nayashoppy.app.model.Deals.Datum;
 import com.attribe.nayashoppy.app.util.Common;
 import com.attribe.nayashoppy.app.util.NavigationUtils;
+import com.attribe.nayashoppy.app.util.WishProduct;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -60,6 +62,10 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsHolder> {
         }
 
         holder.parent.setOnClickListener(new ProductTapListener(product));
+//        WishProduct wishProduct=new WishProduct(deals.getId(),deals.getChildren().get(1).get,
+//                deals.getChildren().get(1).getOffer_price(),deals.getName(),
+//                deals.getChildren().get(1).getImage_path());
+       // holder.wishIcon.setOnClickListener(new WishIconListner(mContext,));
     }
 
     @Override

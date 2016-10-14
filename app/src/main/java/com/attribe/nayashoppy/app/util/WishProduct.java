@@ -3,13 +3,16 @@ package com.attribe.nayashoppy.app.util;
 /**
  * Created by Sabih Ahmed on 18-Aug-16.
  */
-public class Product {
+public class WishProduct {
+    private int productId;
     private String productName;
     private String productPrice;
     private String productVendor;
     private String productImageURL;
 
-    public Product(String productName, String productPrice, String productVendor, String productImageURL) {
+    public WishProduct(int productId,String productName, String productPrice, String productVendor, String productImageURL)
+    {
+        this.productId=productId;
         this.productName = productName;
         this.productPrice = productPrice;
         this.productVendor = productVendor;
@@ -47,6 +50,14 @@ public class Product {
 
     public void setProductImageURL(String productImageURL) {
         this.productImageURL = productImageURL;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 }
 

@@ -23,7 +23,7 @@
         <activity
                 android:name=".screens.Main">
         </activity>
-        <activity
+               <activity
                 android:name=".screens.ShopByCategory"
                 android:parentActivityName=".screens.Main">
         </activity>
