@@ -19,16 +19,23 @@ import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.LeftDrawerAdapter;
 import com.attribe.nayashoppy.app.adapters.RightDrawerAdapter;
 import com.attribe.nayashoppy.app.model.Datum;
+import com.attribe.nayashoppy.app.model.product_category.ProductSearch;
+import com.attribe.nayashoppy.app.network.RestClient;
 import com.attribe.nayashoppy.app.util.DevicePreferences;
 import com.attribe.nayashoppy.app.util.NavigationUtils;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 public class Main extends BaseActivity {
 
     private DrawerLayout drawerLayout;
     private ArrayList<Datum> parentCategories;
+    private EditText edtSearchProduct;
     private ViewPager viewPager;
     private TabLayout tabLayout;
     @Override
@@ -49,10 +56,10 @@ public class Main extends BaseActivity {
     public void onToolbarInit(Toolbar toolbar, ActionBar actionBar) {
         toolbar.setTitle(NavigationUtils.getScreenTitle(this));
 
-        EditText editText =  (EditText)findViewById(R.id.search_field);
+        edtSearchProduct =  (EditText)findViewById(R.id.search_field);
+        edtSearchProduct.setHintTextColor(getResources().getColor(R.color.black));
+        edtSearchProduct.setOnEditorActionListener(new SearchActionListener());
 
-        editText.setHintTextColor(getResources().getColor(R.color.black));
-        editText.setOnEditorActionListener(new SearchActionListener());
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
 
@@ -167,8 +174,7 @@ public class Main extends BaseActivity {
 
             if(actionID== EditorInfo.IME_ACTION_DONE){
 
-
-                //TODO: handle keyboard done here
+                searchProdeuct();
             }
 
 
@@ -176,6 +182,33 @@ public class Main extends BaseActivity {
             return false;
         }
     }
+
+    private void searchProdeuct() {
+
+        String text =  edtSearchProduct.getText().toString().toLowerCase(Locale.getDefault());
+        Call<ProductSearch> searches = RestClient.getAdapter().getSearchedProduct(text);
+        searches.enqueue(new Callback<ProductSearch>() {
+            @Override
+            public void onResponse(Call<ProductSearch> call, Response<ProductSearch> response) {
+                if(response.isSuccessful()){
+                    if(response.body().facets!=null){
+
+//                        filterList = response.body().facets.getFilters();
+//                        FilterAdapter filterAdapter = new FilterAdapter(ScreenFilter.this, filterList);
+//                        keysListView.setAdapter(filterAdapter);
+//                        filterAdapter.setKeySelectListener(ScreenFilter.this);
+
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProductSearch> call, Throwable t) {
+
+            }
+        });
+    }
+
 
     //********************************************************************************************************
 

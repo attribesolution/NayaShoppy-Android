@@ -8,6 +8,7 @@ import com.attribe.nayashoppy.app.model.arrival.NewArrival;
 import com.attribe.nayashoppy.app.model.popular_products.PopularProducts;
 import com.attribe.nayashoppy.app.model.product_category.CategoryFilter;
 import com.attribe.nayashoppy.app.model.product_category.ProductCategory;
+import com.attribe.nayashoppy.app.model.product_category.ProductSearch;
 import com.attribe.nayashoppy.app.model.product_detail.ProductReview;
 import com.attribe.nayashoppy.app.model.product_detail.SimilarProduct;
 import retrofit2.Call;
@@ -31,10 +32,10 @@ public interface ServicesInterface {
     @GET(EndPoints.STAGE_GET_ARRIVALS)
     Call<NewArrival> getArrivals();
 
-    @GET("http://api.nayashoppy.com/v1/catalog/")
+    @GET("http://nsapi.nayashoppy.com/v1/catalog/")
     Call<ProductCategory> getAllProducts(@QueryMap Map<String,Integer> options);
 
-    @GET("http://api.nayashoppy.com/v1/catalog/popularproducts")
+    @GET("http://nsapi.nayashoppy.com/v1/catalog/popularproducts")
     Call<PopularProducts> getPopularProducts(@QueryMap Map<String,Integer> options);
 
     @GET(EndPoints.STAGE_PRODUCT_DETAIL)
@@ -49,6 +50,9 @@ public interface ServicesInterface {
     @GET(EndPoints.STAGE_SLIDER)
     Call<Slider> getSlider();
 
-    @GET("http://api.nayashoppy.com/v1/search/products?")
+    @GET("http://nsapi.nayashoppy.com/v1/search/products?")
     Call<CategoryFilter> getFilters(@Query("category_id[]") int category_id);
+
+    @GET("http://nsapi.nayashoppy.com/v1/search/products?")
+    Call<ProductSearch> getSearchedProduct(@Query("title") String product_title);
 }

@@ -10,8 +10,7 @@ import com.attribe.nayashoppy.app.R;
 import com.attribe.nayashoppy.app.adapters.viewholders.PopularProductHolder;
 import com.attribe.nayashoppy.app.model.popular_products.Data;
 import com.attribe.nayashoppy.app.model.product_category.Datum;
-import com.attribe.nayashoppy.app.util.Common;
-import com.attribe.nayashoppy.app.util.WishProduct;
+import com.attribe.nayashoppy.app.util.*;
 
 import java.util.ArrayList;
 
@@ -53,7 +52,7 @@ public class PopularProductAdapter extends RecyclerView.Adapter<PopularProductHo
         }
 
         holder.shareIcon.setOnClickListener(new ShareClickListener(product));
-
+        holder.parent.setOnClickListener(new PopularProductClickListner(product));
         //holder.wishIcon.setOnClickListener(new AllProductGridAdapter.WishIconListner(product));
         WishProduct wishProduct=new WishProduct(product.getProduct_id(),product.getProduct_name(),product.getLowest_price(),product.getSuppliers().get(0).getStore_name(),product.getImages()
                 .get(0).getImage_path());
@@ -78,6 +77,25 @@ public class PopularProductAdapter extends RecyclerView.Adapter<PopularProductHo
         public void onClick(View view) {
 
             Common.showShareChooser(mContext,product.getUrl());
+        }
+    }
+
+    private class PopularProductClickListner implements View.OnClickListener {
+
+        private Data mProduct;
+
+        public PopularProductClickListner(Data product) {
+            this.mProduct = product;
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            NavigationUtils.showProductDetailScreen(mContext,mProduct);
+            ViewedProduct viewedProduct=new ViewedProduct(mProduct.getProduct_name(),mProduct.getLowest_price()
+                    ,mProduct.getSuppliers().get(0).getStore_name(),mProduct.getImages().get(0).getImage_path());
+            RecentViewed.getIntstance().addrecentviewedItem(viewedProduct);
+            notifyDataSetChanged();
         }
     }
 }

@@ -10,15 +10,15 @@ public class EndPoints {
 
 
     public static final String BASE_URL_LOCAL = "https://api.myjson.com/bins/";
-    public static final String STAGE_BASE_URL = "http://api.nayashoppy.com/v1/default/";
+    public static final String STAGE_BASE_URL = "http://nsapi.nayashoppy.com/v1/default/";
 
     public static final String LOCAL_GET_MENU = "1fodj";
     public static final String STAGE_GET_MENU = "topmenu";
     public static final String STAGE_GET_DEALS = "dealsoftheday";
-    public static final String STAGE_GET_ARRIVALS = "http://api.nayashoppy.com/v1/default/newarrival";
-    public static final String STAGE_PRODUCT_DETAIL = "http://api.nayashoppy.com/v1/catalog/detail";
-    public static final String STAGE_SIMILAR_PRODUCTS = "http://api.nayashoppy.com/v1/catalog/similarcatalog";
-    public static final String STAGE_PRODUCT_REVIEWS = "http://api.nayashoppy.com/v1/catalog/productreviews";
+    public static final String STAGE_GET_ARRIVALS = "http://nsapi.nayashoppy.com/v1/default/newarrival";
+    public static final String STAGE_PRODUCT_DETAIL = "http://nsapi.nayashoppy.com/v1/catalog/detail";
+    public static final String STAGE_SIMILAR_PRODUCTS = "http://nsapi.nayashoppy.com/v1/catalog/similarcatalog";
+    public static final String STAGE_PRODUCT_REVIEWS = "http://nsapi.nayashoppy.com/v1/catalog/productreviews";
 
 
     public static final String STAGE_SLIDER = "http://api.nayashoppy.com/";

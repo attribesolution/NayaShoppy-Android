@@ -34,7 +34,7 @@ public class RecentViewedAdapter extends RecyclerView.Adapter<RecentViewedHolder
     @Override
     public RecentViewedHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mContext = parent.getContext();
-        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.new_arrival_item, null);
+        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.recent_viewed_item, null);
         RecentViewedHolder recycler = new RecentViewedHolder(layoutView);
 
         return recycler;

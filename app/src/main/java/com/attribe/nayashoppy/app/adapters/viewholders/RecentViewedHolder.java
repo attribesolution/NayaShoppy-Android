@@ -18,9 +18,9 @@ public class RecentViewedHolder extends RecyclerView.ViewHolder{
 
     public RecentViewedHolder(View itemView) {
         super(itemView);
-        productImage = (ImageView)itemView.findViewById(R.id.arrival_image);
-        productName = (TextView)itemView.findViewById(R.id.arrival_product_name);
-        productPrice = (TextView)itemView.findViewById(R.id.arrival_product_price);
-        productVendor = (TextView)itemView.findViewById(R.id.arrival_product_vendor);
+        productImage = (ImageView)itemView.findViewById(R.id.viewed_item_image);
+        productName = (TextView)itemView.findViewById(R.id.viewed_product_name);
+        productPrice = (TextView)itemView.findViewById(R.id.viewed_product_price);
+        productVendor = (TextView)itemView.findViewById(R.id.viewed_product_vendor);
     }
 }

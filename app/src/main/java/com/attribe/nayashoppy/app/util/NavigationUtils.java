@@ -299,7 +299,8 @@ public class NavigationUtils {
      * @param mContext
      * @param product
      */
-    public static void showProductDetailScreen(Context mContext, com.attribe.nayashoppy.app.model.arrival.Datum product) {
+    public static void showProductDetailScreen(Context mContext,
+                                               com.attribe.nayashoppy.app.model.arrival.Datum product) {
         Intent intent = new Intent(mContext, ScreenProductDetail.class);
 
         Bundle bundle = new Bundle();
@@ -312,7 +313,8 @@ public class NavigationUtils {
 
     }
 
-    public static void showProductDetailScreen(Context mContext, com.attribe.nayashoppy.app.model.product_detail.Datum product) {
+    public static void showProductDetailScreen(Context mContext,
+                                               com.attribe.nayashoppy.app.model.product_detail.Datum product) {
         Intent intent = new Intent(mContext, ScreenProductDetail.class);
 
         Bundle bundle = new Bundle();
@@ -322,6 +324,30 @@ public class NavigationUtils {
         intent.putExtra(NavigationUtils.BUNDLE_PRODUCTS,bundle);
         mContext.startActivity(intent);
     }
+
+
+    /** For popular products
+     *
+     * @param mContext
+     * @param product
+     */
+
+
+    public static void showProductDetailScreen(Context mContext,
+                                               com.attribe.nayashoppy.app.model.popular_products.Data product) {
+        Intent intent = new Intent(mContext, ScreenProductDetail.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putString(NavigationUtils.KEY_PRODUCT_NAME,product.getProduct_name());
+        bundle.putInt(NavigationUtils.KEY_PRODUCT_ID,product.getProduct_id());
+        bundle.putString(NavigationUtils.KEY_PRODUCT_SLUG,product.getSlug());
+        intent.putExtra(NavigationUtils.BUNDLE_PRODUCTS,bundle);
+
+        mContext.startActivity(intent);
+
+    }
+
+
 
     /**For Deals of day
      *

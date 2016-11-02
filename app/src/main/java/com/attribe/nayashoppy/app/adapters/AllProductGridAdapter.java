@@ -92,6 +92,7 @@ public class AllProductGridAdapter extends RecyclerView.Adapter<PopularProductHo
             ViewedProduct viewedProduct=new ViewedProduct(mProduct.getProduct_name(),mProduct.getLowest_price()
             ,mProduct.getSuppliers().get(0).getStore_name(),mProduct.getImages().get(0).getImage_path());
             RecentViewed.getIntstance().addrecentviewedItem(viewedProduct);
+            notifyDataSetChanged();
         }
     }
 
