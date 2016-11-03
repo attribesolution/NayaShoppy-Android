@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/frameLayout"
-                android:layout_marginTop="55dp"
+                android:layout_marginTop="30dp"
                 android:layout_alignStart="@+id/frameLayout">
 
                 <com.attribe.nayashoppy.app.util.CustomEditText
@@ -63,10 +63,36 @@
             android:id="@+id/signin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
+            android:layout_margin="20dp"
             android:layout_below="@+id/passwordInput"
             android:background="@drawable/border_signin"
             android:textColor="@color/black"
             android:text="@string/button_login"
             />
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_below="@id/signin"
+
+        android:layout_centerHorizontal="true"
+        />
+    
+    
+    <TextView
+        android:id="@+id/sign_up_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sign_in_button"
+        android:layout_marginTop="3dp"
+        android:textColor="@android:color/white"
+        android:text="@string/signup_button_text"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        />
+
+
+
+
 </RelativeLayout>

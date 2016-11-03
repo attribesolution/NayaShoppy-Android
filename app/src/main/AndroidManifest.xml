@@ -44,6 +44,11 @@
                 android:parentActivityName=".screens.Main">
         </activity>
         <activity
+            android:name=".screens.useraccount.ScreenSignUp"
+            android:parentActivityName=".screens.Main">
+        </activity>
+
+        <activity
                 android:name=".screens.useraccount.ScreenMyOrder"
                 android:parentActivityName=".screens.Main">
         </activity>
