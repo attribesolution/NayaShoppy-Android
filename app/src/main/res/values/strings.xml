@@ -28,4 +28,6 @@
 
     <string name="filter_apply">Apply Filters</string>
     <string name="filter_reset">Reset</string>
+
+    <string name="facebook_app_id">1881714012056744</string>
 </resources>

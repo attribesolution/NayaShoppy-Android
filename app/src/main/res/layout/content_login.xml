@@ -9,7 +9,9 @@
 
     <FrameLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:layout_centerHorizontal="true" android:layout_marginTop="80dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
             android:id="@+id/frameLayout">
 
         <ImageView android:layout_width="wrap_content"
@@ -25,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/frameLayout"
-                android:layout_marginTop="55dp"
+                android:layout_marginTop="40dp"
                 android:layout_alignStart="@+id/frameLayout">
 
                 <com.attribe.nayashoppy.app.util.CustomEditText
@@ -44,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/usernameInput"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_alignStart="@+id/frameLayout">
 
         <com.attribe.nayashoppy.app.util.CustomEditText
@@ -63,10 +65,38 @@
             android:id="@+id/signin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
+            android:layout_margin="25dp"
             android:layout_below="@+id/passwordInput"
             android:background="@drawable/border_signin"
             android:textColor="@color/black"
             android:text="@string/button_login"
             />
+
+    <com.facebook.login.widget.LoginButton
+            android:id="@+id/fbLogin_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageView2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"/>
+
+    <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_or"
+            android:layout_below="@+id/signin"
+            android:layout_marginLeft="170dp"
+  />
+
+    <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/signin"
+            android:layout_centerHorizontal="true"
+    />
+
 </RelativeLayout>
