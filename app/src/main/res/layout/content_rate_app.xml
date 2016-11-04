@@ -28,65 +28,58 @@
               android:layout_below="@+id/logo_full"
               android:text="Rate this"
             />
-    
-    <View
-            android:id="@+id/empty_view"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_below="@+id/rate_this"
-            >
 
 
-    </View>
+    <RatingBar
+        android:id="@+id/ratingBar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/rate_this"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/rate_this"
+         />
 
-    <TextView
-              android:id="@+id/write_review"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="20dp"
-              android:layout_below="@id/empty_view"
-              android:text="Write Review"
-
-
-              android:padding="10dp"/>
-    
-    <EditText
-            android:id="@+id/review_field"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@id/write_review"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"/>
 
     <RelativeLayout
 
             android:id="@+id/button_parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/review_field"
+            android:layout_below="@+id/ratingBar2"
+            android:layout_marginTop="20dp"
             android:paddingBottom="10dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
     >
 
+
+
+
+
         <Button android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="@string/button_cancel"
                 android:paddingRight="10dp"
+                android:onClick="cencle"
                 android:textColor="@color/white"
                 android:background="@drawable/cancel_border"
                 android:layout_gravity="left" android:layout_alignParentBottom="false"
-                android:layout_alignParentStart="true"/>
+                android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true" />
 
 
         <Button android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="@string/button_submit"
+                android:onClick="submitRating"
                 android:paddingLeft="10dp"
                 android:background="@drawable/submit_border"
                 android:textColor="@color/white"
                 android:layout_gravity="right" android:layout_alignParentBottom="false"
-                android:layout_alignParentEnd="true"/>
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" />
+
+
 
 
     </RelativeLayout>
