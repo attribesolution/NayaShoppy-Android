@@ -21,5 +21,5 @@ public class EndPoints {
     public static final String STAGE_PRODUCT_REVIEWS = "http://nsapi.nayashoppy.com/v1/catalog/productreviews";
 
 
-    public static final String STAGE_SLIDER = "http://api.nayashoppy.com/";
+    public static final String STAGE_SLIDER = "http://nsapi.nayashoppy.com/";
 }

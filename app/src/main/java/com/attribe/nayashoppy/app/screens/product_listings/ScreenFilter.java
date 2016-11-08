@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.attribe.nayashoppy.app.R;
@@ -54,6 +55,8 @@ public class ScreenFilter extends BaseActivity implements FilterAdapter.KeySelec
         valuesList = (ListView)findViewById(R.id.values_list);
         buttonApplyFilter = (Button) findViewById(R.id.button_filter_apply);
         buttonApplyFilter.setOnClickListener(new ApplyFilterListener());
+        buttonResetFilter = (Button) findViewById(R.id.button_filter_reset);
+        buttonResetFilter.setOnClickListener(new RemoveFiltersListner());
     }
 
 
@@ -120,16 +123,30 @@ public class ScreenFilter extends BaseActivity implements FilterAdapter.KeySelec
                     if(value.isSelected){
 
                         valuesNameList.add(value.getName());
+                        Toast.makeText(ScreenFilter.this, "Filters are applied !"+" : "+valuesNameList.size(), Toast.LENGTH_SHORT).show();
                     }
-
-
                 }
-
-
             }
-
         }
     }
 
 
+    private class RemoveFiltersListner implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+
+            for(CategoryFilter.Facets.Filter filter : filterList){
+
+
+                for(CategoryFilter.Facets.Filter.Value value : filter.getValues()){
+
+                    if(value.isSelected){
+                        valuesNameList.clear();
+                        value.setSelected(false);
+                        Toast.makeText(ScreenFilter.this, "Filters have been reset !"+" : "+valuesNameList.size(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }
+    }
 }

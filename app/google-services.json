@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "39724075074",
+    "project_id": "nayashopy"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39724075074:android:c9fcb0688f0294d3",
+        "android_client_info": {
+          "package_name": "com.attribe.nayashoppy.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "39724075074-ft5npvfsh6ser3nu77d6q38opcb01eqf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.attribe.nayashoppy.app",
+            "certificate_hash": "0E041D190EC77D2AD04EE2AC26CCDAF9C5EC0425"
+          }
+        },
+        {
+          "client_id": "39724075074-0ruvhqpisqqqo94hrvrav5cf754fl07s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGa_cjtjt-sDJdvPK6shex3pYXauwNM9M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

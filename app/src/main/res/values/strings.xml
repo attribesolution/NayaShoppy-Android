@@ -29,5 +29,13 @@
     <string name="filter_apply">Apply Filters</string>
     <string name="filter_reset">Reset</string>
 
+    <string name="signup_button_text">Dont have an account? Sign Up</string>
+    <string name="signup_button">Sign Up</string>
+    <string name="hint_email_id">Enter Email Id</string>
+    <string name="hint_phone">Enter Mobile No.</string>
+    <string name="hint_dob">Enter Date of Birth</string>
+    <string name="button_SignUp">Join</string>
+
     <string name="facebook_app_id">1881714012056744</string>
+    <string name="title_activity_screen_sign_up">ScreenSignUp</string>
 </resources>
