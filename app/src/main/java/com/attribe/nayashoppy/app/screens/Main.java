@@ -1,5 +1,6 @@
 package com.attribe.nayashoppy.app.screens;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
@@ -134,7 +135,9 @@ public class Main extends BaseActivity {
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 break;
-
+            case R.id.share:
+                shareApp();
+                break;
             case R.id.action_settings:
                 break;
 
@@ -144,6 +147,22 @@ public class Main extends BaseActivity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void shareApp() {
+
+        try {
+            Intent i = new Intent(Intent.ACTION_SEND);
+            i.setType("text/plain");
+            i.putExtra(Intent.EXTRA_SUBJECT, "Naya Shoppy");
+            String sAux = "\nLet me recommend you this application\n\n";
+            sAux = sAux + "https://play.google.com/store/apps/details?id="+getPackageName()+" \n\n";
+            i.putExtra(Intent.EXTRA_TEXT, sAux);
+            startActivity(Intent.createChooser(i, "choose one"));
+        } catch(Exception e) {
+            //e.toString();
+
+        }
     }
 
 
