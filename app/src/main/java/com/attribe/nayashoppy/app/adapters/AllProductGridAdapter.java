@@ -60,15 +60,18 @@ public class AllProductGridAdapter extends RecyclerView.Adapter<PopularProductHo
 
         holder.shareIcon.setOnClickListener(new ShareClickListener(product));
         holder.parent.setOnClickListener(new ProductClickListener(product));
-        WishProduct wishProduct=new WishProduct(product.getProduct_id(),
-                product.getProduct_name(),product.getLowest_price(),
-                product.getSuppliers().get(0).getStore_name(),
-                product.getImages().get(0).getImage_path());
-       // holder.wishIcon.setOnClickListener(new WishIconListner(product));
-        holder.wishIcon.setOnClickListener(new com.attribe.nayashoppy.app.AbstractClasses.WishIconListner(wishProduct,mContext));
 
+        WishProduct wishProduct = new WishProduct(product.getProduct_id(),
+                product.getProduct_name(), product.getLowest_price(),
+                product.getSuppliers().get(0).getStore_name(), "");
 
+        try {
+            wishProduct.setProductImageURL(product.getImages().get(0).getImage_path());
+        }
+        catch (IndexOutOfBoundsException e) {
 
+        }
+            holder.wishIcon.setOnClickListener(new com.attribe.nayashoppy.app.AbstractClasses.WishIconListner(wishProduct, mContext));
     }
 
     @Override
@@ -89,8 +92,17 @@ public class AllProductGridAdapter extends RecyclerView.Adapter<PopularProductHo
 
 
             NavigationUtils.showProductDetailScreen(mContext,mProduct);
-            ViewedProduct viewedProduct=new ViewedProduct(mProduct.getProduct_name(),mProduct.getLowest_price()
-            ,mProduct.getSuppliers().get(0).getStore_name(),mProduct.getImages().get(0).getImage_path());
+
+            ViewedProduct viewedProduct=new ViewedProduct(mProduct.getProduct_name(),mProduct.getLowest_price(),
+                                                          mProduct.getSuppliers().get(0).getStore_name(),
+                                                          "");
+            try {
+                viewedProduct.setProductImageURL(mProduct.getImages().get(0).getImage_path());
+            }
+            catch (IndexOutOfBoundsException e) {
+
+            }
+
             RecentViewed.getIntstance().addrecentviewedItem(viewedProduct);
             notifyDataSetChanged();
         }
@@ -127,9 +139,16 @@ public class AllProductGridAdapter extends RecyclerView.Adapter<PopularProductHo
         @Override
         public void onClick(View view) {
             //add data into wishlist
-            WishProduct wishItem=new WishProduct(product.getProduct_id(),product.getProduct_name(),product.getLowest_price(),
-                    product.getSuppliers().get(0).getStore_name(),
-                    product.getImages().get(0).getImage_path());
+            WishProduct wishItem=new WishProduct(product.getProduct_id(),product.getProduct_name(),
+                    product.getLowest_price(),
+                    product.getSuppliers().get(0).getStore_name(), "");
+
+            try {
+                wishItem.setProductImageURL(product.getImages().get(0).getImage_path());
+            }
+            catch (IndexOutOfBoundsException e) {
+
+            }
             WishCart.getInstance().addWishItem(wishItem,mContext);
             Toast.makeText(mContext,"Item Added",Toast.LENGTH_SHORT).show();
 

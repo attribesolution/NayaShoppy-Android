@@ -160,11 +160,21 @@ public class FragmentPrices extends Fragment implements SimilarProductAdapter.IS
                 getProductReviews(mProduct.getProduct_id());
                 getSimilarProducts(mProduct.getLowest_price(),mProduct.getCategories_category_id());
 
-                WishProduct wishProduct=new WishProduct(mProduct.getProduct_id(),mProduct.getProduct_name(),
-                        mProduct.getLowest_price(),mProduct.getSuppliers().get(0).getStore_name(),mProduct.getImages().get(1).getImage_path());
+//                WishProduct wishProduct=new WishProduct(mProduct.getProduct_id(),mProduct.getProduct_name(),
+//                                                        mProduct.getLowest_price(),mProduct.getSuppliers().get(0).getStore_name(),
+//                                                        mProduct.getImages().get(1).getImage_path());
+
+                WishProduct wishProduct=new WishProduct(mProduct.getProduct_id(),
+                        mProduct.getProduct_name(),mProduct.getLowest_price(),
+                        mProduct.getSuppliers().get(0).getStore_name(), "");
+
+                try {
+                    wishProduct.setProductImageURL(mProduct.getImages().get(0).getImage_path());
+                }
+                catch (IndexOutOfBoundsException e) {
+
+                }
                 wishIcon.setOnClickListener(new WishIconListner(wishProduct,getActivity().getApplicationContext()));
-
-
             }
 
             @Override

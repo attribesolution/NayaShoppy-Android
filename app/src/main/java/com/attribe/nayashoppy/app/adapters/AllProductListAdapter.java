@@ -52,9 +52,23 @@ public class AllProductListAdapter extends RecyclerView.Adapter<AllProductListHo
 
         holder.shareIcon.setOnClickListener(new AllProductGridAdapter.ShareClickListener(product));
        // holder.wishIcon.setOnClickListener(new AllProductGridAdapter.WishIconListner(product));
-        WishProduct wishProduct=new WishProduct(product.getProduct_id(),product.getProduct_name()
-                ,product.getLowest_price(),product.getImages().get(0).getImage_path(),
-                product.getSuppliers().get(0).getStore_name());
+//        WishProduct wishProduct=new WishProduct(product.getProduct_id(),product.getProduct_name()
+//                ,product.getLowest_price(),product.getImages().get(0).getImage_path(),
+//                product.getSuppliers().get(0).getStore_name());
+
+        WishProduct wishProduct = new WishProduct(product.getProduct_id(),
+                product.getProduct_name(), product.getLowest_price(),
+                product.getSuppliers().get(0).getStore_name(), "");
+
+        try {
+            wishProduct.setProductImageURL(product.getImages().get(0).getImage_path());
+        }
+        catch (IndexOutOfBoundsException e) {
+
+        }
+
+
+
         holder.wishIcon.setOnClickListener(new WishIconListner(wishProduct,mContext));
     }
 

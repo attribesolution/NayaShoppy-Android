@@ -46,7 +46,13 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListHolder> {
 
         holder.productName.setText(wishList.get(position).getProductName());
         holder.productPrice.setText("Rs "+wishList.get(position).getProductPrice());
-        Picasso.with(mContext).load(wishList.get(position).getProductImageURL()).into(holder.image);
+
+        if(wishList.get(position).getProductImageURL().isEmpty()){
+            holder.image.setImageResource(R.drawable.clean_shoe);
+        }
+        else {
+            Picasso.with(mContext).load(wishList.get(position).getProductImageURL()).into(holder.image);
+        }
         holder.productVendor.setText(wishList.get(position).getProductVendor());
     }
 
